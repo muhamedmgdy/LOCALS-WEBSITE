@@ -114,7 +114,7 @@ header{
 
 .hero{
     margin-top:80px;
-    height:120vh;
+    height:80vh;
     background:url("https://via.placeholder.com/1920x1080?text=LOCALS+BANNER");
     background-size:cover;
     background-position:center;
@@ -411,18 +411,37 @@ footer{
 
     .products{
         grid-template-columns:1fr;
+        gap:20px;
     }
 
     .contact-info{
         grid-template-columns:1fr;
+        gap:20px;
     }
 
     .footer-content{
         grid-template-columns:1fr;
+        gap:20px;
+    }
+
+    .hero{
+        height:50vh;
+        margin-top:70px;
     }
 
     .hero-content h1{
-        font-size:40px;
+        font-size:32px;
+        margin-bottom:10px;
+    }
+
+    .hero-content p{
+        font-size:16px;
+        margin-bottom:15px;
+    }
+
+    .hero-btn{
+        padding:10px 20px;
+        font-size:14px;
     }
 
     .card img{
@@ -439,6 +458,23 @@ footer{
 
     header{
         padding:15px 5%;
+    }
+
+    .logo{
+        font-size:20px;
+    }
+
+    .section-title h2{
+        font-size:24px;
+    }
+
+    .contact h2,
+    .about-container h2{
+        font-size:24px;
+    }
+
+    .banner2 h2{
+        font-size:28px;
     }
 
 }

@@ -3,75 +3,222 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LOCALS</title>
+<title>LOCALS - Premium Streetwear</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
     <div class="logo">LOCALS</div>
 
-    <nav>
-        <a href="#">NEW IN</a>
-        <a href="#">SHOP</a>
-        <a href="#">ABOUT</a>
-        <a href="#">CONTACT</a>
+    <nav class="nav-menu">
+        <a href="#home">HOME</a>
+        <a href="#new-arrivals">NEW IN</a>
+        <a href="#about">ABOUT</a>
+        <a href="#contact">CONTACT</a>
     </nav>
+
+    <div class="header-icons">
+        <button class="search-btn"><i class="fas fa-search"></i></button>
+        <button class="cart-btn"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></button>
+        <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+    </div>
 </header>
 
-<section class="hero">
+<!-- SEARCH BAR -->
+<div class="search-bar">
+    <input type="text" placeholder="Search products...">
+    <button><i class="fas fa-search"></i></button>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
     <div class="hero-content">
         <h1>Premium Streetwear</h1>
         <p>Built For Everyday Life</p>
-        <a href="#" class="hero-btn">SHOP NOW</a>
+        <a href="#new-arrivals" class="hero-btn">SHOP NOW</a>
     </div>
 </section>
 
-<section class="section-title">
+<!-- ABOUT SECTION -->
+<section class="about" id="about">
+    <div class="about-container">
+        <h2>About LOCALS</h2>
+        <p>LOCALS is a premium streetwear brand dedicated to delivering high-quality, comfortable, and stylish clothing. Our mission is to create pieces that inspire confidence and self-expression in every customer.</p>
+        <p>Each piece is carefully crafted with attention to detail, using premium materials and sustainable practices. We believe in creating fashion that lasts, both in quality and style.</p>
+    </div>
+</section>
+
+<!-- NEW ARRIVALS -->
+<section class="section-title" id="new-arrivals">
     <h2>NEW ARRIVALS</h2>
 </section>
 
 <section class="products">
 
     <div class="card">
-        <img src="SHIRT1.jpeg" alt="">
+        <img src="https://via.placeholder.com/400x700?text=Oversized+STRIPED+SHIRT" alt="Oversized STRIPED SHIRT">
         <h3>Oversized STRIPED SHIRT</h3>
         <p>850 EGP</p>
-        <button>BUY NOW</button>
+        <button class="add-to-cart">ADD TO CART</button>
     </div>
 
     <div class="card">
-        <img src="RINGER TEE.jpeg" alt="">
+        <img src="https://via.placeholder.com/400x700?text=RINGER+TEE" alt="RINGER TEE">
         <h3>RINGER TEE</h3>
         <p>700 EGP</p>
-        <button>BUY NOW</button>
+        <button class="add-to-cart">ADD TO CART</button>
     </div>
 
     <div class="card">
-        <img src="SUPER BAGGY JEANS.jpeg" alt="">
+        <img src="https://via.placeholder.com/400x700?text=SUPER+BAGGY+JEANS" alt="SUPER BAGGY JEANS">
         <h3>SUPER BAGGY JEANS</h3>
         <p>850 EGP</p>
-        <button>BUY NOW</button>
+        <button class="add-to-cart">ADD TO CART</button>
     </div>
 
     <div class="card">
-        <img src="BAGGY SWEATPANTS.jpeg" alt="">
+        <img src="https://via.placeholder.com/400x700?text=BAGGY+SWEATPANTS" alt="BAGGY SWEATPANTS">
         <h3>BAGGY SWEATPANTS</h3>
         <p>800 EGP</p>
-        <button>BUY NOW</button>
+        <button class="add-to-cart">ADD TO CART</button>
     </div>
 
 </section>
 
-<section class="banner2">
-    <h2>SUMMER COLLECTION 2026</h2>
-    <p>Discover the latest pieces.</p>
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+    <h2>Customer Reviews</h2>
+    <div class="testimonials-container">
+        
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"LOCALS clothing is absolutely amazing! The quality is outstanding and the fit is perfect. I've recommended them to all my friends!"</p>
+            <div class="testimonial-author">
+                <img src="https://via.placeholder.com/60x60?text=Ahmed" alt="Ahmed">
+                <div>
+                    <h4>Ahmed Hassan</h4>
+                    <p>Verified Buyer</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"Best streetwear brand in Egypt! The designs are unique and the comfort is unmatched. Definitely coming back for more!"</p>
+            <div class="testimonial-author">
+                <img src="https://via.placeholder.com/60x60?text=Sara" alt="Sara">
+                <div>
+                    <h4>Sara Mohamed</h4>
+                    <p>Verified Buyer</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"The super baggy jeans are everything! Perfect for casual wear and the material is so durable. Love it!"</p>
+            <div class="testimonial-author">
+                <img src="https://via.placeholder.com/60x60?text=Omar" alt="Omar">
+                <div>
+                    <h4>Omar Khalid</h4>
+                    <p>Verified Buyer</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"Exceptional quality and fast shipping! LOCALS is my go-to brand for streetwear. Highly recommended!"</p>
+            <div class="testimonial-author">
+                <img src="https://via.placeholder.com/60x60?text=Noor" alt="Noor">
+                <div>
+                    <h4>Noor Amr</h4>
+                    <p>Verified Buyer</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </section>
 
+<!-- SUMMER BANNER -->
+<section class="banner2">
+    <h2>SUMMER COLLECTION 2026</h2>
+    <p>Discover the latest pieces for the season.</p>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="contact" id="contact">
+    <h2>Get In Touch</h2>
+    <div class="contact-info">
+        <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <h4>WhatsApp</h4>
+            <p><a href="https://wa.me/201061056741">01061056741</a></p>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <h4>Email</h4>
+            <p><a href="mailto:emadghazali@gmail.com">emadghazali@gmail.com</a></p>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <h4>Location</h4>
+            <p>THE MARKET MALL, 5th Settlement</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-    <h3>LOCALS</h3>
-    <p>Premium Streetwear Brand</p>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>LOCALS</h3>
+            <p>Premium Streetwear Brand</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/locals_store.eg" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#new-arrivals">Shop</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Policies</h4>
+            <ul>
+                <li><a href="#privacy">Privacy Policy</a></li>
+                <li><a href="#returns">Return Policy</a></li>
+                <li><a href="#shipping">Shipping Policy</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Newsletter</h4>
+            <p>Subscribe for exclusive offers</p>
+            <div class="newsletter">
+                <input type="email" placeholder="Your email">
+                <button>Subscribe</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 LOCALS. All rights reserved.</p>
+    </div>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>

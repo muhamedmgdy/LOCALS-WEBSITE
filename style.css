@@ -114,10 +114,11 @@ header{
 
 .hero{
     margin-top:80px;
-    height:80vh;
-    background:url("https://via.placeholder.com/1920x1080?text=LOCALS+BANNER");
+    height:100vh;
+    background-image:url("banner.png");
     background-size:cover;
     background-position:center;
+    background-repeat:no-repeat;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -425,7 +426,7 @@ footer{
     }
 
     .hero{
-        height:50vh;
+        height:60vh;
         margin-top:70px;
     }
 

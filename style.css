@@ -45,7 +45,7 @@ nav a{
 .hero{
     margin-top:80px;
     height:100vh;
-    background:url("images/BANNER1.jpeg");
+    background:url("BANNER1.jpeg");
     background-size:cover;
     background-position:center;
     display:flex;

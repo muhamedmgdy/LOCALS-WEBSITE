@@ -1,76 +1,74 @@
-// Search Bar Toggle
-const searchBtn = document.querySelector('.search-btn');
-const searchBar = document.querySelector('.search-bar');
+let cart = [];
 
-searchBtn.addEventListener('click', () => {
-    searchBar.classList.toggle('active');
+const cartCount = document.querySelector(".cart-count");
+const cartItems = document.querySelector(".cart-items");
+const cartTotal = document.querySelector(".cart-total");
+const cartBtn = document.querySelector(".cart-btn");
+const cartSidebar = document.querySelector(".cart-sidebar");
+
+cartBtn.addEventListener("click", () => {
+    cartSidebar.classList.toggle("show");
 });
 
-// Shopping Cart
-let cartCount = 0;
-const cartCountElement = document.querySelector('.cart-count');
-const addToCartButtons = document.querySelectorAll('.add-to-cart');
+document.querySelectorAll(".add-to-cart").forEach(button => {
 
-addToCartButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        cartCount++;
-        cartCountElement.textContent = cartCount;
-        button.textContent = 'ADDED!';
+    button.addEventListener("click", () => {
+
+        const card = button.parentElement;
+
+        const name = card.querySelector("h3").textContent;
+
+        const price = parseInt(
+            card.querySelector("p").textContent
+        );
+
+        cart.push({
+            name,
+            price
+        });
+
+        updateCart();
+
+        button.textContent = "ADDED ✓";
+
         setTimeout(() => {
-            button.textContent = 'ADD TO CART';
+            button.textContent = "ADD TO CART";
         }, 1000);
+
     });
+
 });
 
-// Mobile Menu Toggle
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.nav-menu');
+function updateCart() {
 
-menuToggle.addEventListener('click', () => {
-    navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-});
+    cartCount.textContent = cart.length;
 
-// Smooth Scrolling for Navigation Links
-const navLinks = document.querySelectorAll('.nav-menu a, .hero-btn');
+    cartItems.innerHTML = "";
 
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        const href = link.getAttribute('href');
-        if (href.startsWith('#')) {
-            e.preventDefault();
-            const target = document.querySelector(href);
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
+    let total = 0;
+
+    cart.forEach((item, index) => {
+
+        total += item.price;
+
+        cartItems.innerHTML += `
+        <div class="cart-item">
+            <p>${item.name}</p>
+            <p>${item.price} EGP</p>
+            <button onclick="removeItem(${index})">✖️</button>
+        </div>
+        `;
+
     });
-});
 
-// Newsletter Subscription
-const newsletterButton = document.querySelector('.newsletter button');
+    cartTotal.textContent = total;
 
-if (newsletterButton) {
-    newsletterButton.addEventListener('click', () => {
-        const input = document.querySelector('.newsletter input');
-        if (input.value) {
-            alert('Thank you for subscribing!');
-            input.value = '';
-        } else {
-            alert('Please enter your email');
-        }
-    });
 }
 
-// Search Functionality
-const searchInput = document.querySelector('.search-bar input');
-const searchSubmitBtn = document.querySelector('.search-bar button');
+function removeItem(index) {
 
-if (searchSubmitBtn) {
-    searchSubmitBtn.addEventListener('click', () => {
-        const query = searchInput.value;
-        if (query) {
-            alert(`Searching for: ${query}`);
-            searchInput.value = '';
-        }
-    });
+    cart.splice(index, 1);
+
+    updateCart();
+
 }

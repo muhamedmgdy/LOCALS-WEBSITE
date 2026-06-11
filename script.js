@@ -23,8 +23,12 @@ const summarySubtotal = document.getElementById('summarySubtotal');
 const summaryShipping = document.getElementById('summaryShipping');
 const summaryGrandTotal = document.getElementById('summaryGrandTotal');
 const successModal = document.getElementById('successModal');
-const closeSuccessBtn = document.getElementById('closeSuccessBtn');
 const orderIdText = document.getElementById('orderIdText');
+const modalShippingCost = document.getElementById('modalShippingCost');
+const goToWhatsappBtn = document.getElementById('goToWhatsappBtn');
+
+// متغير لحفظ رابط الواتساب مؤقتاً
+let finalWhatsappURL = "";
 
 // UI Toggles
 cartToggleBtn.addEventListener('click', () => {
@@ -155,21 +159,66 @@ function updateCheckoutSummary() {
     summaryGrandTotal.textContent = subtotal + shipping;
 }
 
-// Order Confirmation
+// --- عند ضغط تأكيد الأوردر ---
 checkoutForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    
+    const fullName = document.getElementById('fullName').value;
+    const phone = document.getElementById('phone').value;
+    const governorate = governorateSelect.value;
+    const address = document.getElementById('address').value;
+    const paymentMethod = document.querySelector('input[name="payment"]:checked').value === 'cod' ? 'الدفع عند الاستلام' : 'فودافون كاش / إنستا باي';
+    
+    const subtotal = summarySubtotal.textContent;
+    const shipping = summaryShipping.textContent;
+    const grandTotal = summaryGrandTotal.textContent;
+
     const orderId = 'LOC-' + Math.floor(1000 + Math.random() * 9000);
     orderIdText.textContent = orderId;
+    modalShippingCost.textContent = shipping; // عرض تكلفة الشحن في رسالة التنبيه
 
+    let productsText = '';
+    cart.forEach(item => {
+        productsText += - ${item.name} (مقاس: ${item.size}) x${item.quantity} -> ${item.price * item.quantity} EGP\n;
+    });
+
+    const whatsappMessage = 🚨 *أوردر جديد من موقع LOCALS* 🚨\n\n +
+                            🆔 *رقم الأوردر:* ${orderId}\n +
+                            👤 *اسم العميل:* ${fullName}\n +
+                            📞 *رقم التليفون:* ${phone}\n +
+                            📍 *المحافظة:* ${governorate}\n +
+                            🏠 *العنوان بالتفصيل:* ${address}\n\n +
+                            📦 *المنتجات:*\n${productsText}\n +
+                            💵 *الحساب:*\n +
+                            - المجموع: ${subtotal} EGP\n +
+                            - الشحن (مطلوب تحويله مقدمًا): ${shipping} EGP\n +
+                            💰 *الإجمالي النهائي:* ${grandTotal} EGP\n\n +
+                            💳 *طريقة الدفع:* ${paymentMethod}\n\n +
+                            ⚠️ *ملحوظة:* العميل قام بالتحويل لتأكيد الشحن وجارٍ إرسال صورة الإيصال.;
+
+    const myWhatsAppNumber = "201061056741"; 
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    
+    // حفظ الرابط في المتغير
+    finalWhatsappURL = https://wa.me/${myWhatsAppNumber}?text=${encodedMessage};
+
+    // إخفاء صفحة البيانات وإظهار صفحة التنبيه بدفع الشحن أولاً
     checkoutModal.classList.remove('show');
     successModal.classList.add('show');
 
+    // تفريغ السلة وتصفير الفورم
     cart = [];
     updateCartUI();
     checkoutForm.reset();
 });
 
-closeSuccessBtn.addEventListener('click', closeAllUI);
+// --- عند ضغط العميل على زرار المتابعة للواتساب بعد التحويل ---
+goToWhatsAppBtn.addEventListener('click', () => {
+    if(finalWhatsappURL !== "") {
+        window.open(finalWhatsappURL, '_blank');
+    }
+    closeAllUI();
+});
 
 // Live Search
 document.getElementById('searchInput').addEventListener('input', (e) => {

@@ -167,7 +167,7 @@ checkoutForm.addEventListener('submit', (e) => {
     const phone = document.getElementById('phone').value;
     const governorate = governorateSelect.value;
     const address = document.getElementById('address').value;
-    const paymentMethod = document.querySelector('input[name="payment"]:checked').value === 'cod' ? 'الدفع عند الاستلام' : 'فودافون كاش / إنستا باي';
+    const paymentMethod = "الدفع عند الاستلام (شحن مسبق)";
     
     const subtotal = summarySubtotal.textContent;
     const shipping = summaryShipping.textContent;
@@ -175,7 +175,7 @@ checkoutForm.addEventListener('submit', (e) => {
 
     const orderId = 'LOC-' + Math.floor(1000 + Math.random() * 9000);
     orderIdText.textContent = orderId;
-    modalShippingCost.textContent = shipping; // عرض تكلفة الشحن في رسالة التنبيه
+    modalShippingCost.textContent = shipping; 
 
     let productsText = '';
     cart.forEach(item => {
@@ -194,12 +194,12 @@ checkoutForm.addEventListener('submit', (e) => {
                             - الشحن (مطلوب تحويله مقدمًا): ${shipping} EGP\n +
                             💰 *الإجمالي النهائي:* ${grandTotal} EGP\n\n +
                             💳 *طريقة الدفع:* ${paymentMethod}\n\n +
-                            ⚠️ *ملحوظة:* العميل قام بالتحويل لتأكيد الشحن وجارٍ إرسال صورة الإيصال.;
+                            ⚠️ *ملحوظة:* العميل أيد المتابعة لتحويل الشحن وجارٍ إرسال صورة الإيصال.;
 
     const myWhatsAppNumber = "201061056741"; 
     const encodedMessage = encodeURIComponent(whatsappMessage);
     
-    // حفظ الرابط في المتغير
+    // الرابط جاهز
     finalWhatsappURL = https://wa.me/${myWhatsAppNumber}?text=${encodedMessage};
 
     // إخفاء صفحة البيانات وإظهار صفحة التنبيه بدفع الشحن أولاً
@@ -212,10 +212,11 @@ checkoutForm.addEventListener('submit', (e) => {
     checkoutForm.reset();
 });
 
-// --- عند ضغط العميل على زرار المتابعة للواتساب بعد التحويل ---
-goToWhatsAppBtn.addEventListener('click', () => {
+// --- عند ضغط العميل على زرار المتابعة للواتساب (الحروف مطابقة تماماً) ---
+goToWhatsappBtn.addEventListener('click', () => {
     if(finalWhatsappURL !== "") {
-        window.open(finalWhatsappURL, '_blank');
+        // الفتح بـ _self يضمن التشغيل الفوري على الموبايل داخل المتصفح بدون حظر
+        window.open(finalWhatsappURL, '_self');
     }
     closeAllUI();
 });

@@ -3,200 +3,304 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOCALS CLOTHING</title>
-    <!-- Font Awesome Icons -->
+    <title>LOCALS - Premium Streetwear</title>
+    <!-- الربط الصحيح والمضمون لملف الـ CSS -->
+    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- CSS File -->
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- OVERLAY -->
-    <div class="overlay" id="uiOverlay"></div>
+<!-- HEADER -->
+<header>
+    <div class="logo">LOCALS</div>
 
-    <!-- HEADER / NAVIGATION -->
-    <header>
-        <div class="logo">LOCALS</div>
-        <nav class="nav-menu">
-            <a href="#">Home</a>
-            <a href="#">Shop</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </nav>
-        <div class="nav-icons">
-            <button class="search-btn"><i class="fas fa-search"></i></button>
-            <button class="cart-btn" id="cartToggleBtn">
-                <i class="fas fa-shopping-bag"></i>
-                <span class="cart-count">0</span>
-            </button>
-            <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+    <nav class="nav-menu">
+        <a href="#home">HOME</a>
+        <a href="#new-arrivals">NEW IN</a>
+        <a href="#about">ABOUT</a>
+        <a href="#contact">CONTACT</a>
+    </nav>
+
+    <div class="header-icons">
+        <button class="search-btn"><i class="fas fa-search"></i></button>
+        <button class="cart-btn" id="cartToggleBtn">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </button>
+        <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+    </div>
+</header>
+
+<!-- SEARCH BAR -->
+<div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search products...">
+    <button><i class="fas fa-search"></i></button>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>Premium Streetwear</h1>
+        <p>Built For Everyday Life</p>
+        <a href="#new-arrivals" class="hero-btn">SHOP NOW</a>
+    </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="about" id="about">
+    <div class="about-container">
+        <h2>About LOCALS</h2>
+        <p>LOCALS is a premium streetwear brand dedicated to delivering high-quality, comfortable, and stylish clothing. Our mission is to create pieces that inspire confidence and self-expression in every customer.</p>
+        <p>Each piece is carefully crafted with attention to detail, using premium materials and sustainable practices. We believe in creating fashion that lasts, both in quality and style.</p>
+    </div>
+</section>
+
+<!-- NEW ARRIVALS -->
+<section class="section-title" id="new-arrivals">
+    <h2>NEW ARRIVALS</h2>
+</section>
+
+<!-- PRODUCTS SECTION -->
+<section class="products">
+    <!-- Product 1 -->
+    <div class="card" data-id="1" data-name="Oversized STRIPED SHIRT" data-price="850">
+        <img src="SHIRT1.jpeg" alt="Oversized STRIPED SHIRT">
+        <h3>Oversized STRIPED SHIRT</h3>
+        <p class="price">850 EGP</p>
+        <div class="product-options">
+            <select class="size-select">
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+            </select>
         </div>
-    </header>
-
-    <!-- SEARCH BAR -->
-    <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search for products...">
+        <button class="add-to-cart">ADD TO CART</button>
     </div>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>LOCALS CLOTHING</h1>
-            <p>Streetwear Brand Based in Egypt</p>
-            <a href="#shop" class="btn">Shop Now</a>
+    <!-- Product 2 -->
+    <div class="card" data-id="2" data-name="RINGER TEE" data-price="700">
+        <img src="RINGER%20TEE.jpeg" alt="RINGER TEE">
+        <h3>RINGER TEE</h3>
+        <p class="price">700 EGP</p>
+        <div class="product-options">
+            <select class="size-select">
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
         </div>
-    </section>
+        <button class="add-to-cart">ADD TO CART</button>
+    </div>
 
-    <!-- PRODUCTS SECTION -->
-    <section class="products" id="shop">
-        <h2 class="section-title">Our Collection</h2>
-        <div class="product-grid">
-            
-            <!-- Product 1 -->
-            <div class="card" data-id="1" data-name="Locals Black Hoodie" data-price="450">
-                <div class="card-img">
-                    <img src="./p1.jpg" alt="Product 1">
-                </div>
-                <div class="card-info">
-                    <h3>Locals Black Hoodie</h3>
-                    <p class="price">450 EGP</p>
-                    <div class="size-container">
-                        <label>Size:</label>
-                        <select class="size-select">
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                            <option value="XXL">XXL</option>
-                        </select>
-                    </div>
-                    <button class="add-to-cart">Add To Cart</button>
-                </div>
+    <!-- Product 3 -->
+    <div class="card" data-id="3" data-name="SUPER BAGGY JEANS" data-price="850">
+        <img src="SUPER%20BAGGY%20JEANS.jpeg" alt="SUPER BAGGY JEANS">
+        <h3>SUPER BAGGY JEANS</h3>
+        <p class="price">850 EGP</p>
+        <div class="product-options">
+            <select class="size-select">
+                <option value="30">30</option>
+                <option value="32">32</option>
+                <option value="34">34</option>
+                <option value="36">36</option>
+            </select>
+        </div>
+        <button class="add-to-cart">ADD TO CART</button>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="card" data-id="4" data-name="BAGGY SWEATPANTS" data-price="800">
+        <img src="BAGGY%20SWEATPANTS.jpeg" alt="BAGGY SWEATPANTS">
+        <h3>BAGGY SWEATPANTS</h3>
+        <p class="price">800 EGP</p>
+        <div class="product-options">
+            <select class="size-select">
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
+        </div>
+        <button class="add-to-cart">ADD TO CART</button>
+    </div>
+</section>
+
+<!-- SUMMER BANNER -->
+<section class="banner2">
+    <h2>SUMMER COLLECTION 2026</h2>
+    <p>Discover the latest pieces for the season.</p>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="contact" id="contact">
+    <h2>Get In Touch</h2>
+    <div class="contact-info">
+        <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <h4>WhatsApp</h4>
+            <p><a href="https://wa.me/201061056741">01061056741</a></p>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <h4>Email</h4>
+            <p><a href="mailto:emadghazali@gmail.com">emadghazali@gmail.com</a></p>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <h4>Location</h4>
+            <p>THE MARKET MALL, 5th Settlement</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>LOCALS</h3>
+            <p>Premium Streetwear Brand</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/locals_store.eg" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
             </div>
+        </div>
 
-            <!-- Product 2 -->
-            <div class="card" data-id="2" data-name="Locals Oversized T-Shirt" data-price="350">
-                <div class="card-img">
-                    <img src="./p2.jpg" alt="Product 2">
-                </div>
-                <div class="card-info">
-                    <h3>Locals Oversized T-Shirt</h3>
-                    <p class="price">350 EGP</p>
-                    <div class="size-container">
-                        <label>Size:</label>
-                        <select class="size-select">
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                        </select>
-                    </div>
-                    <button class="add-to-cart">Add To Cart</button>
-                </div>
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#new-arrivals">Shop</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Policies</h4>
+            <ul>
+                <li><a href="#privacy">Privacy Policy</a></li>
+                <li><a href="#returns">Return Policy</a></li>
+                <li><a href="#shipping">Shipping Policy</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Newsletter</h4>
+            <p>Subscribe for exclusive offers</p>
+            <div class="newsletter">
+                <input type="email" placeholder="Your email">
+                <button>Subscribe</button>
             </div>
-
-        </div>
-    </section>
-
-    <!-- CART SIDEBAR -->
-    <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h3>Shopping Bag</h3>
-            <button id="closeCartBtn">&times;</button>
-        </div>
-        <div class="cart-items" id="cartItemsContainer">
-            <!-- Items dynamic inject -->
-        </div>
-        <div class="cart-footer">
-            <div class="total-box">
-                <span>Total:</span>
-                <span><span id="cartTotal">0</span> EGP</span>
-            </div>
-            <button class="checkout-btn" id="openCheckoutBtn">Proceed to Checkout</button>
         </div>
     </div>
 
-    <!-- CHECKOUT MODAL -->
-    <div class="checkout-modal" id="checkoutModal">
-        <div class="checkout-content">
-            <div class="checkout-header">
-                <h3>Shipping Details</h3>
-                <button id="closeCheckoutBtn">&times;</button>
-            </div>
-            
-            <form id="checkoutForm">
-                <label>Full Name</label>
+    <div class="footer-bottom">
+        <p>&copy; 2026 LOCALS. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- CART SIDEBAR -->
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button class="close-cart" id="closeCartBtn">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItemsContainer"></div>
+    <div class="cart-footer">
+        <h3>Total: <span><span id="cartTotal">0</span> EGP</span></h3>
+        <button class="checkout-btn" id="openCheckoutBtn">Proceed to Checkout</button>
+    </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="checkout-modal" id="checkoutModal">
+    <div class="checkout-content">
+        <button class="close-modal" id="closeCheckoutBtn">&times;</button>
+        <h2>Complete Your Order</h2>
+        <form id="checkoutForm">
+            <div class="form-group">
+                <label for="fullName">Full Name *</label>
                 <input type="text" id="fullName" required placeholder="John Doe">
-
-                <label>Phone Number</label>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
                 <input type="tel" id="phone" required placeholder="01xxxxxxxxx">
-
-                <label>Governorate</label>
+            </div>
+            <div class="form-group">
+                <label for="governorate">Governorate *</label>
                 <select id="governorate" required>
                     <option value="" disabled selected>Select your governorate</option>
-                    <option value="القاهرة" data-shipping="60">القاهرة (60 EGP)</option>
-                    <option value="الجيزة" data-shipping="60">الجيزة (60 EGP)</option>
-                    <option value="الإسكندرية" data-shipping="70">الإسكندرية (70 EGP)</option>
-                    <option value="طنطا" data-shipping="75">الغربية / طنطا (75 EGP)</option>
-                    <option value="المنصورة" data-shipping="75">الدقهلية / المنصورة (75 EGP)</option>
+                    <option value="Cairo" data-shipping="60">Cairo (60 EGP الشحن)</option>
+                    <option value="Giza" data-shipping="60">Giza (60 EGP الشحن)</option>
+                    <option value="Alexandria" data-shipping="70">Alexandria (70 EGP الشحن)</option>
+                    <option value="Other" data-shipping="80">Other Governorates (80 EGP الشحن)</option>
                 </select>
-
-                <label>Full Address</label>
-                <input type="text" id="address" required placeholder="Street, Building, Apartment">
-
-                <div class="payment-methods">
-                    <label>Payment Method:</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="payment" value="cod" checked> Cash on Delivery</label>
-                    </div>
-                </div>
-
-                <div class="order-summary-box">
-                    <h4>Order Summary</h4>
-                    <p>Subtotal: <span><span id="summarySubtotal">0</span> EGP</span></p>
-                    <p>Shipping: <span><span id="summaryShipping">0</span> EGP</span></p>
-                    <hr>
-                    <p class="grand-total">Total: <span><span id="summaryGrandTotal">0</span> EGP</span></p>
-                </div>
-
-                <button type="submit" class="confirm-btn">CONFIRM ORDER</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- SUCCESS & SHIPPING CONFIRMATION MODAL -->
-    <div class="success-modal" id="successModal">
-        <div class="success-content" style="text-align: center; padding: 10px 0;">
-            <i class="fas fa-exclamation-circle" style="font-size: 50px; color: #ff9800; margin-bottom: 15px;"></i>
-            <h2 style="font-size: 22px; margin-bottom: 15px; color: #111; font-family: 'Poppins', sans-serif;">خطوة أخيرة لتأكيد طلبك!</h2>
-            
-            <!-- رسالة التنبيه ودفع الشحن -->
-            <div style="background: #fff9e6; border: 1px solid #ffe0b2; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: right; direction: rtl;">
-                <p style="color: #e65100; font-weight: bold; font-size: 15px; margin-bottom: 8px; line-height: 1.6;">
-                    ⚠️ لضمان جدية الطلب، يرجى تحويل مصاريف الشحن أولاً لجدية الحجز.
-                </p>
-                <p style="font-size: 14px; color: #333; margin-bottom: 5px;">
-                    • مصاريف شحن محافظتك: <span id="modalShippingCost" style="font-weight: bold; color: black;">0</span> EGP
-                </p>
-                <p style="font-size: 14px; color: #333;">
-                    • يرجى التحويل على رقم فودافون كاش: <span style="font-weight: bold; color: #d32f2f; font-size: 16px;">01061056741</span>
-                </p>
             </div>
-
-            <p style="color: #666; font-size: 13px; line-height: 1.5; direction: rtl;">
-                بعد التحويل، اضغط على الزرار بالأسفل لفتح الواتساب وإرسال تفاصيل الأوردر وصورة الإيصال لتأكيد الشحن فوراً.
-            </p>
-            
-            <p style="font-size: 13px; margin-top: 10px; color: #999;">رقم الأوردر المؤقت: <span id="orderIdText" style="font-weight: bold;"></span></p>
-            
-            <!-- زرار المتابعة للواتساب المعالج للموبايل والكمبيوتر -->
-            <button class="close-success-btn" id="goToWhatsappBtn" style="background: #25d366; color: white; width: 100%; padding: 12px; margin-top: 15px; font-size: 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
-                <i class="fab fa-whatsapp"></i> تم التحويل، متابعة للواتساب
-            </button>
-        </div>
+            <div class="form-group">
+                <label for="address">Detailed Address *</label>
+                <input type="text" id="address" required placeholder="Street, Building, Apartment...">
+            </div>
+            <div class="payment-methods">
+                <h3>Payment Method</h3>
+                <div class="method-options">
+                    <label class="method-option">
+                        <input type="radio" name="payment" value="cod" checked>
+                        <span>Cash On Delivery (الدفع عند الاستلام)</span>
+                    </label>
+                    <label class="method-option">
+                        <input type="radio" name="payment" value="instapay">
+                        <span>Vodafone Cash / InstaPay</span>
+                    </label>
+                </div>
+            </div>
+            <div class="order-summary-box">
+                <p>Subtotal: <span><span id="summarySubtotal">0</span> EGP</span></p>
+                <p>Shipping: <span><span id="summaryShipping">0</span> EGP</span></p>
+                <hr>
+                <h3>Grand Total: <span><span id="summaryGrandTotal">0</span> EGP</span></h3>
+            </div>
+            <button type="submit" class="submit-order-btn">CONFIRM ORDER</button>
+        </form>
     </div>
+</div>
 
-    <!-- JS File -->
-    <script src="script.js"></script>
+<!-- SUCCESS MODAL (تم التعديل لإضافة رسالة الشحن وزرار الواتساب المضمون) -->
+<div class="success-modal" id="successModal">
+    <div class="success-content" style="text-align: center;">
+        <i class="fas fa-exclamation-circle" style="font-size: 50px; color: #ff9800; margin-bottom: 15px;"></i>
+        <h2 style="font-size: 22px; margin-bottom: 15px; color: #111;">خطوة أخيرة لتأكيد طلبك!</h2>
+        
+        <!-- رسالة التنبيه المخصصة لموقعك -->
+        <div style="background: #fff9e6; border: 1px solid #ffe0b2; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: right; direction: rtl;">
+            <p style="color: #e65100; font-weight: bold; font-size: 15px; margin-bottom: 8px; line-height: 1.6;">
+                ⚠️ لضمان جدية الطلب، يرجى تحويل مصاريف الشحن أولاً لجدية الحجز.
+            </p>
+            <p style="font-size: 14px; color: #333; margin-bottom: 5px;">
+                • مصاريف شحن محافظتك: <span id="modalShippingCost" style="font-weight: bold; color: black;">0</span> EGP
+            </p>
+            <p style="font-size: 14px; color: #333;">
+                • يرجى التحويل على رقم فودافون كاش: <span style="font-weight: bold; color: #d32f2f; font-size: 16px;">01061056741</span>
+            </p>
+        </div>
+
+        <p style="color: #666; font-size: 13px; line-height: 1.5; direction: rtl;">
+            بعد التحويل، اضغط على الزرار بالأسفل لفتح الواتساب التلقائي وإرسال تفاصيل الأوردر وصورة الإيصال لتأكيد الشحن فوراً.
+        </p>
+        
+        <p style="font-size: 13px; margin-top: 10px; color: #999;">رقم الأوردر المؤقت: <span id="orderIdText" style="font-weight: bold;"></span></p>
+        
+        <!-- زرار المتابعة للواتساب المضمون بحروف صغيرة -->
+        <button class="close-success-btn" id="gotowhatsappbtn" style="background: #25d366; color: white; width: 100%; padding: 12px; margin-top: 15px; font-size: 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
+            <i class="fab fa-whatsapp"></i> تم التحويل، متابعة للواتساب
+        </button>
+    </div>
+</div>
+
+<!-- BACKDROP OVERLAY -->
+<div class="overlay" id="uiOverlay"></div>
+
+<!-- الربط الصحيح لملف الـ JS -->
+<script src="./script.js"></script>
 </body>
 </html>

@@ -265,13 +265,12 @@
     </div>
 </div>
 
-<!-- SUCCESS MODAL (تم التعديل لإضافة رسالة الشحن وزرار الواتساب المضمون) -->
+<!-- SUCCESS MODAL -->
 <div class="success-modal" id="successModal">
     <div class="success-content" style="text-align: center;">
         <i class="fas fa-exclamation-circle" style="font-size: 50px; color: #ff9800; margin-bottom: 15px;"></i>
         <h2 style="font-size: 22px; margin-bottom: 15px; color: #111;">خطوة أخيرة لتأكيد طلبك!</h2>
         
-        <!-- رسالة التنبيه المخصصة لموقعك -->
         <div style="background: #fff9e6; border: 1px solid #ffe0b2; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: right; direction: rtl;">
             <p style="color: #e65100; font-weight: bold; font-size: 15px; margin-bottom: 8px; line-height: 1.6;">
                 ⚠️ لضمان جدية الطلب، يرجى تحويل مصاريف الشحن أولاً لجدية الحجز.
@@ -290,7 +289,6 @@
         
         <p style="font-size: 13px; margin-top: 10px; color: #999;">رقم الأوردر المؤقت: <span id="orderIdText" style="font-weight: bold;"></span></p>
         
-        <!-- زرار المتابعة للواتساب المضمون بحروف صغيرة -->
         <button class="close-success-btn" id="gotowhatsappbtn" style="background: #25d366; color: white; width: 100%; padding: 12px; margin-top: 15px; font-size: 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
             <i class="fab fa-whatsapp"></i> تم التحويل، متابعة للواتساب
         </button>
@@ -300,7 +298,259 @@
 <!-- BACKDROP OVERLAY -->
 <div class="overlay" id="uiOverlay"></div>
 
-<!-- الربط الصحيح لملف الـ JS -->
-<script src="./script.js"></script>
+<!-- تشغيل السكريبت من داخل الـ HTML مباشرة لقتل الـ Cache للأبد -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    let cart = []; 
+
+    const cartSidebar = document.getElementById('cartSidebar');
+    const cartToggleBtn = document.getElementById('cartToggleBtn');
+    const closeCartBtn = document.getElementById('closeCartBtn');
+    const uiOverlay = document.getElementById('uiOverlay');
+    const cartCountBadge = document.querySelector('.cart-count');
+    const cartItemsContainer = document.getElementById('cartItemsContainer');
+    const cartTotalSpan = document.getElementById('cartTotal');
+
+    const searchBtn = document.querySelector('.search-btn');
+    const searchBar = document.querySelector('.search-bar');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    const checkoutModal = document.getElementById('checkoutModal');
+    const openCheckoutBtn = document.getElementById('openCheckoutBtn');
+    const closeCheckoutBtn = document.getElementById('closeCheckoutBtn');
+    const checkoutForm = document.getElementById('checkoutForm');
+    const governorateSelect = document.getElementById('governorate');
+
+    const summarySubtotal = document.getElementById('summarySubtotal');
+    const summaryShipping = document.getElementById('summaryShipping');
+    const summaryGrandTotal = document.getElementById('summaryGrandTotal');
+    const successModal = document.getElementById('successModal');
+    const orderIdText = document.getElementById('orderIdText');
+    const modalShippingCost = document.getElementById('modalShippingCost');
+    const goToWhatsAppBtn = document.getElementById('gotowhatsappbtn');
+
+    let finalWhatsappURL = "";
+
+    // فتح وغلق السلة
+    if(cartToggleBtn) {
+        cartToggleBtn.addEventListener('click', () => {
+            cartSidebar.classList.add('show');
+            uiOverlay.classList.add('show');
+        });
+    }
+
+    if(closeCartBtn) closeCartBtn.addEventListener('click', closeAllUI);
+    if(uiOverlay) uiOverlay.addEventListener('click', closeAllUI);
+    if(closeCheckoutBtn) closeCheckoutBtn.addEventListener('click', closeAllUI);
+
+    function closeAllUI() {
+        if(cartSidebar) cartSidebar.classList.remove('show');
+        if(checkoutModal) checkoutModal.classList.remove('show');
+        if(successModal) successModal.classList.remove('show');
+        if(uiOverlay) uiOverlay.classList.remove('show');
+    }
+
+    // البحث والقائمة التناغمية
+    if(searchBtn) {
+        searchBtn.addEventListener('click', () => {
+            searchBar.classList.toggle('active');
+        });
+    }
+
+    if(menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            if(navMenu.classList.contains('active')) {
+                navMenu.style.display = 'flex';
+            } else {
+                navMenu.style.display = '';
+            }
+        });
+    }
+
+    // الانتقال لكتابة البيانات
+    if(openCheckoutBtn) {
+        openCheckoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+            cartSidebar.classList.remove('show');
+            checkoutModal.classList.add('show');
+            uiOverlay.classList.add('show');
+            updateCheckoutSummary();
+        });
+    }
+
+    // ==========================================
+    // 💥 كود إضافة المنتجات الفوري والمضمون 💥
+    // ==========================================
+    document.body.addEventListener('click', function(e) {
+        if (e.target && e.target.classList.contains('add-to-cart')) {
+            const card = e.target.closest('.card');
+            if(card) {
+                const id = card.getAttribute('data-id');
+                const name = card.getAttribute('data-name');
+                const price = parseInt(card.getAttribute('data-price'));
+                const size = card.querySelector('.size-select').value;
+
+                const existingItem = cart.find(item => item.id === id && item.size === size);
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ id, name, price, size, quantity: 1 });
+                }
+
+                updateCartUI();
+                cartSidebar.classList.add('show');
+                uiOverlay.classList.add('show');
+            }
+        }
+    });
+
+    function updateCartUI() {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        if(cartCountBadge) cartCountBadge.textContent = totalItems;
+
+        if(!cartItemsContainer) return;
+        cartItemsContainer.innerHTML = '';
+        let subtotal = 0;
+
+        cart.forEach((item, index) => {
+            subtotal += item.price * item.quantity;
+            cartItemsContainer.innerHTML += `
+                <div class="cart-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">
+                    <div class="cart-item-details">
+                        <h4 style="margin: 0 0 5px 0; font-size: 14px; color: #000;">${item.name}</h4>
+                        <p style="margin: 0 0 5px 0; font-size: 12px; color: #666;">Size: <strong>${item.size}</strong></p>
+                        <p style="margin: 0; font-size: 13px; font-weight: bold; color: #000;">${item.price} EGP</p>
+                        <div class="cart-item-qty" style="margin-top: 5px; display: flex; align-items: center; gap: 8px;">
+                            <button type="button" class="qty-btn-minus" data-index="${index}" style="padding: 2px 8px; cursor: pointer;">-</button>
+                            <span style="color: #000;">${item.quantity}</span>
+                            <button type="button" class="qty-btn-plus" data-index="${index}" style="padding: 2px 8px; cursor: pointer;">+</button>
+                        </div>
+                    </div>
+                    <button type="button" class="remove-item-btn" data-index="${index}" style="background: none; border: none; color: #ff3333; cursor: pointer; font-size: 16px;"><i class="fas fa-trash"></i></button>
+                </div>
+            `;
+        });
+
+        if(cartTotalSpan) cartTotalSpan.textContent = subtotal;
+    }
+
+    // أزرار التحكم بالكمية والحذف جوه السلة
+    document.body.addEventListener('click', function(e) {
+        let target = e.target;
+        if(target.classList.contains('qty-btn-plus') || target.classList.contains('qty-btn-minus') || target.closest('.remove-item-btn')) {
+            
+            if(target.classList.contains('qty-btn-plus')) {
+                let idx = target.getAttribute('data-index');
+                cart[idx].quantity += 1;
+            }
+            if(target.classList.contains('qty-btn-minus')) {
+                let idx = target.getAttribute('data-index');
+                cart[idx].quantity -= 1;
+                if (cart[idx].quantity <= 0) cart.splice(idx, 1);
+            }
+            if(target.closest('.remove-item-btn')) {
+                let btn = target.closest('.remove-item-btn');
+                let idx = btn.getAttribute('data-index');
+                cart.splice(idx, 1);
+            }
+            
+            updateCartUI();
+            if(checkoutModal.classList.contains('show')) updateCheckoutSummary();
+        }
+    });
+
+    if(governorateSelect) governorateSelect.addEventListener('change', updateCheckoutSummary);
+
+    function updateCheckoutSummary() {
+        let subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const selectedOption = governorateSelect.options[governorateSelect.selectedIndex];
+        let shipping = (selectedOption && selectedOption.dataset.shipping) ? parseInt(selectedOption.dataset.shipping) : 0;
+
+        if(summarySubtotal) summarySubtotal.textContent = subtotal;
+        if(summaryShipping) summaryShipping.textContent = shipping;
+        if(summaryGrandTotal) summaryGrandTotal.textContent = subtotal + shipping;
+    }
+
+    // إرسال البيانات وتجهيز رسالة الواتساب المضمونة
+    if(checkoutForm) {
+        checkoutForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const governorate = governorateSelect.value;
+            const address = document.getElementById('address').value;
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value === 'cod' ? 'الدفع عند الاستلام (شحن مسبق)' : 'Vodafone Cash / InstaPay';
+            
+            const subtotal = summarySubtotal.textContent;
+            const shipping = summaryShipping.textContent;
+            const grandTotal = summaryGrandTotal.textContent;
+
+            const orderId = 'LOC-' + Math.floor(1000 + Math.random() * 9000);
+            if(orderIdText) orderIdText.textContent = orderId;
+            if(modalShippingCost) modalShippingCost.textContent = shipping; 
+
+            let productsText = '';
+            cart.forEach(item => {
+                productsText += - ${item.name} (Size: ${item.size}) x${item.quantity} -> ${item.price * item.quantity} EGP\n;
+            });
+
+            const whatsappMessage = 🚨 *أوردر جديد من موقع LOCALS* 🚨\n\n +
+                                    🆔 *رقم الأوردر:* ${orderId}\n +
+                                    👤 *اسم العميل:* ${fullName}\n +
+                                    📞 *رقم التليفون:* ${phone}\n +
+                                    📍 *المحافظة:* ${governorate}\n +
+                                    🏠 *العنوان بالتفصيل:* ${address}\n\n +
+                                    📦 *المنتجات:*\n${productsText}\n +
+                                    💵 *تفاصيل الحساب:*\n +
+                                    - المجموع: ${subtotal} EGP\n +
+                                    - الشحن (مطلوب تحويله أولاً): ${shipping} EGP\n +
+                                    💰 *الإجمالي النهائي:* ${grandTotal} EGP\n\n +
+                                    💳 *طريقة الدفع:* ${paymentMethod}\n\n +
+                                    ⚠️ *حالة الشحن:* العميل أكد المتابعة لتحويل الشحن وجارٍ إرسال صورة الإيصال لتأكيد الأوردر نهائياً.;
+
+            const myWhatsAppNumber = "201061056741"; 
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            
+            finalWhatsappURL = https://wa.me/${myWhatsAppNumber}?text=${encodedMessage};
+
+            if(checkoutModal) checkoutModal.classList.remove('show');
+            if(successModal) successModal.classList.add('show');
+
+            cart = [];
+            updateCartUI();
+            checkoutForm.reset();
+        });
+    }
+
+    // تشغيل زرار الانتقال للواتساب
+    if(goToWhatsAppBtn) {
+        goToWhatsAppBtn.addEventListener('click', () => {
+            if(finalWhatsappURL !== "") {
+                window.open(finalWhatsappURL, '_self');
+            }
+            closeAllUI();
+        });
+    }
+
+    // نظام البحث المباشر عن المنتجات
+    const searchInput = document.getElementById('searchInput');
+    if(searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            document.querySelectorAll('.products .card').forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                card.style.display = title.includes(term) ? 'flex' : 'none';
+            });
+        });
+    }
+});
+</script>
 </body>
 </html>

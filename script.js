@@ -50,7 +50,6 @@ searchBtn.addEventListener('click', () => {
 // قائمة الموبايل التناغمية
 menuToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
-    // كود أمان إضافي لضمان ظهور القائمة لو الـ CSS فيه مشكلة
     if(navMenu.classList.contains('active')) {
         navMenu.style.display = 'flex';
     } else {
@@ -79,7 +78,9 @@ function closeAllUI() {
     uiOverlay.classList.remove('show');
 }
 
-// نظام إضافة المنتجات للسلة (Add to Cart)
+// =========================================================
+// 👇 نظام إضافة المنتجات المحدث بالملي على الـ HTML بتاعك 👇
+// =========================================================
 document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', (e) => {
         const card = e.target.closest('.card');
@@ -106,7 +107,7 @@ function addToCartSystem(id, name, price, size) {
     uiOverlay.classList.add('show');
 }
 
-// تحديث وعرض المنتجات داخل السلة
+// تحديث وعرض المنتجات داخل السلة بتصميم متناسق
 function updateCartUI() {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     cartCountBadge.textContent = totalItems;
@@ -119,12 +120,12 @@ function updateCartUI() {
         cartItemsContainer.innerHTML += `
             <div class="cart-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">
                 <div class="cart-item-details">
-                    <h4 style="margin: 0 0 5px 0; font-size: 14px;">${item.name}</h4>
+                    <h4 style="margin: 0 0 5px 0; font-size: 14px; color: #000;">${item.name}</h4>
                     <p style="margin: 0 0 5px 0; font-size: 12px; color: #666;">Size: <strong>${item.size}</strong></p>
-                    <p style="margin: 0; font-size: 13px; font-weight: bold;">${item.price} EGP</p>
+                    <p style="margin: 0; font-size: 13px; font-weight: bold; color: #000;">${item.price} EGP</p>
                     <div class="cart-item-qty" style="margin-top: 5px; display: flex; align-items: center; gap: 8px;">
                         <button type="button" onclick="changeQty(${index}, -1)" style="padding: 2px 8px; cursor: pointer;">-</button>
-                        <span>${item.quantity}</span>
+                        <span style="color: #000;">${item.quantity}</span>
                         <button type="button" onclick="changeQty(${index}, 1)" style="padding: 2px 8px; cursor: pointer;">+</button>
                     </div>
                 </div>
@@ -149,7 +150,7 @@ window.removeItem = function(index) {
     if(checkoutModal.classList.contains('show')) updateCheckoutSummary();
 };
 
-// حساب مصاريف الشحن والمجموع الإجمالي تلقائياً عند تغيير المحافظة
+// حساب مصاريف الشحن والمجموع الإجمالي تلقائياً
 governorateSelect.addEventListener('change', updateCheckoutSummary);
 
 function updateCheckoutSummary() {
@@ -176,18 +177,15 @@ checkoutForm.addEventListener('submit', (e) => {
     const shipping = summaryShipping.textContent;
     const grandTotal = summaryGrandTotal.textContent;
 
-    // توليد رقم أوردر عشوائي ومميز للبراند بتاعك
     const orderId = 'LOC-' + Math.floor(1000 + Math.random() * 9000);
     orderIdText.textContent = orderId;
-    modalShippingCost.textContent = shipping; // تمرير قيمة شحن المحافظة في الـ Popup
+    modalShippingCost.textContent = shipping; 
 
-    // تجميع المنتجات في نص منسق للواتساب
     let productsText = '';
     cart.forEach(item => {
         productsText += - ${item.name} (Size: ${item.size}) x${item.quantity} -> ${item.price * item.quantity} EGP\n;
     });
 
-    // تجهيز نص رسالة الواتساب الاحترافية بالكامل
     const whatsappMessage = 🚨 *أوردر جديد من موقع LOCALS* 🚨\n\n +
                             🆔 *رقم الأوردر:* ${orderId}\n +
                             👤 *اسم العميل:* ${fullName}\n +
@@ -205,14 +203,11 @@ checkoutForm.addEventListener('submit', (e) => {
     const myWhatsAppNumber = "201061056741"; 
     const encodedMessage = encodeURIComponent(whatsappMessage);
     
-    // إنشاء الرابط المباشر
     finalWhatsappURL = https://wa.me/${myWhatsAppNumber}?text=${encodedMessage};
 
-    // إخفاء الـ Checkout وإظهار الـ Success Modal الجديد بالتنبيه والدفع أولاً
     checkoutModal.classList.remove('show');
     successModal.classList.add('show');
 
-    // تفريغ السلة وتصفير الفورم استعداداً لأوردر جديد
     cart = [];
     updateCartUI();
     checkoutForm.reset();
@@ -221,7 +216,6 @@ checkoutForm.addEventListener('submit', (e) => {
 // فتح تطبيق الواتساب فوراً عند ضغط العميل على الزرار الأخضر
 goToWhatsappBtn.addEventListener('click', () => {
     if(finalWhatsappURL !== "") {
-        // استخدام _self يضمن فتح التطبيق مباشرة على الموبايل والكمبيوتر بدون حظر النوافذ المنبثقة
         window.open(finalWhatsappURL, '_self');
     }
     closeAllUI();

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+[1:50 AM, 6/12/2026] Muhamed Magdy: <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,6 +23,30 @@
 
     <div class="header-icons">
         <button class="search-btn"><i class="fas fa-search"></i></button>
+    …
+[1:58 AM, 6/12/2026] Muhamed Magdy: <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOCALS - Premium Streetwear</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">LOCALS</div>
+
+    <nav class="nav-menu">
+        <a href="#home">HOME</a>
+        <a href="#new-arrivals">NEW IN</a>
+        <a href="#about">ABOUT</a>
+        <a href="#contact">CONTACT</a>
+    </nav>
+
+    <div class="header-icons">
+        <button class="search-btn"><i class="fas fa-search"></i></button>
         <button class="cart-btn" id="cartToggleBtn">
             <i class="fas fa-shopping-cart"></i>
             <span class="cart-count">0</span>
@@ -31,13 +55,11 @@
     </div>
 </header>
 
-<!-- SEARCH BAR -->
 <div class="search-bar">
     <input type="text" id="searchInput" placeholder="Search products...">
     <button><i class="fas fa-search"></i></button>
 </div>
 
-<!-- HERO -->
 <section class="hero" id="home">
     <div class="hero-content">
         <h1>Premium Streetwear</h1>
@@ -46,7 +68,6 @@
     </div>
 </section>
 
-<!-- ABOUT SECTION -->
 <section class="about" id="about">
     <div class="about-container">
         <h2>About LOCALS</h2>
@@ -55,14 +76,11 @@
     </div>
 </section>
 
-<!-- NEW ARRIVALS -->
 <section class="section-title" id="new-arrivals">
     <h2>NEW ARRIVALS</h2>
 </section>
 
-<!-- PRODUCTS SECTION -->
 <section class="products">
-    <!-- Product 1 -->
     <div class="card" data-id="1" data-name="Oversized STRIPED SHIRT" data-price="850">
         <img src="SHIRT1.jpeg" alt="Oversized STRIPED SHIRT">
         <h3>Oversized STRIPED SHIRT</h3>
@@ -75,10 +93,9 @@
                 <option value="XXL">XXL</option>
             </select>
         </div>
-        <button class="add-to-cart">ADD TO CART</button>
+        <button class="add-to-cart" style="position: relative; z-index: 10; cursor: pointer;">ADD TO CART</button>
     </div>
 
-    <!-- Product 2 -->
     <div class="card" data-id="2" data-name="RINGER TEE" data-price="700">
         <img src="RINGER%20TEE.jpeg" alt="RINGER TEE">
         <h3>RINGER TEE</h3>
@@ -90,10 +107,9 @@
                 <option value="XL">XL</option>
             </select>
         </div>
-        <button class="add-to-cart">ADD TO CART</button>
+        <button class="add-to-cart" style="position: relative; z-index: 10; cursor: pointer;">ADD TO CART</button>
     </div>
 
-    <!-- Product 3 -->
     <div class="card" data-id="3" data-name="SUPER BAGGY JEANS" data-price="850">
         <img src="SUPER%20BAGGY%20JEANS.jpeg" alt="SUPER BAGGY JEANS">
         <h3>SUPER BAGGY JEANS</h3>
@@ -106,10 +122,9 @@
                 <option value="36">36</option>
             </select>
         </div>
-        <button class="add-to-cart">ADD TO CART</button>
+        <button class="add-to-cart" style="position: relative; z-index: 10; cursor: pointer;">ADD TO CART</button>
     </div>
 
-    <!-- Product 4 -->
     <div class="card" data-id="4" data-name="BAGGY SWEATPANTS" data-price="800">
         <img src="BAGGY%20SWEATPANTS.jpeg" alt="BAGGY SWEATPANTS">
         <h3>BAGGY SWEATPANTS</h3>
@@ -121,17 +136,15 @@
                 <option value="XL">XL</option>
             </select>
         </div>
-        <button class="add-to-cart">ADD TO CART</button>
+        <button class="add-to-cart" style="position: relative; z-index: 10; cursor: pointer;">ADD TO CART</button>
     </div>
 </section>
 
-<!-- SUMMER BANNER -->
 <section class="banner2">
     <h2>SUMMER COLLECTION 2026</h2>
     <p>Discover the latest pieces for the season.</p>
 </section>
 
-<!-- CONTACT SECTION -->
 <section class="contact" id="contact">
     <h2>Get In Touch</h2>
     <div class="contact-info">
@@ -153,7 +166,6 @@
     </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
     <div class="footer-content">
         <div class="footer-section">
@@ -200,7 +212,6 @@
     </div>
 </footer>
 
-<!-- CART SIDEBAR -->
 <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-header">
         <h2>Your Cart</h2>
@@ -213,7 +224,6 @@
     </div>
 </div>
 
-<!-- CHECKOUT MODAL -->
 <div class="checkout-modal" id="checkoutModal">
     <div class="checkout-content">
         <button class="close-modal" id="closeCheckoutBtn">&times;</button>
@@ -265,7 +275,6 @@
     </div>
 </div>
 
-<!-- SUCCESS MODAL -->
 <div class="success-modal" id="successModal">
     <div class="success-content" style="text-align: center;">
         <i class="fas fa-exclamation-circle" style="font-size: 50px; color: #ff9800; margin-bottom: 15px;"></i>
@@ -295,10 +304,8 @@
     </div>
 </div>
 
-<!-- BACKDROP OVERLAY -->
 <div class="overlay" id="uiOverlay"></div>
 
-<!-- تشغيل السكريبت من داخل الـ HTML مباشرة لقتل الـ Cache للأبد -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     let cart = []; 
@@ -332,7 +339,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let finalWhatsappURL = "";
 
-    // فتح وغلق السلة
     if(cartToggleBtn) {
         cartToggleBtn.addEventListener('click', () => {
             cartSidebar.classList.add('show');
@@ -351,7 +357,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if(uiOverlay) uiOverlay.classList.remove('show');
     }
 
-    // البحث والقائمة التناغمية
     if(searchBtn) {
         searchBtn.addEventListener('click', () => {
             searchBar.classList.toggle('active');
@@ -369,7 +374,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // الانتقال لكتابة البيانات
     if(openCheckoutBtn) {
         openCheckoutBtn.addEventListener('click', () => {
             if (cart.length === 0) {
@@ -383,12 +387,11 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // ==========================================
-    // 💥 كود إضافة المنتجات الفوري والمضمون 💥
-    // ==========================================
-    document.body.addEventListener('click', function(e) {
-        if (e.target && e.target.classList.contains('add-to-cart')) {
-            const card = e.target.closest('.card');
+    // 🔥 التعديل الجوهري: جعل حدث الضغط يلقط الزرار مباشرة بأي شكل كليك في الصفحة
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const card = this.closest('.card');
             if(card) {
                 const id = card.getAttribute('data-id');
                 const name = card.getAttribute('data-name');
@@ -407,7 +410,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 cartSidebar.classList.add('show');
                 uiOverlay.classList.add('show');
             }
-        }
+        });
     });
 
     function updateCartUI() {
@@ -438,32 +441,40 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         if(cartTotalSpan) cartTotalSpan.textContent = subtotal;
+        
+        // ربط أزرار التحكم داخل السلة المفتوحة حديثاً
+        bindCartEvents();
     }
 
-    // أزرار التحكم بالكمية والحذف جوه السلة
-    document.body.addEventListener('click', function(e) {
-        let target = e.target;
-        if(target.classList.contains('qty-btn-plus') || target.classList.contains('qty-btn-minus') || target.closest('.remove-item-btn')) {
-            
-            if(target.classList.contains('qty-btn-plus')) {
-                let idx = target.getAttribute('data-index');
+    function bindCartEvents() {
+        document.querySelectorAll('.qty-btn-plus').forEach(btn => {
+            btn.onclick = function() {
+                let idx = this.getAttribute('data-index');
                 cart[idx].quantity += 1;
-            }
-            if(target.classList.contains('qty-btn-minus')) {
-                let idx = target.getAttribute('data-index');
+                updateCartUI();
+                if(checkoutModal.classList.contains('show')) updateCheckoutSummary();
+            };
+        });
+
+        document.querySelectorAll('.qty-btn-minus').forEach(btn => {
+            btn.onclick = function() {
+                let idx = this.getAttribute('data-index');
                 cart[idx].quantity -= 1;
                 if (cart[idx].quantity <= 0) cart.splice(idx, 1);
-            }
-            if(target.closest('.remove-item-btn')) {
-                let btn = target.closest('.remove-item-btn');
-                let idx = btn.getAttribute('data-index');
+                updateCartUI();
+                if(checkoutModal.classList.contains('show')) updateCheckoutSummary();
+            };
+        });
+
+        document.querySelectorAll('.remove-item-btn').forEach(btn => {
+            btn.onclick = function() {
+                let idx = this.getAttribute('data-index');
                 cart.splice(idx, 1);
-            }
-            
-            updateCartUI();
-            if(checkoutModal.classList.contains('show')) updateCheckoutSummary();
-        }
-    });
+                updateCartUI();
+                if(checkoutModal.classList.contains('show')) updateCheckoutSummary();
+            };
+        });
+    }
 
     if(governorateSelect) governorateSelect.addEventListener('change', updateCheckoutSummary);
 
@@ -477,7 +488,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if(summaryGrandTotal) summaryGrandTotal.textContent = subtotal + shipping;
     }
 
-    // إرسال البيانات وتجهيز رسالة الواتساب المضمونة
     if(checkoutForm) {
         checkoutForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -529,7 +539,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // تشغيل زرار الانتقال للواتساب
     if(goToWhatsAppBtn) {
         goToWhatsAppBtn.addEventListener('click', () => {
             if(finalWhatsappURL !== "") {
@@ -539,7 +548,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // نظام البحث المباشر عن المنتجات
     const searchInput = document.getElementById('searchInput');
     if(searchInput) {
         searchInput.addEventListener('input', (e) => {

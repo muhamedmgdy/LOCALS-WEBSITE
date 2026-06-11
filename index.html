@@ -266,17 +266,37 @@
 </div>
 
 <!-- SUCCESS MODAL -->
+<!-- SUCCESS & SHIPPING CONFIRMATION MODAL -->
 <div class="success-modal" id="successModal">
-    <div class="success-content">
-        <i class="fas fa-check-circle success-icon"></i>
-        <h2>Order Placed Successfully!</h2>
-        <p>Thank you for shopping at <strong>LOCALS</strong>.</p>
-        <p>Your Order ID is: <span id="orderIdText" style="font-weight: bold; color: #ff5722;"></span></p>
-        <p>We will contact you within 24 hours to confirm your shipping details.</p>
-        <button class="close-success-btn" id="closeSuccessBtn">Continue Shopping</button>
+    <div class="success-content" style="text-align: center; padding: 10px 0;">
+        <i class="fas fa-exclamation-circle" style="font-size: 50px; color: #ff9800; margin-bottom: 15px;"></i>
+        <h2 style="font-size: 22px; margin-bottom: 15px; color: #111;">خطوة أخيرة لتأكيد طلبك!</h2>
+        
+        <!-- رسالة التنبيه ودفع الشحن -->
+        <div style="background: #fff9e6; border: 1px solid #ffe0b2; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: right; direction: rtl;">
+            <p style="color: #e65100; font-weight: bold; font-size: 15px; margin-bottom: 8px; line-height: 1.6;">
+                ⚠️ لضمان جدية الطلب، يرجى تحويل مصاريف الشحن أولاً لجدية الحجز.
+            </p>
+            <p style="font-size: 14px; color: #333; margin-bottom: 5px;">
+                • مصاريف شحن محافظتك: <span id="modalShippingCost" style="font-weight: bold; color: black;">0</span> EGP
+            </p>
+            <p style="font-size: 14px; color: #333;">
+                • يرجى التحويل على رقم فودافون كاش: <span style="font-weight: bold; color: #d32f2f; font-size: 16px;">01061056741</span>
+            </p>
+        </div>
+
+        <p style="color: #666; font-size: 13px; line-height: 1.5;">
+            بعد التحويل، اضغط على الزرار بالأسفل لفتح الواتساب وإرسال تفاصيل الأوردر وصورة الإيصال لتأكيد الشحن فوراً.
+        </p>
+        
+        <p style="font-size: 13px; margin-top: 10px; color: #999;">رقم الأوردر المؤقت: <span id="orderIdText" style="font-weight: bold;"></span></p>
+        
+        <!-- زرار المتابعة للواتساب -->
+        <button class="close-success-btn" id="goToWhatsappBtn" style="background: #25d366; color: white; width: 100%; padding: 12px; margin-top: 15px; font-size: 15px;">
+            <i class="fab fa-whatsapp"></i> تم التحويل، متابعة للواتساب
+        </button>
     </div>
 </div>
-
 <!-- BACKDROP OVERLAY -->
 <div class="overlay" id="uiOverlay"></div>
 

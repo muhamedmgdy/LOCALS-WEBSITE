@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOCALS - Premium Streetwear</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- الربط الصحيح والمضمون لملف الـ CSS -->
+    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -66,7 +67,6 @@
         <img src="SHIRT1.jpeg" alt="Oversized STRIPED SHIRT">
         <h3>Oversized STRIPED SHIRT</h3>
         <p class="price">850 EGP</p>
-        
         <div class="product-options">
             <select class="size-select">
                 <option value="M">M</option>
@@ -83,7 +83,6 @@
         <img src="RINGER%20TEE.jpeg" alt="RINGER TEE">
         <h3>RINGER TEE</h3>
         <p class="price">700 EGP</p>
-        
         <div class="product-options">
             <select class="size-select">
                 <option value="M">M</option>
@@ -99,7 +98,6 @@
         <img src="SUPER%20BAGGY%20JEANS.jpeg" alt="SUPER BAGGY JEANS">
         <h3>SUPER BAGGY JEANS</h3>
         <p class="price">850 EGP</p>
-        
         <div class="product-options">
             <select class="size-select">
                 <option value="30">30</option>
@@ -116,7 +114,6 @@
         <img src="BAGGY%20SWEATPANTS.jpeg" alt="BAGGY SWEATPANTS">
         <h3>BAGGY SWEATPANTS</h3>
         <p class="price">800 EGP</p>
-        
         <div class="product-options">
             <select class="size-select">
                 <option value="M">M</option>
@@ -209,34 +206,27 @@
         <h2>Your Cart</h2>
         <button class="close-cart" id="closeCartBtn">&times;</button>
     </div>
-
-    <div class="cart-items" id="cartItemsContainer">
-        <!-- المنتجات المضافة هتظهر هنا بالـ JS -->
-    </div>
-
+    <div class="cart-items" id="cartItemsContainer"></div>
     <div class="cart-footer">
-        <h3>Total: <span class="cart-total" id="cartTotal">0</span> EGP</h3>
+        <h3>Total: <span><span id="cartTotal">0</span> EGP</span></h3>
         <button class="checkout-btn" id="openCheckoutBtn">Proceed to Checkout</button>
     </div>
 </div>
 
-<!-- CHECKOUT MODAL (نافذة الدفع والطلب) -->
+<!-- CHECKOUT MODAL -->
 <div class="checkout-modal" id="checkoutModal">
     <div class="checkout-content">
         <button class="close-modal" id="closeCheckoutBtn">&times;</button>
         <h2>Complete Your Order</h2>
-        
         <form id="checkoutForm">
             <div class="form-group">
                 <label for="fullName">Full Name *</label>
                 <input type="text" id="fullName" required placeholder="John Doe">
             </div>
-            
             <div class="form-group">
                 <label for="phone">Phone Number *</label>
                 <input type="tel" id="phone" required placeholder="01xxxxxxxxx">
             </div>
-            
             <div class="form-group">
                 <label for="governorate">Governorate *</label>
                 <select id="governorate" required>
@@ -247,12 +237,10 @@
                     <option value="Other" data-shipping="80">Other Governorates (80 EGP الشحن)</option>
                 </select>
             </div>
-
             <div class="form-group">
                 <label for="address">Detailed Address *</label>
                 <input type="text" id="address" required placeholder="Street, Building, Apartment...">
             </div>
-
             <div class="payment-methods">
                 <h3>Payment Method</h3>
                 <div class="method-options">
@@ -266,20 +254,18 @@
                     </label>
                 </div>
             </div>
-
             <div class="order-summary-box">
-                <p>Subtotal: <span id="summarySubtotal">0</span> EGP</p>
-                <p>Shipping: <span id="summaryShipping">0</span> EGP</p>
+                <p>Subtotal: <span><span id="summarySubtotal">0</span> EGP</span></p>
+                <p>Shipping: <span><span id="summaryShipping">0</span> EGP</span></p>
                 <hr>
-                <h3>Grand Total: <span id="summaryGrandTotal">0</span> EGP</h3>
+                <h3>Grand Total: <span><span id="summaryGrandTotal">0</span> EGP</span></h3>
             </div>
-
             <button type="submit" class="submit-order-btn">CONFIRM ORDER</button>
         </form>
     </div>
 </div>
 
-<!-- SUCCESS MODAL (رسالة نجاح الطلب) -->
+<!-- SUCCESS MODAL -->
 <div class="success-modal" id="successModal">
     <div class="success-content">
         <i class="fas fa-check-circle success-icon"></i>
@@ -291,9 +277,10 @@
     </div>
 </div>
 
-<!-- BACKDROP FOR SIDEBAR & MODALS -->
+<!-- BACKDROP OVERLAY -->
 <div class="overlay" id="uiOverlay"></div>
 
-<script src="script.js"></script>
+<!-- الربط الصحيح لملف الـ JS -->
+<script src="./script.js"></script>
 </body>
-</html
+</html>

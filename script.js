@@ -1,5 +1,6 @@
 let cart = []; 
 
+// ربط العناصر بناءً على كود الـ HTML الأصلي بتاعك
 const cartSidebar = document.getElementById('cartSidebar');
 const cartToggleBtn = document.getElementById('cartToggleBtn');
 const closeCartBtn = document.getElementById('closeCartBtn');
@@ -25,12 +26,14 @@ const summaryGrandTotal = document.getElementById('summaryGrandTotal');
 const successModal = document.getElementById('successModal');
 const orderIdText = document.getElementById('orderIdText');
 const modalShippingCost = document.getElementById('modalShippingCost');
-const goToWhatsappBtn = document.getElementById('goToWhatsappBtn');
 
-// متغير لحفظ رابط الواتساب مؤقتاً
+// ربط زرار فتح الواتساب المتطابق تماماً بالحروف الصغيرة
+const goToWhatsappBtn = document.getElementById('gotowhatsappbtn');
+
+// متغير لحفظ رابط الواتساب والرسالة
 let finalWhatsappURL = "";
 
-// UI Toggles
+// إظهار وإخفاء السلة والـ Overlay
 cartToggleBtn.addEventListener('click', () => {
     cartSidebar.classList.add('show');
     uiOverlay.classList.add('show');
@@ -39,24 +42,23 @@ cartToggleBtn.addEventListener('click', () => {
 closeCartBtn.addEventListener('click', closeAllUI);
 uiOverlay.addEventListener('click', closeAllUI);
 
+// إظهار وإخفاء قائمة البحث
 searchBtn.addEventListener('click', () => {
     searchBar.classList.toggle('active');
 });
 
+// قائمة الموبايل التناغمية
 menuToggle.addEventListener('click', () => {
-    navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-    if(navMenu.style.display === 'flex') {
-        navMenu.style.flexDirection = 'column';
-        navMenu.style.position = 'absolute';
-        navMenu.style.top = '70px';
-        navMenu.style.left = '0';
-        navMenu.style.width = '100%';
-        navMenu.style.background = 'white';
-        navMenu.style.padding = '20px';
-        navMenu.style.borderBottom = '1px solid #eee';
+    navMenu.classList.toggle('active');
+    // كود أمان إضافي لضمان ظهور القائمة لو الـ CSS فيه مشكلة
+    if(navMenu.classList.contains('active')) {
+        navMenu.style.display = 'flex';
+    } else {
+        navMenu.style.display = '';
     }
 });
 
+// فتح صفحة الشحن عند الضغط على Checkout
 openCheckoutBtn.addEventListener('click', () => {
     if (cart.length === 0) {
         alert("Your cart is empty!");
@@ -77,7 +79,7 @@ function closeAllUI() {
     uiOverlay.classList.remove('show');
 }
 
-// Cart System
+// نظام إضافة المنتجات للسلة (Add to Cart)
 document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', (e) => {
         const card = e.target.closest('.card');
@@ -104,6 +106,7 @@ function addToCartSystem(id, name, price, size) {
     uiOverlay.classList.add('show');
 }
 
+// تحديث وعرض المنتجات داخل السلة
 function updateCartUI() {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     cartCountBadge.textContent = totalItems;
@@ -114,18 +117,18 @@ function updateCartUI() {
     cart.forEach((item, index) => {
         subtotal += item.price * item.quantity;
         cartItemsContainer.innerHTML += `
-            <div class="cart-item">
+            <div class="cart-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">
                 <div class="cart-item-details">
-                    <h4>${item.name}</h4>
-                    <p>Size: <strong>${item.size}</strong></p>
-                    <p>${item.price} EGP</p>
-                    <div class="cart-item-qty">
-                        <button onclick="changeQty(${index}, -1)">-</button>
+                    <h4 style="margin: 0 0 5px 0; font-size: 14px;">${item.name}</h4>
+                    <p style="margin: 0 0 5px 0; font-size: 12px; color: #666;">Size: <strong>${item.size}</strong></p>
+                    <p style="margin: 0; font-size: 13px; font-weight: bold;">${item.price} EGP</p>
+                    <div class="cart-item-qty" style="margin-top: 5px; display: flex; align-items: center; gap: 8px;">
+                        <button type="button" onclick="changeQty(${index}, -1)" style="padding: 2px 8px; cursor: pointer;">-</button>
                         <span>${item.quantity}</span>
-                        <button onclick="changeQty(${index}, 1)">+</button>
+                        <button type="button" onclick="changeQty(${index}, 1)" style="padding: 2px 8px; cursor: pointer;">+</button>
                     </div>
                 </div>
-                <button class="remove-item-btn" onclick="removeItem(${index})"><i class="fas fa-trash"></i></button>
+                <button type="button" class="remove-item-btn" onclick="removeItem(${index})" style="background: none; border: none; color: #ff3333; cursor: pointer; font-size: 16px;"><i class="fas fa-trash"></i></button>
             </div>
         `;
     });
@@ -146,7 +149,7 @@ window.removeItem = function(index) {
     if(checkoutModal.classList.contains('show')) updateCheckoutSummary();
 };
 
-// Shipping Calculation
+// حساب مصاريف الشحن والمجموع الإجمالي تلقائياً عند تغيير المحافظة
 governorateSelect.addEventListener('change', updateCheckoutSummary);
 
 function updateCheckoutSummary() {
@@ -159,7 +162,7 @@ function updateCheckoutSummary() {
     summaryGrandTotal.textContent = subtotal + shipping;
 }
 
-// --- عند ضغط تأكيد الأوردر ---
+// تسلسل تأكيد الأوردر وإظهار نافذة دفع الشحن المسبق
 checkoutForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
@@ -167,21 +170,24 @@ checkoutForm.addEventListener('submit', (e) => {
     const phone = document.getElementById('phone').value;
     const governorate = governorateSelect.value;
     const address = document.getElementById('address').value;
-    const paymentMethod = "الدفع عند الاستلام (شحن مسبق)";
+    const paymentMethod = document.querySelector('input[name="payment"]:checked').value === 'cod' ? 'الدفع عند الاستلام (شحن مسبق)' : 'Vodafone Cash / InstaPay';
     
     const subtotal = summarySubtotal.textContent;
     const shipping = summaryShipping.textContent;
     const grandTotal = summaryGrandTotal.textContent;
 
+    // توليد رقم أوردر عشوائي ومميز للبراند بتاعك
     const orderId = 'LOC-' + Math.floor(1000 + Math.random() * 9000);
     orderIdText.textContent = orderId;
-    modalShippingCost.textContent = shipping; 
+    modalShippingCost.textContent = shipping; // تمرير قيمة شحن المحافظة في الـ Popup
 
+    // تجميع المنتجات في نص منسق للواتساب
     let productsText = '';
     cart.forEach(item => {
-        productsText += - ${item.name} (مقاس: ${item.size}) x${item.quantity} -> ${item.price * item.quantity} EGP\n;
+        productsText += - ${item.name} (Size: ${item.size}) x${item.quantity} -> ${item.price * item.quantity} EGP\n;
     });
 
+    // تجهيز نص رسالة الواتساب الاحترافية بالكامل
     const whatsappMessage = 🚨 *أوردر جديد من موقع LOCALS* 🚨\n\n +
                             🆔 *رقم الأوردر:* ${orderId}\n +
                             👤 *اسم العميل:* ${fullName}\n +
@@ -189,39 +195,39 @@ checkoutForm.addEventListener('submit', (e) => {
                             📍 *المحافظة:* ${governorate}\n +
                             🏠 *العنوان بالتفصيل:* ${address}\n\n +
                             📦 *المنتجات:*\n${productsText}\n +
-                            💵 *الحساب:*\n +
+                            💵 *تفاصيل الحساب:*\n +
                             - المجموع: ${subtotal} EGP\n +
-                            - الشحن (مطلوب تحويله مقدمًا): ${shipping} EGP\n +
+                            - الشحن (مطلوب تحويله أولاً): ${shipping} EGP\n +
                             💰 *الإجمالي النهائي:* ${grandTotal} EGP\n\n +
                             💳 *طريقة الدفع:* ${paymentMethod}\n\n +
-                            ⚠️ *ملحوظة:* العميل أيد المتابعة لتحويل الشحن وجارٍ إرسال صورة الإيصال.;
+                            ⚠️ *حالة الشحن:* العميل أكد المتابعة لتحويل الشحن وجارٍ إرسال صورة الإيصال لتأكيد الأوردر نهائياً.;
 
     const myWhatsAppNumber = "201061056741"; 
     const encodedMessage = encodeURIComponent(whatsappMessage);
     
-    // الرابط جاهز
+    // إنشاء الرابط المباشر
     finalWhatsappURL = https://wa.me/${myWhatsAppNumber}?text=${encodedMessage};
 
-    // إخفاء صفحة البيانات وإظهار صفحة التنبيه بدفع الشحن أولاً
+    // إخفاء الـ Checkout وإظهار الـ Success Modal الجديد بالتنبيه والدفع أولاً
     checkoutModal.classList.remove('show');
     successModal.classList.add('show');
 
-    // تفريغ السلة وتصفير الفورم
+    // تفريغ السلة وتصفير الفورم استعداداً لأوردر جديد
     cart = [];
     updateCartUI();
     checkoutForm.reset();
 });
 
-// --- عند ضغط العميل على زرار المتابعة للواتساب (الحروف مطابقة تماماً) ---
+// فتح تطبيق الواتساب فوراً عند ضغط العميل على الزرار الأخضر
 goToWhatsappBtn.addEventListener('click', () => {
     if(finalWhatsappURL !== "") {
-        // الفتح بـ _self يضمن التشغيل الفوري على الموبايل داخل المتصفح بدون حظر
+        // استخدام _self يضمن فتح التطبيق مباشرة على الموبايل والكمبيوتر بدون حظر النوافذ المنبثقة
         window.open(finalWhatsappURL, '_self');
     }
     closeAllUI();
 });
 
-// Live Search
+// نظام البحث المباشر عن المنتجات في الصفحة
 document.getElementById('searchInput').addEventListener('input', (e) => {
     const term = e.target.value.toLowerCase();
     document.querySelectorAll('.products .card').forEach(card => {

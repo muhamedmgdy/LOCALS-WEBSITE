@@ -9,6 +9,7 @@
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
     <div class="logo">LOCALS</div>
 
@@ -29,11 +30,13 @@
     </div>
 </header>
 
+<!-- SEARCH BAR -->
 <div class="search-bar">
     <input type="text" id="searchInput" placeholder="Search products...">
     <button><i class="fas fa-search"></i></button>
 </div>
 
+<!-- HERO -->
 <section class="hero" id="home">
     <div class="hero-content">
         <h1>Premium Streetwear</h1>
@@ -42,6 +45,7 @@
     </div>
 </section>
 
+<!-- ABOUT SECTION -->
 <section class="about" id="about">
     <div class="about-container">
         <h2>About LOCALS</h2>
@@ -50,75 +54,110 @@
     </div>
 </section>
 
+<!-- NEW ARRIVALS -->
 <section class="section-title" id="new-arrivals">
     <h2>NEW ARRIVALS</h2>
 </section>
 
+<!-- PRODUCTS SECTION -->
 <section class="products">
+    <!-- Product 1: Oversized STRIPED SHIRT -->
     <div class="card" data-id="1" data-name="Oversized STRIPED SHIRT" data-price="850">
         <img src="SHIRT1.jpeg" alt="Oversized STRIPED SHIRT">
         <h3>Oversized STRIPED SHIRT</h3>
         <p class="price">850 EGP</p>
         <div class="product-options">
+            <select class="color-select">
+                <option value="Green Mint">Green Mint</option>
+                <option value="Burgundy">Burgundy</option>
+                <option value="Black">Black</option>
+                <option value="Beige">Beige</option>
+                <option value="Baby Blue">Baby Blue</option>
+            </select>
             <select class="size-select">
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
-                <option value="XXL">XXL</option>
+                <option value="M (50-60 kg)">M (50-60 kg)</option>
+                <option value="L (60-70 kg)">L (60-70 kg)</option>
+                <option value="XL (80-90 kg)">XL (80-90 kg)</option>
+                <option value="XXL (90-105 kg)">XXL (90-105 kg)</option>
             </select>
         </div>
         <button class="add-to-cart" onclick="directAddToCart(this)" style="position: relative; z-index: 9999; cursor: pointer !important; pointer-events: auto !important;">ADD TO CART</button>
     </div>
 
+    <!-- Product 2: RINGER TEE -->
     <div class="card" data-id="2" data-name="RINGER TEE" data-price="700">
         <img src="RINGER%20TEE.jpeg" alt="RINGER TEE">
         <h3>RINGER TEE</h3>
         <p class="price">700 EGP</p>
         <div class="product-options">
+            <select class="color-select">
+                <option value="Red">Red</option>
+                <option value="Black">Black</option>
+                <option value="White">White</option>
+                <option value="Burgundy">Burgundy</option>
+                <option value="Green">Green</option>
+                <option value="Grey">Grey</option>
+            </select>
             <select class="size-select">
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
+                <option value="M (50-60 kg)">M (50-60 kg)</option>
+                <option value="L (60-70 kg)">L (60-70 kg)</option>
+                <option value="XL (80-90 kg)">XL (80-90 kg)</option>
+                <option value="XXL (90-105 kg)">XXL (90-105 kg)</option>
             </select>
         </div>
         <button class="add-to-cart" onclick="directAddToCart(this)" style="position: relative; z-index: 9999; cursor: pointer !important; pointer-events: auto !important;">ADD TO CART</button>
     </div>
 
+    <!-- Product 3: SUPER BAGGY JEANS -->
     <div class="card" data-id="3" data-name="SUPER BAGGY JEANS" data-price="850">
         <img src="SUPER%20BAGGY%20JEANS.jpeg" alt="SUPER BAGGY JEANS">
         <h3>SUPER BAGGY JEANS</h3>
         <p class="price">850 EGP</p>
         <div class="product-options">
+            <select class="color-select">
+                <option value="Blue">Blue</option>
+                <option value="Black">Black</option>
+                <option value="Olive">Olive</option>
+            </select>
             <select class="size-select">
-                <option value="30">30</option>
-                <option value="32">32</option>
-                <option value="34">34</option>
-                <option value="36">36</option>
+                <option value="Size 30 (50-60 kg)">Size 30 (50-60 kg)</option>
+                <option value="Size 32 (60-70 kg)">Size 32 (60-70 kg)</option>
+                <option value="Size 34 (80-90 kg)">Size 34 (80-90 kg)</option>
+                <option value="Size 36 (90-105 kg)">Size 36 (90-105 kg)</option>
             </select>
         </div>
         <button class="add-to-cart" onclick="directAddToCart(this)" style="position: relative; z-index: 9999; cursor: pointer !important; pointer-events: auto !important;">ADD TO CART</button>
     </div>
 
+    <!-- Product 4: BAGGY SWEATPANTS -->
     <div class="card" data-id="4" data-name="BAGGY SWEATPANTS" data-price="800">
         <img src="BAGGY%20SWEATPANTS.jpeg" alt="BAGGY SWEATPANTS">
         <h3>BAGGY SWEATPANTS</h3>
         <p class="price">800 EGP</p>
         <div class="product-options">
+            <select class="color-select">
+                <option value="Black">Black</option>
+                <option value="Light Grey">Light Grey</option>
+                <option value="White">White</option>
+            </select>
             <select class="size-select">
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
+                <option value="M (50-60 kg)">M (50-60 kg)</option>
+                <option value="L (60-70 kg)">L (60-70 kg)</option>
+                <option value="XL (80-90 kg)">XL (80-90 kg)</option>
+                <option value="XXL (90-105 kg)">XXL (90-105 kg)</option>
             </select>
         </div>
         <button class="add-to-cart" onclick="directAddToCart(this)" style="position: relative; z-index: 9999; cursor: pointer !important; pointer-events: auto !important;">ADD TO CART</button>
     </div>
 </section>
 
+<!-- SUMMER BANNER -->
 <section class="banner2">
     <h2>SUMMER COLLECTION 2026</h2>
     <p>Discover the latest pieces for the season.</p>
 </section>
 
+<!-- CONTACT SECTION -->
 <section class="contact" id="contact">
     <h2>Get In Touch</h2>
     <div class="contact-info">
@@ -132,14 +171,16 @@
             <h4>Email</h4>
             <p><a href="mailto:emadghazali@gmail.com">emadghazali@gmail.com</a></p>
         </div>
-        <div class="contact-item">
+        <!-- تشغيل زرار اللوكيشن وربطه بـ Google Maps -->
+        <div class="contact-item" style="cursor: pointer;" onclick="window.open('https://maps.google.com/?q=THE+MARKET+MALL,+5th+Settlement,+Cairo', '_blank')">
             <i class="fas fa-map-marker-alt"></i>
             <h4>Location</h4>
-            <p>THE MARKET MALL, 5th Settlement</p>
+            <p>THE MARKET MALL, 5th Settlement (اضغط لفتح الخريطة)</p>
         </div>
     </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
     <div class="footer-content">
         <div class="footer-section">
@@ -186,6 +227,7 @@
     </div>
 </footer>
 
+<!-- CART SIDEBAR -->
 <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-header">
         <h2>Your Cart</h2>
@@ -198,6 +240,7 @@
     </div>
 </div>
 
+<!-- CHECKOUT MODAL -->
 <div class="checkout-modal" id="checkoutModal">
     <div class="checkout-content">
         <button class="close-modal" id="closeCheckoutBtn">&times;</button>
@@ -211,14 +254,38 @@
                 <label for="phone">Phone Number *</label>
                 <input type="tel" id="phone" required placeholder="01xxxxxxxxx">
             </div>
+            <!-- إضافة جميع محافظات مصر بالأسعار المحددة -->
             <div class="form-group">
                 <label for="governorate">Governorate *</label>
                 <select id="governorate" required>
                     <option value="" disabled selected>Select your governorate</option>
-                    <option value="Cairo" data-shipping="60">Cairo (60 EGP الشحن)</option>
-                    <option value="Giza" data-shipping="60">Giza (60 EGP الشحن)</option>
-                    <option value="Alexandria" data-shipping="70">Alexandria (70 EGP الشحن)</option>
-                    <option value="Other" data-shipping="80">Other Governorates (80 EGP الشحن)</option>
+                    <option value="Cairo" data-shipping="60">Cairo (60 EGP)</option>
+                    <option value="Giza" data-shipping="60">Giza (60 EGP)</option>
+                    <option value="Alexandria" data-shipping="70">Alexandria (70 EGP)</option>
+                    <option value="Qalyubia" data-shipping="110">Qalyubia (110 EGP)</option>
+                    <option value="Sharqia" data-shipping="110">Sharqia (110 EGP)</option>
+                    <option value="Gharbia" data-shipping="110">Gharbia (110 EGP)</option>
+                    <option value="Monufia" data-shipping="110">Monufia (110 EGP)</option>
+                    <option value="Dakahlia" data-shipping="110">Dakahlia (110 EGP)</option>
+                    <option value="Beheira" data-shipping="110">Beheira (110 EGP)</option>
+                    <option value="Damietta" data-shipping="110">Damietta (110 EGP)</option>
+                    <option value="Port Said" data-shipping="110">Port Said (110 EGP)</option>
+                    <option value="Ismailia" data-shipping="110">Ismailia (110 EGP)</option>
+                    <option value="Suez" data-shipping="110">Suez (110 EGP)</option>
+                    <option value="Kafr El Sheikh" data-shipping="110">Kafr El Sheikh (110 EGP)</option>
+                    <option value="Fayoum" data-shipping="110">Fayoum (110 EGP)</option>
+                    <option value="Beni Suef" data-shipping="110">Beni Suef (110 EGP)</option>
+                    <option value="Minya" data-shipping="110">Minya (110 EGP)</option>
+                    <option value="Asyut" data-shipping="110">Asyut (110 EGP)</option>
+                    <option value="Sohag" data-shipping="110">Sohag (110 EGP)</option>
+                    <option value="Qena" data-shipping="110">Qena (110 EGP)</option>
+                    <option value="Luxor" data-shipping="110">Luxor (110 EGP)</option>
+                    <option value="Aswan" data-shipping="110">Aswan (110 EGP)</option>
+                    <option value="Red Sea" data-shipping="110">Red Sea (110 EGP)</option>
+                    <option value="New Valley" data-shipping="110">New Valley (110 EGP)</option>
+                    <option value="Matrouh" data-shipping="110">Matrouh (110 EGP)</option>
+                    <option value="North Sinai" data-shipping="110">North Sinai (110 EGP)</option>
+                    <option value="South Sinai" data-shipping="110">South Sinai (110 EGP)</option>
                 </select>
             </div>
             <div class="form-group">
@@ -249,6 +316,7 @@
     </div>
 </div>
 
+<!-- SUCCESS MODAL -->
 <div class="success-modal" id="successModal">
     <div class="success-content" style="text-align: center;">
         <i class="fas fa-exclamation-circle" style="font-size: 50px; color: #ff9800; margin-bottom: 15px;"></i>
@@ -278,6 +346,7 @@
     </div>
 </div>
 
+<!-- BACKDROP OVERLAY -->
 <div class="overlay" id="uiOverlay"></div>
 
 <script>
@@ -328,6 +397,7 @@ function closeAllUI() {
     if(checkoutModal) checkoutModal.classList.remove('show');
     if(successModal) successModal.classList.remove('show');
     if(uiOverlay) uiOverlay.classList.remove('show');
+    document.querySelectorAll('.products .add-to-cart').forEach(btn => btn.style.display = 'block');
 }
 
 if(searchBtn) {
@@ -356,11 +426,12 @@ if(openCheckoutBtn) {
         cartSidebar.classList.remove('show');
         checkoutModal.classList.add('show');
         uiOverlay.classList.add('show');
+        document.querySelectorAll('.products .add-to-cart').forEach(btn => btn.style.display = 'none');
         updateCheckoutSummary();
     });
 }
 
-// 🔥 دالة الإضافة المباشرة المستقلة تماماً عن تداخلات الـ CSS والـ DOM
+// دالة الإضافة المباشرة المحدثة لالتقاط الألوان والمقاسات بالوزن
 function directAddToCart(buttonElement) {
     const card = buttonElement.closest('.card');
     if(card) {
@@ -368,13 +439,15 @@ function directAddToCart(buttonElement) {
         const name = card.getAttribute('data-name');
         const price = parseInt(card.getAttribute('data-price'));
         const size = card.querySelector('.size-select').value;
+        const color = card.querySelector('.color-select').value; // التقاط اللون المختار
 
-        const existingItem = cart.find(item => item.id === id && item.size === size);
+        // التحقق من وجود نفس المنتج بنفس المقاس واللون في السلة
+        const existingItem = cart.find(item => item.id === id && item.size === size && item.color === color);
 
         if (existingItem) {
             existingItem.quantity += 1;
         } else {
-            cart.push({ id, name, price, size, quantity: 1 });
+            cart.push({ id, name, price, size, color, quantity: 1 });
         }
 
         updateCartUI();
@@ -397,6 +470,7 @@ function updateCartUI() {
             <div class="cart-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">
                 <div class="cart-item-details">
                     <h4 style="margin: 0 0 5px 0; font-size: 14px; color: #000;">${item.name}</h4>
+                    <p style="margin: 0 0 3px 0; font-size: 12px; color: #666;">Color: <strong>${item.color}</strong></p>
                     <p style="margin: 0 0 5px 0; font-size: 12px; color: #666;">Size: <strong>${item.size}</strong></p>
                     <p style="margin: 0; font-size: 13px; font-weight: bold; color: #000;">${item.price} EGP</p>
                     <div class="cart-item-qty" style="margin-top: 5px; display: flex; align-items: center; gap: 8px;">
@@ -474,9 +548,10 @@ if(checkoutForm) {
         if(orderIdText) orderIdText.textContent = orderId;
         if(modalShippingCost) modalShippingCost.textContent = shipping; 
 
+        // تحديث النص ليتضمن الألوان والمقاسات المعدلة في الواتساب
         let productsText = '';
         cart.forEach(item => {
-            productsText += `- ${item.name} (Size: ${item.size}) x${item.quantity} -> ${item.price * item.quantity} EGP\n`;
+            productsText += `- ${item.name} (${item.color} / ${item.size}) x${item.quantity} -> ${item.price * item.quantity} EGP\n`;
         });
 
         const whatsappMessage = `🚨 *أوردر جديد من موقع LOCALS* 🚨\n\n` +

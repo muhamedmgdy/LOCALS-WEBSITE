@@ -6,8 +6,58 @@
     <title>LOCALS - Premium Streetwear</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* شريط الإعلانات العلوي */
+        .announcement-bar {
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+            padding: 8px 10px;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            direction: rtl;
+        }
+        /* سيكشن مميزات البراند */
+        .features-section {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 40px 20px;
+            background: #f9f9f9;
+            margin: 40px 0;
+            gap: 20px;
+            direction: rtl;
+        }
+        .feature-box {
+            text-align: center;
+            max-width: 250px;
+        }
+        .feature-box i {
+            font-size: 30px;
+            color: #111;
+            margin-bottom: 15px;
+        }
+        .feature-box h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #111;
+            font-weight: bold;
+        }
+        .feature-box p {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
+        }
+    </style>
 </head>
 <body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement-bar">
+    ⚡ شحن سريع خلال 3 أيام عمل فقط لجميع محافظات مصر!
+</div>
 
 <!-- HEADER -->
 <header>
@@ -151,6 +201,25 @@
     </div>
 </section>
 
+<!-- BRAND FEATURES SECTION (رقم ٣ - الميزات والأيقونات الاحترافية) -->
+<section class="features-section">
+    <div class="feature-box">
+        <i class="fas fa-shipping-fast"></i>
+        <h4>شحن سريع</h4>
+        <p>يوصلك الأوردر خلال 3 أيام عمل فقط لجميع المحافظات</p>
+    </div>
+    <div class="feature-box">
+        <i class="fas fa-tshirt"></i>
+        <h4>جودة بريميوم</h4>
+        <p>خامات وتقفيل عالي الجودة ومريح يناسب يومك</p>
+    </div>
+    <div class="feature-box">
+        <i class="fab fa-whatsapp"></i>
+        <h4>دعم فني سريع</h4>
+        <p>متواجدين معاك خطوة بخطوة على الواتساب لأي استفسار</p>
+    </div>
+</section>
+
 <!-- SUMMER BANNER -->
 <section class="banner2">
     <h2>SUMMER COLLECTION 2026</h2>
@@ -171,11 +240,10 @@
             <h4>Email</h4>
             <p><a href="mailto:emadghazali@gmail.com">emadghazali@gmail.com</a></p>
         </div>
-        <!-- تشغيل زرار اللوكيشن وربطه بـ Google Maps -->
         <div class="contact-item" style="cursor: pointer;" onclick="window.open('https://maps.google.com/?q=THE+MARKET+MALL,+5th+Settlement,+Cairo', '_blank')">
             <i class="fas fa-map-marker-alt"></i>
             <h4>Location</h4>
-            <p>THE MARKET MALL, 5th Settlement (Tap to open the map)</p>
+            <p>THE MARKET MALL, 5th Settlement (اضغط لفتح الخريطة)</p>
         </div>
     </div>
 </section>
@@ -254,14 +322,13 @@
                 <label for="phone">Phone Number *</label>
                 <input type="tel" id="phone" required placeholder="01xxxxxxxxx">
             </div>
-            <!-- إضافة جميع محافظات مصر بالأسعار المحددة -->
             <div class="form-group">
                 <label for="governorate">Governorate *</label>
                 <select id="governorate" required>
                     <option value="" disabled selected>Select your governorate</option>
-                    <option value="Cairo" data-shipping="80">Cairo (80 EGP)</option>
-                    <option value="Giza" data-shipping="90">Giza (90 EGP)</option>
-                    <option value="Alexandria" data-shipping="100">Alexandria (100 EGP)</option>
+                    <option value="Cairo" data-shipping="60">Cairo (60 EGP)</option>
+                    <option value="Giza" data-shipping="60">Giza (60 EGP)</option>
+                    <option value="Alexandria" data-shipping="70">Alexandria (70 EGP)</option>
                     <option value="Qalyubia" data-shipping="110">Qalyubia (110 EGP)</option>
                     <option value="Sharqia" data-shipping="110">Sharqia (110 EGP)</option>
                     <option value="Gharbia" data-shipping="110">Gharbia (110 EGP)</option>
@@ -316,7 +383,7 @@
     </div>
 </div>
 
-<!-- SUCCESS MODAL -->
+<!-- SUCCESS MODAL (رقم ٢ - تحديث رسالة النجاح بمدة التوصيل بشكل شيك) -->
 <div class="success-modal" id="successModal">
     <div class="success-content" style="text-align: center;">
         <i class="fas fa-exclamation-circle" style="font-size: 50px; color: #ff9800; margin-bottom: 15px;"></i>
@@ -329,8 +396,11 @@
             <p style="font-size: 14px; color: #333; margin-bottom: 5px;">
                 • مصاريف شحن محافظتك: <span id="modalShippingCost" style="font-weight: bold; color: black;">0</span> EGP
             </p>
-            <p style="font-size: 14px; color: #333;">
+            <p style="font-size: 14px; color: #333; margin-bottom: 5px;">
                 • يرجى التحويل على رقم فودافون كاش: <span style="font-weight: bold; color: #d32f2f; font-size: 16px;">01061056741</span>
+            </p>
+            <p style="font-size: 14px; color: #2e7d32; font-weight: bold; margin-top: 10px;">
+                🚚 سيتم توصيل طلبك خلال 3 أيام عمل من تاريخ التحويل.
             </p>
         </div>
 
@@ -431,7 +501,6 @@ if(openCheckoutBtn) {
     });
 }
 
-// دالة الإضافة المباشرة المحدثة لالتقاط الألوان والمقاسات بالوزن
 function directAddToCart(buttonElement) {
     const card = buttonElement.closest('.card');
     if(card) {
@@ -439,9 +508,8 @@ function directAddToCart(buttonElement) {
         const name = card.getAttribute('data-name');
         const price = parseInt(card.getAttribute('data-price'));
         const size = card.querySelector('.size-select').value;
-        const color = card.querySelector('.color-select').value; // التقاط اللون المختار
+        const color = card.querySelector('.color-select').value;
 
-        // التحقق من وجود نفس المنتج بنفس المقاس واللون في السلة
         const existingItem = cart.find(item => item.id === id && item.size === size && item.color === color);
 
         if (existingItem) {
@@ -548,12 +616,12 @@ if(checkoutForm) {
         if(orderIdText) orderIdText.textContent = orderId;
         if(modalShippingCost) modalShippingCost.textContent = shipping; 
 
-        // تحديث النص ليتضمن الألوان والمقاسات المعدلة في الواتساب
         let productsText = '';
         cart.forEach(item => {
             productsText += `- ${item.name} (${item.color} / ${item.size}) x${item.quantity} -> ${item.price * item.quantity} EGP\n`;
         });
 
+        // (رقم ٢) دمج معلومة الـ 3 أيام داخل رسالة الواتساب التلقائية المرسلة لك
         const whatsappMessage = `🚨 *أوردر جديد من موقع LOCALS* 🚨\n\n` +
                                 `🆔 *رقم الأوردر:* ${orderId}\n` +
                                 `👤 *اسم العميل:* ${fullName}\n` +
@@ -565,7 +633,8 @@ if(checkoutForm) {
                                 `- المجموع: ${subtotal} EGP\n` +
                                 `- الشحن (مطلوب تحويله أولاً): ${shipping} EGP\n` +
                                 `💰 *الإجمالي النهائي:* ${grandTotal} EGP\n\n` +
-                                `💳 *طريقة الدفع:* ${paymentMethod}\n\n` +
+                                `💳 *طريقة الدفع:* ${paymentMethod}\n` +
+                                `🚚 *مدة التوصيل المتوقعة:* خلال 3 أيام عمل من تأكيد الحجز.\n\n` +
                                 `⚠️ *حالة الشحن:* العميل أكد المتابعة لتحويل الشحن وجارٍ إرسال صورة الإيصال لتأكيد الأوردر نهائياً.`;
 
         const myWhatsAppNumber = "201061056741"; 

@@ -51,7 +51,7 @@
             line-height: 1.4;
         }
 
-        /* تنسيقات نافذة تفاصيل المنتج الجديدة (Product Modal) */
+        /* تنسيقات نافذة تفاصيل المنتج (Product Modal) */
         .product-modal {
             display: none;
             position: fixed;
@@ -71,7 +71,7 @@
         .product-modal-content {
             background: #fff;
             width: 100%;
-            max-width: 800px;
+            max-width: 850px;
             max-height: 90vh;
             overflow-y: auto;
             border-radius: 8px;
@@ -88,28 +88,64 @@
                 padding: 20px;
             }
         }
+        
+        /* تنسيق معرض الصور */
         .modal-left {
             flex: 1;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
         }
-        .modal-left img {
-            max-width: 100%;
-            max-height: 400px;
-            object-fit: cover;
+        .main-img-container {
+            width: 100%;
+            height: 380px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f5f5f5;
             border-radius: 4px;
+            overflow: hidden;
         }
+        .main-img-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            transition: transform 0.2s;
+        }
+        .thumbnails-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+        .thumb-img {
+            width: 65px;
+            height: 65px;
+            object-fit: cover;
+            border: 2px solid #eee;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .thumb-img:hover, .thumb-img.active {
+            border-color: #111;
+            transform: scale(1.05);
+        }
+
         .modal-right {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            direction: rtl; /* لتنظيم القراءة باللغة العربية داخل المودال */
+            direction: rtl; 
             text-align: right;
         }
         .close-product-modal {
             position: absolute;
             top: 15px;
-            left: 20px; /* نقل الإكس لليق بالاتجاه العربي */
+            left: 20px; 
             font-size: 28px;
             background: none;
             border: none;
@@ -121,7 +157,7 @@
             font-size: 24px;
             margin: 0 0 10px 0;
             color: #111;
-            text-align: left; /* الحفاظ على اسم المنتج بالإنجليزية يسار */
+            text-align: left; 
         }
         .modal-product-price {
             font-size: 20px;
@@ -137,7 +173,7 @@
             margin-bottom: 20px;
         }
         
-        /* تنسيق خيارات الألوان والمقاسات */
+        /* خيارات الألوان والمقاسات */
         .modal-option-title {
             font-size: 14px;
             font-weight: bold;
@@ -276,32 +312,32 @@
 
 <!-- PRODUCTS SECTION -->
 <section class="products">
-    <!-- Product 1: Oversized STRIPED SHIRT -->
-    <div class="card" data-id="1" data-name="Oversized STRIPED SHIRT" data-price="850" data-img="SHIRT1.jpeg" data-colors="Green Mint,Burgundy,Black,Beige,Baby Blue" data-desc="قميص أوفرسايز مخطط بخامات قطنية ممتازة وباردة مخصصة للصيف، تقفيل بريميوم مريح جداً يناسب الخروجات اليومية والاستايل الكاجوال العصري." data-type="shirt">
-        <img src="SHIRT1.jpeg" alt="Oversized STRIPED SHIRT">
+    <!-- Product 1: Oversized STRIPED SHIRT (معدل بالكامل بصورك) -->
+    <div class="card" data-id="1" data-name="Oversized STRIPED SHIRT" data-price="850" data-img="image_4.png" data-images="image_4.png,image_3.png" data-colors="Baby Blue,Pink" data-desc="قميص أوفرسايز مخطط بقصة Boxy + 3D super baggy مريحة جداً وعصرية. يتميز بتطريز يدوي أحمر فريد على الجيب والظهر، بخامات قطنية ممتازة ومثالية للصيف." data-type="shirt">
+        <img src="image_4.png" alt="Oversized STRIPED SHIRT">
         <h3>Oversized STRIPED SHIRT</h3>
         <p class="price">850 EGP</p>
         <button class="add-to-cart" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
     </div>
 
     <!-- Product 2: RINGER TEE -->
-    <div class="card" data-id="2" data-name="RINGER TEE" data-price="700" data-img="RINGER TEE.jpeg" data-colors="Red,Black,White,Burgundy,Green,Grey" data-desc="تيشيرت رينجر كلاسيكي مميز بأطراف ملونة ملفتة، مصنوع من قطن ليكرا ناعم ومقاوم للانكماش. مثالي ليعطيك مظهر ريترو ستريت وير فريد." data-type="shirt">
+    <div class="card" data-id="2" data-name="RINGER TEE" data-price="700" data-img="RINGER TEE.jpeg" data-images="RINGER TEE.jpeg" data-colors="Red,Black,White" data-desc="تيشيرت رينجر كلاسيكي مميز بأطراف ملونة ملفتة، مصنوع من قطن ليكرا ناعم ومقاوم للانكماش. مثالي ليعطيك مظهر ريترو ستريت وير فريد." data-type="shirt">
         <img src="RINGER%20TEE.jpeg" alt="RINGER TEE">
         <h3>RINGER TEE</h3>
         <p class="price">700 EGP</p>
         <button class="add-to-cart" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
     </div>
 
-    <!-- Product 3: SUPER BAGGY JEANS -->
-    <div class="card" data-id="3" data-name="SUPER BAGGY JEANS" data-price="850" data-img="SUPER BAGGY JEANS.jpeg" data-colors="Blue,Black,Olive" data-desc="بنطلون جينز باجي واسع جداً ومريح (Super Baggy Fit) مصنوع من جينز ثقيل عالي الجودة يتحمل الاستخدام الشاق، صبغة ثابتة لا تتغير مع الغسيل المستمر." data-type="jeans">
-        <img src="SUPER%20BAGGY%20JEANS.jpeg" alt="SUPER BAGGY JEANS">
+    <!-- Product 3: SUPER BAGGY JEANS (معدل بالكامل بصورك الثلاثة) -->
+    <div class="card" data-id="3" data-name="SUPER BAGGY JEANS" data-price="850" data-img="image_5.png" data-images="image_5.png,image_6.png,image_7.png" data-colors="Vintage Blue,Light Blue,Acid Black" data-desc="بنطلون جينز ألترا باجي واسع جداً ومريح (Ultra Superbaggyfit) مصنوع من جينز ثقيل عالي الجودة بتأثير غسيل مميز (Wash) يتحمل الاستخدام الشاق وثابت الصبغة." data-type="jeans">
+        <img src="image_5.png" alt="SUPER BAGGY JEANS">
         <h3>SUPER BAGGY JEANS</h3>
         <p class="price">850 EGP</p>
         <button class="add-to-cart" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
     </div>
 
     <!-- Product 4: BAGGY SWEATPANTS -->
-    <div class="card" data-id="4" data-name="BAGGY SWEATPANTS" data-price="800" data-img="BAGGY SWEATPANTS.jpeg" data-colors="Black,Light Grey,White" data-desc="بنطلون سويت بانتس باجي مصنوع من قماش الميلتون الثقيل والمبطن بنعومة، مثالي ومريح جداً للبس اليومي السريع والمشاوير الطويلة والتمارين المفتوحة." data-type="shirt">
+    <div class="card" data-id="4" data-name="BAGGY SWEATPANTS" data-price="800" data-img="BAGGY SWEATPANTS.jpeg" data-images="BAGGY SWEATPANTS.jpeg" data-colors="Black,Grey" data-desc="بنطلون سويت بانتس باجي مصنوع من قماش الميلتون الثقيل والمبطن بنعومة، مثالي ومريح جداً للبس اليومي السريع والمشاوير الطويلة والتمارين المفتوحة." data-type="shirt">
         <img src="BAGGY%20SWEATPANTS.jpeg" alt="BAGGY SWEATPANTS">
         <h3>BAGGY SWEATPANTS</h3>
         <p class="price">800 EGP</p>
@@ -403,13 +439,18 @@
     </div>
 </footer>
 
-<!-- PRODUCT DETAILED MODAL (النافذة المنبثقة الجديدة للمنتج) -->
+<!-- PRODUCT DETAILED MODAL -->
 <div class="product-modal" id="productModal">
     <div class="product-modal-content">
         <button class="close-product-modal" id="closeProductModalBtn">&times;</button>
+        
         <div class="modal-left">
-            <img id="modalProductImg" src="" alt="">
+            <div class="main-img-container">
+                <img id="modalProductImg" src="" alt="">
+            </div>
+            <div class="thumbnails-container" id="modalThumbnailsContainer"></div>
         </div>
+        
         <div class="modal-right">
             <h2 class="modal-product-title" id="modalProductTitle"></h2>
             <div class="modal-product-price" id="modalProductPrice"></div>
@@ -421,13 +462,9 @@
             <div class="modal-option-title">جدول المقاسات المتاح (اضغط لتحديد مقاسك):</div>
             <table class="size-chart-table">
                 <thead>
-                    <tr id="sizeChartHeader">
-                        <!-- العناوين ديناميكية -->
-                    </tr>
+                    <tr id="sizeChartHeader"></tr>
                 </thead>
-                <tbody id="sizeChartBody">
-                    <!-- محتوى الجدول ديناميكي بالـ JS -->
-                </tbody>
+                <tbody id="sizeChartBody"></tbody>
             </table>
             
             <button class="modal-add-btn" id="modalAddToCartBtn">ADD TO CART</button>
@@ -556,7 +593,6 @@
     </div>
 </div>
 
-<!-- BACKDROP OVERLAY -->
 <div class="overlay" id="uiOverlay"></div>
 
 <script>
@@ -564,8 +600,8 @@ let cart = [];
 let currentSelectedProduct = null;
 let selectedColor = "";
 let selectedSize = "";
+let selectedImgUrl = ""; 
 
-// جداول المقاسات الرسمية بناء على طلبك
 const sizeCharts = {
     shirt: [
         { size: "M", weight: "50 - 60 kg" },
@@ -650,27 +686,46 @@ if(menuToggle) {
     });
 }
 
-// تشغيل فتح مودال خيارات المنتج مع جدول المقاسات
 function openProductModal(buttonElement) {
     const card = buttonElement.closest('.card');
     if(!card) return;
+
+    let rawImages = card.getAttribute('data-images') || card.getAttribute('data-img');
+    let imagesArray = rawImages.split(',').map(img => img.trim());
 
     currentSelectedProduct = {
         id: card.getAttribute('data-id'),
         name: card.getAttribute('data-name'),
         price: parseInt(card.getAttribute('data-price')),
-        img: card.getAttribute('data-img'),
+        img: imagesArray[0], 
+        images: imagesArray,
         desc: card.getAttribute('data-desc'),
         type: card.getAttribute('data-type') || 'shirt',
         colors: card.getAttribute('data-colors').split(',')
     };
 
-    document.getElementById('modalProductImg').src = currentSelectedProduct.img;
+    selectedImgUrl = currentSelectedProduct.img; 
+    document.getElementById('modalProductImg').src = selectedImgUrl;
     document.getElementById('modalProductTitle').textContent = currentSelectedProduct.name;
     document.getElementById('modalProductPrice').textContent = currentSelectedProduct.price + " EGP";
     document.getElementById('modalProductDesc').textContent = currentSelectedProduct.desc;
 
-    // بناء خيارات الألوان
+    const thumbsContainer = document.getElementById('modalThumbnailsContainer');
+    thumbsContainer.innerHTML = "";
+    
+    currentSelectedProduct.images.forEach((imgUrl, idx) => {
+        const thumb = document.createElement('img');
+        thumb.src = imgUrl;
+        thumb.className = "thumb-img" + (idx === 0 ? " active" : "");
+        thumb.onclick = function() {
+            document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+            document.getElementById('modalProductImg').src = imgUrl;
+            selectedImgUrl = imgUrl; 
+        };
+        thumbsContainer.appendChild(thumb);
+    });
+
     const colorsContainer = document.getElementById('modalColorsContainer');
     colorsContainer.innerHTML = "";
     selectedColor = ""; 
@@ -690,7 +745,6 @@ function openProductModal(buttonElement) {
         colorsContainer.appendChild(btn);
     });
 
-    // بناء جدول المقاسات التفاعلي والذكي
     const headerRow = document.getElementById('sizeChartHeader');
     const chartBody = document.getElementById('sizeChartBody');
     selectedSize = ""; 
@@ -719,7 +773,6 @@ function openProductModal(buttonElement) {
     uiOverlay.classList.add('show');
 }
 
-// تفعيل زرار الإضافة للسلة من داخل صفحة عرض تفاصيل المقاسات والمنتج
 document.getElementById('modalAddToCartBtn').onclick = function() {
     if(!selectedColor || !selectedSize) {
         alert("برجاء اختيار اللون واضغط على المقاس المناسب لك من الجدول!");
@@ -735,7 +788,7 @@ document.getElementById('modalAddToCartBtn').onclick = function() {
             id: currentSelectedProduct.id, 
             name: currentSelectedProduct.name, 
             price: currentSelectedProduct.price, 
-            img: currentSelectedProduct.img, 
+            img: selectedImgUrl, 
             size: selectedSize, 
             color: selectedColor, 
             quantity: 1 
@@ -852,13 +905,12 @@ if(checkoutForm) {
         if(orderIdText) orderIdText.textContent = orderId;
         if(modalShippingCost) modalShippingCost.textContent = shipping; 
 
-        // تجميع تفاصيل المنتجات وصورها بروابط كاملة لميزة المعاينة في شات الواتساب
         let productsText = '';
         const baseUrl = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
         
         cart.forEach(item => {
             const absoluteImgUrl = item.img.startsWith('http') ? item.img : `${baseUrl}/${item.img}`;
-            productsText += `• *${item.name}*\n  - اللون: ${item.color} | المقاس: ${item.size}\n  - الكمية: ${item.quantity} -> السعر: ${item.price * item.quantity} EGP\n  - رابط صورة القطعة: ${absoluteImgUrl}\n\n`;
+            productsText += `• *${item.name}*\n  - اللون: ${item.color} | المقاس: ${item.size}\n  - الكمية: ${item.quantity} -> السعر: ${item.price * item.quantity} EGP\n  - رابط الصورة المحددة: ${absoluteImgUrl}\n\n`;
         });
 
         const whatsappMessage = `🚨 *أوردر جديد من موقع LOCALS* 🚨\n\n` +
@@ -873,7 +925,7 @@ if(checkoutForm) {
                                 `- الشحن (مطلوب تحويله أولاً): ${shipping} EGP\n` +
                                 `💰 *الإجمالي النهائي:* ${grandTotal} EGP\n\n` +
                                 `💳 *طريقة الدفع:* ${paymentMethod}\n` +
-                                `🚚 *مدة التوصيل المتوقعة:* خلال 3 أيام عمل من تأكيد الحجز.\n\n` +
+                                `🚚 *مدة التوصيل المتوقعة:* خلال 3 أيام عمل من تاريخ التحويل.\n\n` +
                                 `⚠️ *حالة الشحن:* العميل أكد المتابعة لتحويل الشحن وجارٍ إرسال صورة الإيصال لتأكيد الأوردر نهائياً.`;
 
         const myWhatsAppNumber = "201061056741"; 

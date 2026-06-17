@@ -50,6 +50,171 @@
             color: #666;
             line-height: 1.4;
         }
+
+        /* تنسيقات نافذة تفاصيل المنتج الجديدة (Product Modal) */
+        .product-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .product-modal.show {
+            display: flex;
+        }
+        .product-modal-content {
+            background: #fff;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 8px;
+            position: relative;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+        }
+        @media (max-width: 768px) {
+            .product-modal-content {
+                flex-direction: column;
+                padding: 20px;
+            }
+        }
+        .modal-left {
+            flex: 1;
+            text-align: center;
+        }
+        .modal-left img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .modal-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            direction: rtl; /* لتنظيم القراءة باللغة العربية داخل المودال */
+            text-align: right;
+        }
+        .close-product-modal {
+            position: absolute;
+            top: 15px;
+            left: 20px; /* نقل الإكس لليق بالاتجاه العربي */
+            font-size: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #333;
+            z-index: 10;
+        }
+        .modal-product-title {
+            font-size: 24px;
+            margin: 0 0 10px 0;
+            color: #111;
+            text-align: left; /* الحفاظ على اسم المنتج بالإنجليزية يسار */
+        }
+        .modal-product-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #111;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .modal-product-desc {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        /* تنسيق خيارات الألوان والمقاسات */
+        .modal-option-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin: 15px 0 8px 0;
+            color: #222;
+        }
+        .color-options-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            direction: ltr;
+        }
+        .color-btn {
+            padding: 8px 16px;
+            border: 1px solid #ccc;
+            background: #fff;
+            cursor: pointer;
+            font-size: 13px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .color-btn.selected {
+            background: #111;
+            color: #fff;
+            border-color: #111;
+        }
+
+        /* جدول المقاسات الاحترافي */
+        .size-chart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0 20px 0;
+            font-size: 13px;
+            text-align: center;
+            direction: rtl;
+        }
+        .size-chart-table th, .size-chart-table td {
+            border: 1px solid #eee;
+            padding: 8px;
+        }
+        .size-chart-table th {
+            background: #f5f5f5;
+            font-weight: bold;
+        }
+        .size-chart-table tr {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .size-chart-table tr.selected {
+            background: #e1f5fe;
+            font-weight: bold;
+        }
+        .size-chart-table tr.selected td {
+            border-color: #03a9f4;
+        }
+        .size-radio-cell {
+            font-weight: bold;
+            color: #0288d1;
+        }
+
+        .modal-add-btn {
+            background: #111;
+            color: #fff;
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+            margin-top: auto;
+            transition: background 0.2s;
+        }
+        .modal-add-btn:hover {
+            background: #333;
+        }
     </style>
 </head>
 <body>
@@ -112,96 +277,39 @@
 <!-- PRODUCTS SECTION -->
 <section class="products">
     <!-- Product 1: Oversized STRIPED SHIRT -->
-    <div class="card" data-id="1" data-name="Oversized STRIPED SHIRT" data-price="850">
+    <div class="card" data-id="1" data-name="Oversized STRIPED SHIRT" data-price="850" data-img="SHIRT1.jpeg" data-colors="Green Mint,Burgundy,Black,Beige,Baby Blue" data-desc="قميص أوفرسايز مخطط بخامات قطنية ممتازة وباردة مخصصة للصيف، تقفيل بريميوم مريح جداً يناسب الخروجات اليومية والاستايل الكاجوال العصري." data-type="shirt">
         <img src="SHIRT1.jpeg" alt="Oversized STRIPED SHIRT">
         <h3>Oversized STRIPED SHIRT</h3>
         <p class="price">850 EGP</p>
-        <div class="product-options">
-            <select class="color-select">
-                <option value="Green Mint">Green Mint</option>
-                <option value="Burgundy">Burgundy</option>
-                <option value="Black">Black</option>
-                <option value="Beige">Beige</option>
-                <option value="Baby Blue">Baby Blue</option>
-            </select>
-            <select class="size-select">
-                <option value="M (50-60 kg)">M (50-60 kg)</option>
-                <option value="L (60-70 kg)">L (60-70 kg)</option>
-                <option value="XL (80-90 kg)">XL (80-90 kg)</option>
-                <option value="XXL (90-105 kg)">XXL (90-105 kg)</option>
-            </select>
-        </div>
-        <button class="add-to-cart" onclick="directAddToCart(this)" style="position: relative; z-index: 9999; cursor: pointer !important; pointer-events: auto !important;">ADD TO CART</button>
+        <button class="add-to-cart" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
     </div>
 
     <!-- Product 2: RINGER TEE -->
-    <div class="card" data-id="2" data-name="RINGER TEE" data-price="700">
+    <div class="card" data-id="2" data-name="RINGER TEE" data-price="700" data-img="RINGER TEE.jpeg" data-colors="Red,Black,White,Burgundy,Green,Grey" data-desc="تيشيرت رينجر كلاسيكي مميز بأطراف ملونة ملفتة، مصنوع من قطن ليكرا ناعم ومقاوم للانكماش. مثالي ليعطيك مظهر ريترو ستريت وير فريد." data-type="shirt">
         <img src="RINGER%20TEE.jpeg" alt="RINGER TEE">
         <h3>RINGER TEE</h3>
         <p class="price">700 EGP</p>
-        <div class="product-options">
-            <select class="color-select">
-                <option value="Red">Red</option>
-                <option value="Black">Black</option>
-                <option value="White">White</option>
-                <option value="Burgundy">Burgundy</option>
-                <option value="Green">Green</option>
-                <option value="Grey">Grey</option>
-            </select>
-            <select class="size-select">
-                <option value="M (50-60 kg)">M (50-60 kg)</option>
-                <option value="L (60-70 kg)">L (60-70 kg)</option>
-                <option value="XL (80-90 kg)">XL (80-90 kg)</option>
-                <option value="XXL (90-105 kg)">XXL (90-105 kg)</option>
-            </select>
-        </div>
-        <button class="add-to-cart" onclick="directAddToCart(this)" style="position: relative; z-index: 9999; cursor: pointer !important; pointer-events: auto !important;">ADD TO CART</button>
+        <button class="add-to-cart" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
     </div>
 
     <!-- Product 3: SUPER BAGGY JEANS -->
-    <div class="card" data-id="3" data-name="SUPER BAGGY JEANS" data-price="850">
+    <div class="card" data-id="3" data-name="SUPER BAGGY JEANS" data-price="850" data-img="SUPER BAGGY JEANS.jpeg" data-colors="Blue,Black,Olive" data-desc="بنطلون جينز باجي واسع جداً ومريح (Super Baggy Fit) مصنوع من جينز ثقيل عالي الجودة يتحمل الاستخدام الشاق، صبغة ثابتة لا تتغير مع الغسيل المستمر." data-type="jeans">
         <img src="SUPER%20BAGGY%20JEANS.jpeg" alt="SUPER BAGGY JEANS">
         <h3>SUPER BAGGY JEANS</h3>
         <p class="price">850 EGP</p>
-        <div class="product-options">
-            <select class="color-select">
-                <option value="Blue">Blue</option>
-                <option value="Black">Black</option>
-                <option value="Olive">Olive</option>
-            </select>
-            <select class="size-select">
-                <option value="Size 30 (50-60 kg)">Size 30 (50-60 kg)</option>
-                <option value="Size 32 (60-70 kg)">Size 32 (60-70 kg)</option>
-                <option value="Size 34 (80-90 kg)">Size 34 (80-90 kg)</option>
-                <option value="Size 36 (90-105 kg)">Size 36 (90-105 kg)</option>
-            </select>
-        </div>
-        <button class="add-to-cart" onclick="directAddToCart(this)" style="position: relative; z-index: 9999; cursor: pointer !important; pointer-events: auto !important;">ADD TO CART</button>
+        <button class="add-to-cart" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
     </div>
 
     <!-- Product 4: BAGGY SWEATPANTS -->
-    <div class="card" data-id="4" data-name="BAGGY SWEATPANTS" data-price="800">
+    <div class="card" data-id="4" data-name="BAGGY SWEATPANTS" data-price="800" data-img="BAGGY SWEATPANTS.jpeg" data-colors="Black,Light Grey,White" data-desc="بنطلون سويت بانتس باجي مصنوع من قماش الميلتون الثقيل والمبطن بنعومة، مثالي ومريح جداً للبس اليومي السريع والمشاوير الطويلة والتمارين المفتوحة." data-type="shirt">
         <img src="BAGGY%20SWEATPANTS.jpeg" alt="BAGGY SWEATPANTS">
         <h3>BAGGY SWEATPANTS</h3>
         <p class="price">800 EGP</p>
-        <div class="product-options">
-            <select class="color-select">
-                <option value="Black">Black</option>
-                <option value="Light Grey">Light Grey</option>
-                <option value="White">White</option>
-            </select>
-            <select class="size-select">
-                <option value="M (50-60 kg)">M (50-60 kg)</option>
-                <option value="L (60-70 kg)">L (60-70 kg)</option>
-                <option value="XL (80-90 kg)">XL (80-90 kg)</option>
-                <option value="XXL (90-105 kg)">XXL (90-105 kg)</option>
-            </select>
-        </div>
-        <button class="add-to-cart" onclick="directAddToCart(this)" style="position: relative; z-index: 9999; cursor: pointer !important; pointer-events: auto !important;">ADD TO CART</button>
+        <button class="add-to-cart" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
     </div>
 </section>
 
-<!-- BRAND FEATURES SECTION (رقم ٣ - الميزات والأيقونات الاحترافية) -->
+<!-- BRAND FEATURES SECTION -->
 <section class="features-section">
     <div class="feature-box">
         <i class="fas fa-shipping-fast"></i>
@@ -291,15 +399,47 @@
     </div>
 
     <div class="footer-bottom">
-        <p>&copy; 2026 LOCALS. All rights reserved.</p>
+        <p>© 2026 LOCALS. All rights reserved.</p>
     </div>
 </footer>
+
+<!-- PRODUCT DETAILED MODAL (النافذة المنبثقة الجديدة للمنتج) -->
+<div class="product-modal" id="productModal">
+    <div class="product-modal-content">
+        <button class="close-product-modal" id="closeProductModalBtn">&times;</button>
+        <div class="modal-left">
+            <img id="modalProductImg" src="" alt="">
+        </div>
+        <div class="modal-right">
+            <h2 class="modal-product-title" id="modalProductTitle"></h2>
+            <div class="modal-product-price" id="modalProductPrice"></div>
+            <p class="modal-product-desc" id="modalProductDesc"></p>
+            
+            <div class="modal-option-title">اختر اللون (Color):</div>
+            <div class="color-options-container" id="modalColorsContainer"></div>
+            
+            <div class="modal-option-title">جدول المقاسات المتاح (اضغط لتحديد مقاسك):</div>
+            <table class="size-chart-table">
+                <thead>
+                    <tr id="sizeChartHeader">
+                        <!-- العناوين ديناميكية -->
+                    </tr>
+                </thead>
+                <tbody id="sizeChartBody">
+                    <!-- محتوى الجدول ديناميكي بالـ JS -->
+                </tbody>
+            </table>
+            
+            <button class="modal-add-btn" id="modalAddToCartBtn">ADD TO CART</button>
+        </div>
+    </div>
+</div>
 
 <!-- CART SIDEBAR -->
 <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-header">
         <h2>Your Cart</h2>
-        <button class="close-cart" id="closeCartBtn">&times;</button>
+        <button class="close-cart" id="closeCartBtn">×</button>
     </div>
     <div class="cart-items" id="cartItemsContainer"></div>
     <div class="cart-footer">
@@ -311,7 +451,7 @@
 <!-- CHECKOUT MODAL -->
 <div class="checkout-modal" id="checkoutModal">
     <div class="checkout-content">
-        <button class="close-modal" id="closeCheckoutBtn">&times;</button>
+        <button class="close-modal" id="closeCheckoutBtn">×</button>
         <h2>Complete Your Order</h2>
         <form id="checkoutForm">
             <div class="form-group">
@@ -383,7 +523,7 @@
     </div>
 </div>
 
-<!-- SUCCESS MODAL (رقم ٢ - تحديث رسالة النجاح بمدة التوصيل بشكل شيك) -->
+<!-- SUCCESS MODAL -->
 <div class="success-modal" id="successModal">
     <div class="success-content" style="text-align: center;">
         <i class="fas fa-exclamation-circle" style="font-size: 50px; color: #ff9800; margin-bottom: 15px;"></i>
@@ -421,6 +561,25 @@
 
 <script>
 let cart = []; 
+let currentSelectedProduct = null;
+let selectedColor = "";
+let selectedSize = "";
+
+// جداول المقاسات الرسمية بناء على طلبك
+const sizeCharts = {
+    shirt: [
+        { size: "M", weight: "50 - 60 kg" },
+        { size: "L", weight: "60 - 70 kg" },
+        { size: "XL", weight: "80 - 90 kg" },
+        { size: "XXL", weight: "90 - 105 kg" }
+    ],
+    jeans: [
+        { size: "Size 30", weight: "50 - 60 kg" },
+        { size: "Size 32", weight: "60 - 70 kg" },
+        { size: "Size 34", weight: "80 - 90 kg" },
+        { size: "Size 36", weight: "90 - 105 kg" }
+    ]
+};
 
 const cartSidebar = document.getElementById('cartSidebar');
 const cartToggleBtn = document.getElementById('cartToggleBtn');
@@ -449,6 +608,9 @@ const orderIdText = document.getElementById('orderIdText');
 const modalShippingCost = document.getElementById('modalShippingCost');
 const goToWhatsAppBtn = document.getElementById('gotowhatsappbtn');
 
+const productModal = document.getElementById('productModal');
+const closeProductModalBtn = document.getElementById('closeProductModalBtn');
+
 let finalWhatsappURL = "";
 
 if(cartToggleBtn) {
@@ -461,13 +623,14 @@ if(cartToggleBtn) {
 if(closeCartBtn) closeCartBtn.addEventListener('click', closeAllUI);
 if(uiOverlay) uiOverlay.addEventListener('click', closeAllUI);
 if(closeCheckoutBtn) closeCheckoutBtn.addEventListener('click', closeAllUI);
+if(closeProductModalBtn) closeProductModalBtn.addEventListener('click', closeAllUI);
 
 function closeAllUI() {
     if(cartSidebar) cartSidebar.classList.remove('show');
     if(checkoutModal) checkoutModal.classList.remove('show');
     if(successModal) successModal.classList.remove('show');
+    if(productModal) productModal.classList.remove('show');
     if(uiOverlay) uiOverlay.classList.remove('show');
-    document.querySelectorAll('.products .add-to-cart').forEach(btn => btn.style.display = 'block');
 }
 
 if(searchBtn) {
@@ -487,42 +650,102 @@ if(menuToggle) {
     });
 }
 
-if(openCheckoutBtn) {
-    openCheckoutBtn.addEventListener('click', () => {
-        if (cart.length === 0) {
-            alert("Your cart is empty!");
-            return;
-        }
-        cartSidebar.classList.remove('show');
-        checkoutModal.classList.add('show');
-        uiOverlay.classList.add('show');
-        document.querySelectorAll('.products .add-to-cart').forEach(btn => btn.style.display = 'none');
-        updateCheckoutSummary();
-    });
-}
-
-function directAddToCart(buttonElement) {
+// تشغيل فتح مودال خيارات المنتج مع جدول المقاسات
+function openProductModal(buttonElement) {
     const card = buttonElement.closest('.card');
-    if(card) {
-        const id = card.getAttribute('data-id');
-        const name = card.getAttribute('data-name');
-        const price = parseInt(card.getAttribute('data-price'));
-        const size = card.querySelector('.size-select').value;
-        const color = card.querySelector('.color-select').value;
+    if(!card) return;
 
-        const existingItem = cart.find(item => item.id === id && item.size === size && item.color === color);
+    currentSelectedProduct = {
+        id: card.getAttribute('data-id'),
+        name: card.getAttribute('data-name'),
+        price: parseInt(card.getAttribute('data-price')),
+        img: card.getAttribute('data-img'),
+        desc: card.getAttribute('data-desc'),
+        type: card.getAttribute('data-type') || 'shirt',
+        colors: card.getAttribute('data-colors').split(',')
+    };
 
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            cart.push({ id, name, price, size, color, quantity: 1 });
+    document.getElementById('modalProductImg').src = currentSelectedProduct.img;
+    document.getElementById('modalProductTitle').textContent = currentSelectedProduct.name;
+    document.getElementById('modalProductPrice').textContent = currentSelectedProduct.price + " EGP";
+    document.getElementById('modalProductDesc').textContent = currentSelectedProduct.desc;
+
+    // بناء خيارات الألوان
+    const colorsContainer = document.getElementById('modalColorsContainer');
+    colorsContainer.innerHTML = "";
+    selectedColor = ""; 
+    currentSelectedProduct.colors.forEach((color, idx) => {
+        const btn = document.createElement('button');
+        btn.className = "color-btn";
+        btn.textContent = color.trim();
+        btn.onclick = function() {
+            document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            selectedColor = btn.textContent;
+        };
+        if(idx === 0) {
+            btn.classList.add('selected');
+            selectedColor = btn.textContent;
         }
+        colorsContainer.appendChild(btn);
+    });
 
-        updateCartUI();
-        cartSidebar.classList.add('show');
-        uiOverlay.classList.add('show');
-    }
+    // بناء جدول المقاسات التفاعلي والذكي
+    const headerRow = document.getElementById('sizeChartHeader');
+    const chartBody = document.getElementById('sizeChartBody');
+    selectedSize = ""; 
+
+    headerRow.innerHTML = `<th>المقاس المتاح</th><th>الوزن المقابل للقطعة</th>`;
+    chartBody.innerHTML = "";
+
+    const targetChart = sizeCharts[currentSelectedProduct.type] || sizeCharts['shirt'];
+    
+    targetChart.forEach((row, idx) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td class="size-radio-cell">⬅️ [ ${row.size} ]</td><td>${row.weight}</td>`;
+        tr.onclick = function() {
+            document.querySelectorAll('.size-chart-table tr').forEach(r => r.classList.remove('selected'));
+            tr.classList.add('selected');
+            selectedSize = row.size;
+        };
+        if(idx === 0) {
+            tr.classList.add('selected');
+            selectedSize = row.size;
+        }
+        chartBody.appendChild(tr);
+    });
+
+    productModal.classList.add('show');
+    uiOverlay.classList.add('show');
 }
+
+// تفعيل زرار الإضافة للسلة من داخل صفحة عرض تفاصيل المقاسات والمنتج
+document.getElementById('modalAddToCartBtn').onclick = function() {
+    if(!selectedColor || !selectedSize) {
+        alert("برجاء اختيار اللون واضغط على المقاس المناسب لك من الجدول!");
+        return;
+    }
+
+    const existingItem = cart.find(item => item.id === currentSelectedProduct.id && item.size === selectedSize && item.color === selectedColor);
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ 
+            id: currentSelectedProduct.id, 
+            name: currentSelectedProduct.name, 
+            price: currentSelectedProduct.price, 
+            img: currentSelectedProduct.img, 
+            size: selectedSize, 
+            color: selectedColor, 
+            quantity: 1 
+        });
+    }
+
+    updateCartUI();
+    productModal.classList.remove('show');
+    cartSidebar.classList.add('show');
+};
 
 function updateCartUI() {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -586,6 +809,19 @@ function bindCartEvents() {
     });
 }
 
+if(openCheckoutBtn) {
+    openCheckoutBtn.addEventListener('click', () => {
+        if (cart.length === 0) {
+            alert("سلتك فارغة حالياً!");
+            return;
+        }
+        cartSidebar.classList.remove('show');
+        checkoutModal.classList.add('show');
+        uiOverlay.classList.add('show');
+        updateCheckoutSummary();
+    });
+}
+
 if(governorateSelect) governorateSelect.addEventListener('change', updateCheckoutSummary);
 
 function updateCheckoutSummary() {
@@ -616,19 +852,22 @@ if(checkoutForm) {
         if(orderIdText) orderIdText.textContent = orderId;
         if(modalShippingCost) modalShippingCost.textContent = shipping; 
 
+        // تجميع تفاصيل المنتجات وصورها بروابط كاملة لميزة المعاينة في شات الواتساب
         let productsText = '';
+        const baseUrl = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+        
         cart.forEach(item => {
-            productsText += `- ${item.name} (${item.color} / ${item.size}) x${item.quantity} -> ${item.price * item.quantity} EGP\n`;
+            const absoluteImgUrl = item.img.startsWith('http') ? item.img : `${baseUrl}/${item.img}`;
+            productsText += `• *${item.name}*\n  - اللون: ${item.color} | المقاس: ${item.size}\n  - الكمية: ${item.quantity} -> السعر: ${item.price * item.quantity} EGP\n  - رابط صورة القطعة: ${absoluteImgUrl}\n\n`;
         });
 
-        // (رقم ٢) دمج معلومة الـ 3 أيام داخل رسالة الواتساب التلقائية المرسلة لك
         const whatsappMessage = `🚨 *أوردر جديد من موقع LOCALS* 🚨\n\n` +
                                 `🆔 *رقم الأوردر:* ${orderId}\n` +
                                 `👤 *اسم العميل:* ${fullName}\n` +
                                 `📞 *رقم التليفون:* ${phone}\n` +
                                 `📍 *المحافظة:* ${governorate}\n` +
                                 `🏠 *العنوان بالتفصيل:* ${address}\n\n` +
-                                `📦 *المنتجات:*\n${productsText}\n` +
+                                `📦 *المنتجات المطلوبة:*\n\n${productsText}` +
                                 `💵 *تفاصيل الحساب:*\n` +
                                 `- المجموع: ${subtotal} EGP\n` +
                                 `- الشحن (مطلوب تحويله أولاً): ${shipping} EGP\n` +

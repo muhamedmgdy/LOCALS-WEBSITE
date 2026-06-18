@@ -72,7 +72,7 @@
             background: #fff;
             width: 100%;
             max-width: 850px;
-            max-height: 90vh;
+            max-height: 85vh; /* تقليل الارتفاع لمنع الاختفاء */
             overflow-y: auto;
             border-radius: 8px;
             position: relative;
@@ -86,6 +86,7 @@
             .product-modal-content {
                 flex-direction: column;
                 padding: 20px;
+                max-height: 90vh;
             }
         }
         
@@ -99,7 +100,7 @@
         }
         .main-img-container {
             width: 100%;
-            height: 380px;
+            height: 320px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -111,7 +112,6 @@
             max-width: 100%;
             max-height: 100%;
             object-fit: cover;
-            transition: transform 0.2s;
         }
         .thumbnails-container {
             display: flex;
@@ -121,8 +121,8 @@
             width: 100%;
         }
         .thumb-img {
-            width: 65px;
-            height: 65px;
+            width: 60px;
+            height: 60px;
             object-fit: cover;
             border: 2px solid #eee;
             border-radius: 4px;
@@ -154,30 +154,28 @@
             z-index: 10;
         }
         .modal-product-title {
-            font-size: 24px;
+            font-size: 22px;
             margin: 0 0 10px 0;
             color: #111;
-            text-align: right; 
         }
         .modal-product-price {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
             color: #111;
-            margin-bottom: 15px;
-            text-align: right;
+            margin-bottom: 10px;
         }
         .modal-product-desc {
-            font-size: 14px;
+            font-size: 13px;
             color: #555;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            line-height: 1.5;
+            margin-bottom: 15px;
         }
         
         /* خيارات الألوان والمقاسات */
         .modal-option-title {
             font-size: 14px;
             font-weight: bold;
-            margin: 15px 0 8px 0;
+            margin: 10px 0 8px 0;
             color: #222;
         }
         .color-options-container {
@@ -188,7 +186,7 @@
             direction: rtl;
         }
         .color-btn {
-            padding: 8px 16px;
+            padding: 6px 14px;
             border: 1px solid #ccc;
             background: #fff;
             cursor: pointer;
@@ -206,7 +204,7 @@
         .size-chart-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 10px 0 20px 0;
+            margin: 5px 0 20px 0;
             font-size: 13px;
             text-align: center;
             direction: rtl;
@@ -245,8 +243,9 @@
             cursor: pointer;
             border-radius: 4px;
             width: 100%;
-            margin-top: auto;
+            margin-top: 15px; /* تأمين المسافة للظهور التام */
             transition: background 0.2s;
+            display: block;
         }
         .modal-add-btn:hover {
             background: #333;
@@ -277,15 +276,8 @@
             <i class="fas fa-shopping-cart"></i>
             <span class="cart-count">0</span>
         </button>
-        <button class="menu-toggle"><i class="fas fa-bars"></i></button>
     </div>
 </header>
-
-<!-- SEARCH BAR -->
-<div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search products...">
-    <button><i class="fas fa-search"></i></button>
-</div>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -293,14 +285,6 @@
         <h1>Premium Streetwear</h1>
         <p>Built For Everyday Life</p>
         <a href="#new-arrivals" class="hero-btn">SHOP NOW</a>
-    </div>
-</section>
-
-<!-- ABOUT SECTION -->
-<section class="about" id="about">
-    <div class="about-container">
-        <h2>About LOCALS</h2>
-        <p>LOCALS is a premium streetwear brand dedicated to delivering high-quality, comfortable, and stylish clothing. Our mission is to create pieces that inspire confidence and self-expression in every customer.</p>
     </div>
 </section>
 
@@ -316,15 +300,15 @@
         <img src="shirt blue.jpeg" alt="Oversized STRIPED SHIRT">
         <h3>Oversized STRIPED SHIRT</h3>
         <p class="price">850 EGP</p>
-        <button class="add-to-cart" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
+        <button class="view-chart-btn" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
     </div>
 
     <!-- Product 2: RINGER TEE -->
-    <div class="card" data-id="2" data-name="RINGER TEE" data-price="700" data-img="RINGER TEE.jpeg" data-images="RINGER TEE.jpeg" data-colors="Red,Black,White" data-desc="تيشيرت رينجر كلاسيكي مميز بأطراف ملونة ملفتة، مصنوع من قطن ليكرا ناعم ومقاوم للانكماش. مثالي ليعطيك مظهر ريترو ستريت وير فريد." data-type="shirt">
+    <div class="card" data-id="2" data-name="RINGER TEE" data-price="700" data-img="RINGER TEE.jpeg" data-images="RINGER TEE.jpeg" data-colors="Red,Black,White" data-desc="티شيرت رينجر كلاسيكي مميز بأطراف ملونة ملفتة، مصنوع من قطن ليكرا ناعم ومقاوم للانكماش. مثالي ليعطيك مظهر ريترو ستريت وير فريد." data-type="shirt">
         <img src="RINGER TEE.jpeg" alt="RINGER TEE">
         <h3>RINGER TEE</h3>
         <p class="price">700 EGP</p>
-        <button class="add-to-cart" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
+        <button class="view-chart-btn" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
     </div>
 
     <!-- Product 3: SUPER BAGGY JEANS -->
@@ -332,7 +316,7 @@
         <img src="jeans dirty.jpeg" alt="SUPER BAGGY JEANS">
         <h3>SUPER BAGGY JEANS</h3>
         <p class="price">850 EGP</p>
-        <button class="add-to-cart" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
+        <button class="view-chart-btn" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
     </div>
 
     <!-- Product 4: BAGGY SWEATPANTS -->
@@ -340,7 +324,7 @@
         <img src="BAGGY SWEATPANTS.jpeg" alt="BAGGY SWEATPANTS">
         <h3>BAGGY SWEATPANTS</h3>
         <p class="price">800 EGP</p>
-        <button class="add-to-cart" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
+        <button class="view-chart-btn" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
     </div>
 </section>
 
@@ -363,53 +347,9 @@
     </div>
 </section>
 
-<!-- SUMMER BANNER -->
-<section class="banner2">
-    <h2>SUMMER COLLECTION 2026</h2>
-    <p>Discover the latest pieces for the season.</p>
-</section>
-
-<!-- CONTACT SECTION -->
-<section class="contact" id="contact">
-    <h2>Get In Touch</h2>
-    <div class="contact-info">
-        <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            <h4>WhatsApp</h4>
-            <p><a href="https://wa.me/201061056741">01061056741</a></p>
-        </div>
-        <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <h4>Email</h4>
-            <p><a href="mailto:emadghazali@gmail.com">emadghazali@gmail.com</a></p>
-        </div>
-        <div class="contact-item" style="cursor: pointer;" onclick="window.open('https://maps.google.com/?q=THE+MARKET+MALL,+5th+Settlement,+Cairo', '_blank')">
-            <i class="fas fa-map-marker-alt"></i>
-            <h4>Location</h4>
-            <p>THE MARKET MALL, 5th Settlement</p>
-        </div>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-    <div class="footer-content">
-        <div class="footer-section">
-            <h3>LOCALS</h3>
-            <p>Premium Streetwear Brand</p>
-            <div class="social-links">
-                <a href="https://www.instagram.com/locals_store.eg" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>© 2026 LOCALS. All rights reserved.</p>
-    </div>
-</footer>
-
-<!-- PRODUCT DETAILED MODAL (اصلاح السيكشن ده بالكامل ليعمل تفاعلياً) -->
+<!-- PRODUCT DETAILED MODAL -->
 <div class="product-modal" id="productModal">
-    <div class="product-modal-content">
+    <div class="product-modal-content" onclick="event.stopPropagation();">
         <button class="close-product-modal" id="closeProductModalBtn">&times;</button>
         
         <div class="modal-left">
@@ -430,7 +370,10 @@
             <div class="modal-option-title">جدول المقاسات المتاح (اضغط لتحديد مقاسك):</div>
             <table class="size-chart-table">
                 <thead>
-                    <tr id="sizeChartHeader"></tr>
+                    <tr>
+                        <th>المقاس المتاح</th>
+                        <th>الوزن المقابل للقطعة</th>
+                    </tr>
                 </thead>
                 <tbody id="sizeChartBody"></tbody>
             </table>
@@ -455,7 +398,7 @@
 
 <!-- CHECKOUT MODAL -->
 <div class="checkout-modal" id="checkoutModal">
-    <div class="checkout-content">
+    <div class="checkout-content" onclick="event.stopPropagation();">
         <button class="close-modal" id="closeCheckoutBtn">×</button>
         <h2>Complete Your Order</h2>
         <form id="checkoutForm">
@@ -539,7 +482,6 @@
 
 <div class="overlay" id="uiOverlay"></div>
 
-<!-- JAVASCRIPT LOGIC (تم إصلاح تشغيل البوب أب والمعرض بالكامل) -->
 <script>
 let cart = []; 
 let currentSelectedProduct = null;
@@ -570,11 +512,6 @@ const cartCountBadge = document.querySelector('.cart-count');
 const cartItemsContainer = document.getElementById('cartItemsContainer');
 const cartTotalSpan = document.getElementById('cartTotal');
 
-const searchBtn = document.querySelector('.search-btn');
-const searchBar = document.querySelector('.search-bar');
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.nav-menu');
-
 const checkoutModal = document.getElementById('checkoutModal');
 const openCheckoutBtn = document.getElementById('openCheckoutBtn');
 const closeCheckoutBtn = document.getElementById('closeCheckoutBtn');
@@ -594,6 +531,7 @@ const closeProductModalBtn = document.getElementById('closeProductModalBtn');
 
 let finalWhatsappURL = "";
 
+// فتح السلة
 if(cartToggleBtn) {
     cartToggleBtn.addEventListener('click', () => {
         cartSidebar.classList.add('show');
@@ -601,11 +539,16 @@ if(cartToggleBtn) {
     });
 }
 
+// أزرار الإغلاق عند الضغط على الـ X أو الخلفية الشفافة بره فقط
 if(closeCartBtn) closeCartBtn.addEventListener('click', closeAllUI);
-if(uiOverlay) uiOverlay.addEventListener('click', closeAllUI);
 if(closeCheckoutBtn) closeCheckoutBtn.addEventListener('click', closeAllUI);
 if(closeProductModalBtn) closeProductModalBtn.addEventListener('click', closeAllUI);
 
+if(uiOverlay) {
+    uiOverlay.addEventListener('click', closeAllUI);
+}
+
+// دالة الإغلاق التام
 function closeAllUI() {
     if(cartSidebar) cartSidebar.classList.remove('show');
     if(checkoutModal) checkoutModal.classList.remove('show');
@@ -614,12 +557,7 @@ function closeAllUI() {
     if(uiOverlay) uiOverlay.classList.remove('show');
 }
 
-if(searchBtn) {
-    searchBtn.addEventListener('click', () => {
-        searchBar.classList.toggle('active');
-    });
-}
-
+// دالة فتح الـ Modal وعرض الخيارات بشكل صحيح من غير مشاكل الاختفاء
 function openProductModal(buttonElement) {
     const card = buttonElement.closest('.card');
     if(!card) return;
@@ -644,7 +582,7 @@ function openProductModal(buttonElement) {
     document.getElementById('modalProductPrice').textContent = currentSelectedProduct.price + " EGP";
     document.getElementById('modalProductDesc').textContent = currentSelectedProduct.desc;
 
-    // توليد الصور المصغرة
+    // 1. بناء معرض الصور المصغرة المظبوط
     const thumbsContainer = document.getElementById('modalThumbnailsContainer');
     thumbsContainer.innerHTML = "";
     
@@ -652,7 +590,8 @@ function openProductModal(buttonElement) {
         const thumb = document.createElement('img');
         thumb.src = imgUrl;
         thumb.className = "thumb-img" + (idx === 0 ? " active" : "");
-        thumb.onclick = function() {
+        thumb.onclick = function(e) {
+            e.stopPropagation(); // منع إغلاق الـ بوب أب عند الضغط
             document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
             thumb.classList.add('active');
             document.getElementById('modalProductImg').src = imgUrl;
@@ -661,7 +600,7 @@ function openProductModal(buttonElement) {
         thumbsContainer.appendChild(thumb);
     });
 
-    // توليد أزرار الألوان المتاحة
+    // 2. بناء أزرار اختيار الألوان المتاحة
     const colorsContainer = document.getElementById('modalColorsContainer');
     colorsContainer.innerHTML = "";
     selectedColor = ""; 
@@ -669,7 +608,8 @@ function openProductModal(buttonElement) {
         const btn = document.createElement('button');
         btn.className = "color-btn";
         btn.textContent = color.trim();
-        btn.onclick = function() {
+        btn.onclick = function(e) {
+            e.stopPropagation(); // منع الإغلاق التلقائي
             document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('selected'));
             btn.classList.add('selected');
             selectedColor = btn.textContent;
@@ -681,20 +621,18 @@ function openProductModal(buttonElement) {
         colorsContainer.appendChild(btn);
     });
 
-    // توليد جدول المقاسات التفاعلي
-    const headerRow = document.getElementById('sizeChartHeader');
+    // 3. بناء جدول المقاسات المقاوم للأخطاء البرمجية
     const chartBody = document.getElementById('sizeChartBody');
-    selectedSize = ""; 
-
-    headerRow.innerHTML = `<th>المقاس المتاح</th><th>الوزن المقابل للقطعة</th>`;
     chartBody.innerHTML = "";
+    selectedSize = ""; 
 
     const targetChart = sizeCharts[currentSelectedProduct.type] || sizeCharts['shirt'];
     
     targetChart.forEach((row, idx) => {
         const tr = document.createElement('tr');
         tr.innerHTML = `<td class="size-radio-cell">⬅️ [ ${row.size} ]</td><td>${row.weight}</td>`;
-        tr.onclick = function() {
+        tr.onclick = function(e) {
+            e.stopPropagation(); // منع الإغلاق التلقائي
             document.querySelectorAll('.size-chart-table tr').forEach(r => r.classList.remove('selected'));
             tr.classList.add('selected');
             selectedSize = row.size;
@@ -706,11 +644,14 @@ function openProductModal(buttonElement) {
         chartBody.appendChild(tr);
     });
 
+    // إظهار الـ Modal في النهاية
     productModal.classList.add('show');
     uiOverlay.classList.add('show');
 }
 
-document.getElementById('modalAddToCartBtn').onclick = function() {
+// دالة الإضافة للسلة من زرار الـ ADD TO CART داخل البوب أب المصلح
+document.getElementById('modalAddToCartBtn').onclick = function(e) {
+    e.stopPropagation();
     if(!selectedColor || !selectedSize) {
         alert("برجاء اختيار اللون واضغط على المقاس المناسب لك من الجدول!");
         return;
@@ -737,6 +678,7 @@ document.getElementById('modalAddToCartBtn').onclick = function() {
     cartSidebar.classList.add('show');
 };
 
+// تحديث السلة
 function updateCartUI() {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     if(cartCountBadge) cartCountBadge.textContent = totalItems;
@@ -770,7 +712,8 @@ function updateCartUI() {
 
 function bindCartEvents() {
     document.querySelectorAll('.qty-btn-plus').forEach(btn => {
-        btn.onclick = function() {
+        btn.onclick = function(e) {
+            e.stopPropagation();
             let idx = this.getAttribute('data-index');
             cart[idx].quantity += 1;
             updateCartUI();
@@ -778,7 +721,8 @@ function bindCartEvents() {
     });
 
     document.querySelectorAll('.qty-btn-minus').forEach(btn => {
-        btn.onclick = function() {
+        btn.onclick = function(e) {
+            e.stopPropagation();
             let idx = this.getAttribute('data-index');
             cart[idx].quantity -= 1;
             if (cart[idx].quantity <= 0) cart.splice(idx, 1);

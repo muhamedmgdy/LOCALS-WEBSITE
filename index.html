@@ -1206,6 +1206,174 @@ if(goToWhatsAppBtn) {
         closeAllUI();
     });
 }
+    // ==========================================================================
+// 1. DEFINING ELEMENTS (تحديد العناصر)
+// ==========================================================================
+const cartBtn = document.getElementById('cart-btn'); // زر السلة في الهيدر
+const cartSidebar = document.querySelector('.cart-sidebar');
+const closeCartBtn = document.querySelector('.close-cart');
+const overlay = document.querySelector('.overlay');
+const checkoutBtn = document.querySelector('.checkout-btn');
+const checkoutModal = document.querySelector('.checkout-modal');
+const closeModalBtn = document.querySelector('.close-modal');
+const checkoutForm = document.getElementById('checkout-form');
+const successModal = document.querySelector('.success-modal');
+const cartCount = document.querySelector('.cart-count');
+const cartItemsContainer = document.querySelector('.cart-items');
+const cartTotalElement = document.getElementById('cart-total');
+const modalTotalElement = document.getElementById('modal-total');
+const addToCartButtons = document.querySelectorAll('.view-chart-btn');
+
+let cart = [];
+
+// ==========================================================================
+// 2. CART SIDEBAR TOGGLE (فتح وإغلاق السلة)
+// ==========================================================================
+if (cartBtn) {
+    cartBtn.addEventListener('click', () => {
+        cartSidebar.classList.add('show');
+        overlay.classList.add('show');
+    });
+}
+
+const closeCart = () => {
+    cartSidebar.classList.remove('show');
+    overlay.classList.remove('show');
+};
+
+if (closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
+if (overlay) overlay.addEventListener('click', () => {
+    closeCart();
+    if (checkoutModal) checkoutModal.classList.remove('show');
+    if (successModal) successModal.classList.remove('show');
+});
+
+// ==========================================================================
+// 3. CART FUNCTIONALITY (إضافة، حذف وتحديث السلة)
+// ==========================================================================
+addToCartButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        const card = e.target.closest('.card');
+        const id = card.getAttribute('data-id') || Math.random().toString();
+        const name = card.querySelector('h3').innerText;
+        const priceText = card.querySelector('.price').innerText;
+        const price = parseFloat(priceText.replace(/[^0-9.]/g, ''));
+        const image = card.querySelector('img').src;
+
+        addItemToCart(id, name, price, image);
+        
+        // تأثير بصري خفيف عند الإضافة
+        button.innerText = "تمت الإضافة! ✓";
+        button.style.background = "#2e7d32";
+        setTimeout(() => {
+            button.innerText = "إضافة للسلة";
+            button.style.background = "#111111";
+        }, 1000);
+    });
+});
+
+function addItemToCart(id, name, price, image) {
+    const existingItem = cart.find(item => item.id === id);
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ id, name, price, image, quantity: 1 });
+    }
+    updateCartUI();
+}
+
+function updateCartUI() {
+    // تحديث العداد
+    const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+    if (cartCount) cartCount.innerText = totalCount;
+
+    // تفريغ القائمة وإعادة البناء لضمان مطابقة الـ CSS الجديد
+    if (cartItemsContainer) {
+        cartItemsContainer.innerHTML = '';
+        
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = '<p style="text-align:center; color:#888; margin-top:20px;">السلة فارغة حالياً</p>';
+        }
+
+        cart.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.classList.add('cart-item');
+            itemElement.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <div class="cart-item-details">
+                    <h4>${item.name}</h4>
+                    <div class="price">${item.quantity} × ${item.price} ج.م</div>
+                </div>
+                <button class="remove-item-btn" data-id="${item.id}">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            `;
+            cartItemsContainer.appendChild(itemElement);
+        });
+
+        // ربط أزرار الحذف بعد إنشائها ديناميكياً
+        const removeButtons = cartItemsContainer.querySelectorAll('.remove-item-btn');
+        removeButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = btn.getAttribute('data-id');
+                cart = cart.filter(item => item.id !== id);
+                updateCartUI();
+            });
+        });
+    }
+
+    // تحديث الإجمالي
+    const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    if (cartTotalElement) cartTotalElement.innerText = `${totalPrice} ج.م`;
+    if (modalTotalElement) modalTotalElement.innerText = `${totalPrice} ج.م`;
+}
+
+// ==========================================================================
+// 4. CHECKOUT MODAL MANIPULATION (شاشة الدفع والطلب)
+// ==========================================================================
+if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+        if (cart.length === 0) {
+            alert('سلتك فارغة! أضف بعض المنتجات أولاً.');
+            return;
+        }
+        cartSidebar.classList.remove('show'); // إغلاق السلة
+        checkoutModal.classList.add('show');  // فتح شاشة الدفع
+    });
+}
+
+if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', () => {
+        checkoutModal.classList.remove('show');
+        overlay.classList.remove('show');
+    });
+}
+
+// ==========================================================================
+// 5. FORM SUBMISSION (إتمام الطلب بنجاح)
+// ==========================================================================
+if (checkoutForm) {
+    checkoutForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // منع إعادة تحميل الصفحة
+        
+        // إخفاء الـ Modal الحالي وفتح شاشة النجاح
+        checkoutModal.classList.remove('show');
+        if (successModal) successModal.classList.add('show');
+        
+        // تفريغ السلة بعد نجاح العملية
+        cart = [];
+        updateCartUI();
+    });
+}
+
+// إغلاق نافذة النجاح عند النقر على الزر المخصص داخلها إن وُجد
+const closeSuccessBtn = document.querySelector('.success-content button');
+if (closeSuccessBtn) {
+    closeSuccessBtn.addEventListener('click', () => {
+        if (successModal) successModal.classList.remove('show');
+        if (overlay) overlay.classList.remove('show');
+    });
+}
 </script>
 </body>
 </html>

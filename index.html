@@ -89,7 +89,7 @@
             }
         }
         
-        /* تنسيق معرض الصور */
+        /* تنسيق معرض الصور داخل الـ Modal */
         .modal-left {
             flex: 1;
             display: flex;
@@ -157,14 +157,14 @@
             font-size: 24px;
             margin: 0 0 10px 0;
             color: #111;
-            text-align: left; 
+            text-align: right; 
         }
         .modal-product-price {
             font-size: 20px;
             font-weight: bold;
             color: #111;
             margin-bottom: 15px;
-            text-align: left;
+            text-align: right;
         }
         .modal-product-desc {
             font-size: 14px;
@@ -185,7 +185,7 @@
             gap: 10px;
             flex-wrap: wrap;
             margin-bottom: 15px;
-            direction: ltr;
+            direction: rtl;
         }
         .color-btn {
             padding: 8px 16px;
@@ -202,7 +202,7 @@
             border-color: #111;
         }
 
-        /* جدول المقاسات الاحترافي */
+        /* جدول المقاسات */
         .size-chart-table {
             width: 100%;
             border-collapse: collapse;
@@ -301,7 +301,6 @@
     <div class="about-container">
         <h2>About LOCALS</h2>
         <p>LOCALS is a premium streetwear brand dedicated to delivering high-quality, comfortable, and stylish clothing. Our mission is to create pieces that inspire confidence and self-expression in every customer.</p>
-        <p>Each piece is carefully crafted with attention to detail, using premium materials and sustainable practices. We believe in creating fashion that lasts, both in quality and style.</p>
     </div>
 </section>
 
@@ -312,9 +311,9 @@
 
 <!-- PRODUCTS SECTION -->
 <section class="products">
-    <!-- Product 1: Oversized STRIPED SHIRT (معدل بالكامل بصورك) -->
-    <div class="card" data-id="1" data-name="Oversized STRIPED SHIRT" data-price="850" data-img="image_4.png" data-images="image_4.png,image_3.png" data-colors="Baby Blue,Pink" data-desc="قميص أوفرسايز مخطط بقصة Boxy + 3D super baggy مريحة جداً وعصرية. يتميز بتطريز يدوي أحمر فريد على الجيب والظهر، بخامات قطنية ممتازة ومثالية للصيف." data-type="shirt">
-        <img src="image_4.png" alt="Oversized STRIPED SHIRT">
+    <!-- Product 1: Oversized STRIPED SHIRT -->
+    <div class="card" data-id="1" data-name="Oversized STRIPED SHIRT" data-price="850" data-img="shirt blue.jpeg" data-images="shirt blue.jpeg,shirt pink.jpeg" data-colors="Baby Blue,Pink" data-desc="قميص أوفرسايز مخطط بقصة Boxy + 3D super baggy مريحة جداً وعصرية. يتميز بتطريز يدوي أحمر فريد على الجيب والظهر، بخامات قطنية ممتازة ومثالية للصيف." data-type="shirt">
+        <img src="shirt blue.jpeg" alt="Oversized STRIPED SHIRT">
         <h3>Oversized STRIPED SHIRT</h3>
         <p class="price">850 EGP</p>
         <button class="add-to-cart" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
@@ -322,23 +321,23 @@
 
     <!-- Product 2: RINGER TEE -->
     <div class="card" data-id="2" data-name="RINGER TEE" data-price="700" data-img="RINGER TEE.jpeg" data-images="RINGER TEE.jpeg" data-colors="Red,Black,White" data-desc="تيشيرت رينجر كلاسيكي مميز بأطراف ملونة ملفتة، مصنوع من قطن ليكرا ناعم ومقاوم للانكماش. مثالي ليعطيك مظهر ريترو ستريت وير فريد." data-type="shirt">
-        <img src="RINGER%20TEE.jpeg" alt="RINGER TEE">
+        <img src="RINGER TEE.jpeg" alt="RINGER TEE">
         <h3>RINGER TEE</h3>
         <p class="price">700 EGP</p>
         <button class="add-to-cart" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
     </div>
 
-    <!-- Product 3: SUPER BAGGY JEANS (معدل بالكامل بصورك الثلاثة) -->
-    <div class="card" data-id="3" data-name="SUPER BAGGY JEANS" data-price="850" data-img="image_5.png" data-images="image_5.png,image_6.png,image_7.png" data-colors="Vintage Blue,Light Blue,Acid Black" data-desc="بنطلون جينز ألترا باجي واسع جداً ومريح (Ultra Superbaggyfit) مصنوع من جينز ثقيل عالي الجودة بتأثير غسيل مميز (Wash) يتحمل الاستخدام الشاق وثابت الصبغة." data-type="jeans">
-        <img src="image_5.png" alt="SUPER BAGGY JEANS">
+    <!-- Product 3: SUPER BAGGY JEANS -->
+    <div class="card" data-id="3" data-name="SUPER BAGGY JEANS" data-price="850" data-img="jeans dirty.jpeg" data-images="jeans dirty.jpeg,jeans blue.jpeg,jeans black.jpeg" data-colors="Vintage Blue,Light Blue,Acid Black" data-desc="بنطلون جينز ألترا باجي واسع جداً ومريح (Ultra Superbaggyfit) مصنوع من جينز ثقيل عالي الجودة بتأثير غسيل مميز (Wash) يتحمل الاستخدام الشاق وثابت الصبغة." data-type="jeans">
+        <img src="jeans dirty.jpeg" alt="SUPER BAGGY JEANS">
         <h3>SUPER BAGGY JEANS</h3>
         <p class="price">850 EGP</p>
         <button class="add-to-cart" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
     </div>
 
     <!-- Product 4: BAGGY SWEATPANTS -->
-    <div class="card" data-id="4" data-name="BAGGY SWEATPANTS" data-price="800" data-img="BAGGY SWEATPANTS.jpeg" data-images="BAGGY SWEATPANTS.jpeg" data-colors="Black,Grey" data-desc="بنطلون سويت بانتس باجي مصنوع من قماش الميلتون الثقيل والمبطن بنعومة، مثالي ومريح جداً للبس اليومي السريع والمشاوير الطويلة والتمارين المفتوحة." data-type="shirt">
-        <img src="BAGGY%20SWEATPANTS.jpeg" alt="BAGGY SWEATPANTS">
+    <div class="card" data-id="4" data-name="BAGGY SWEATPANTS" data-price="800" data-img="BAGGY SWEATPANTS.jpeg" data-images="sweat pants black.jpeg,sweat pants grey.jpeg,sweat pants white.jpeg" data-colors="Black,Grey,White" data-desc="بنطلون سويت بانتس باجي مصنوع من قماش الميلتون الثقيل والمبطن بنعومة، مثالي ومريح جداً للبس اليومي السريع والمشاوير الطويلة والتمارين المفتوحة." data-type="shirt">
+        <img src="BAGGY SWEATPANTS.jpeg" alt="BAGGY SWEATPANTS">
         <h3>BAGGY SWEATPANTS</h3>
         <p class="price">800 EGP</p>
         <button class="add-to-cart" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
@@ -387,7 +386,7 @@
         <div class="contact-item" style="cursor: pointer;" onclick="window.open('https://maps.google.com/?q=THE+MARKET+MALL,+5th+Settlement,+Cairo', '_blank')">
             <i class="fas fa-map-marker-alt"></i>
             <h4>Location</h4>
-            <p>THE MARKET MALL, 5th Settlement (اضغط لفتح الخريطة)</p>
+            <p>THE MARKET MALL, 5th Settlement</p>
         </div>
     </div>
 </section>
@@ -400,46 +399,15 @@
             <p>Premium Streetwear Brand</p>
             <div class="social-links">
                 <a href="https://www.instagram.com/locals_store.eg" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
-            </div>
-        </div>
-
-        <div class="footer-section">
-            <h4>Quick Links</h4>
-            <ul>
-                <li><a href="#new-arrivals">Shop</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h4>Policies</h4>
-            <ul>
-                <li><a href="#privacy">Privacy Policy</a></li>
-                <li><a href="#returns">Return Policy</a></li>
-                <li><a href="#shipping">Shipping Policy</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h4>Newsletter</h4>
-            <p>Subscribe for exclusive offers</p>
-            <div class="newsletter">
-                <input type="email" placeholder="Your email">
-                <button>Subscribe</button>
             </div>
         </div>
     </div>
-
     <div class="footer-bottom">
         <p>© 2026 LOCALS. All rights reserved.</p>
     </div>
 </footer>
 
-<!-- PRODUCT DETAILED MODAL -->
+<!-- PRODUCT DETAILED MODAL (اصلاح السيكشن ده بالكامل ليعمل تفاعلياً) -->
 <div class="product-modal" id="productModal">
     <div class="product-modal-content">
         <button class="close-product-modal" id="closeProductModalBtn">&times;</button>
@@ -536,19 +504,6 @@
                 <label for="address">Detailed Address *</label>
                 <input type="text" id="address" required placeholder="Street, Building, Apartment...">
             </div>
-            <div class="payment-methods">
-                <h3>Payment Method</h3>
-                <div class="method-options">
-                    <label class="method-option">
-                        <input type="radio" name="payment" value="cod" checked>
-                        <span>Cash On Delivery (الدفع عند الاستلام)</span>
-                    </label>
-                    <label class="method-option">
-                        <input type="radio" name="payment" value="instapay">
-                        <span>Vodafone Cash / InstaPay</span>
-                    </label>
-                </div>
-            </div>
             <div class="order-summary-box">
                 <p>Subtotal: <span><span id="summarySubtotal">0</span> EGP</span></p>
                 <p>Shipping: <span><span id="summaryShipping">0</span> EGP</span></p>
@@ -565,7 +520,6 @@
     <div class="success-content" style="text-align: center;">
         <i class="fas fa-exclamation-circle" style="font-size: 50px; color: #ff9800; margin-bottom: 15px;"></i>
         <h2 style="font-size: 22px; margin-bottom: 15px; color: #111;">خطوة أخيرة لتأكيد طلبك!</h2>
-        
         <div style="background: #fff9e6; border: 1px solid #ffe0b2; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: right; direction: rtl;">
             <p style="color: #e65100; font-weight: bold; font-size: 15px; margin-bottom: 8px; line-height: 1.6;">
                 ⚠️ لضمان جدية الطلب، يرجى تحويل مصاريف الشحن أولاً لجدية الحجز.
@@ -576,17 +530,7 @@
             <p style="font-size: 14px; color: #333; margin-bottom: 5px;">
                 • يرجى التحويل على رقم فودافون كاش: <span style="font-weight: bold; color: #d32f2f; font-size: 16px;">01061056741</span>
             </p>
-            <p style="font-size: 14px; color: #2e7d32; font-weight: bold; margin-top: 10px;">
-                🚚 سيتم توصيل طلبك خلال 3 أيام عمل من تاريخ التحويل.
-            </p>
         </div>
-
-        <p style="color: #666; font-size: 13px; line-height: 1.5; direction: rtl;">
-            بعد التحويل، اضغط على الزرار بالأسفل لفتح الواتساب التلقائي وإرسال تفاصيل الأوردر وصورة الإيصال لتأكيد الشحن فوراً.
-        </p>
-        
-        <p style="font-size: 13px; margin-top: 10px; color: #999;">رقم الأوردر المؤقت: <span id="orderIdText" style="font-weight: bold;"></span></p>
-        
         <button class="close-success-btn" id="gotowhatsappbtn" style="background: #25d366; color: white; width: 100%; padding: 12px; margin-top: 15px; font-size: 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
             <i class="fab fa-whatsapp"></i> تم التحويل، متابعة للواتساب
         </button>
@@ -595,6 +539,7 @@
 
 <div class="overlay" id="uiOverlay"></div>
 
+<!-- JAVASCRIPT LOGIC (تم إصلاح تشغيل البوب أب والمعرض بالكامل) -->
 <script>
 let cart = []; 
 let currentSelectedProduct = null;
@@ -675,17 +620,6 @@ if(searchBtn) {
     });
 }
 
-if(menuToggle) {
-    menuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        if(navMenu.classList.contains('active')) {
-            navMenu.style.display = 'flex';
-        } else {
-            navMenu.style.display = '';
-        }
-    });
-}
-
 function openProductModal(buttonElement) {
     const card = buttonElement.closest('.card');
     if(!card) return;
@@ -710,6 +644,7 @@ function openProductModal(buttonElement) {
     document.getElementById('modalProductPrice').textContent = currentSelectedProduct.price + " EGP";
     document.getElementById('modalProductDesc').textContent = currentSelectedProduct.desc;
 
+    // توليد الصور المصغرة
     const thumbsContainer = document.getElementById('modalThumbnailsContainer');
     thumbsContainer.innerHTML = "";
     
@@ -726,6 +661,7 @@ function openProductModal(buttonElement) {
         thumbsContainer.appendChild(thumb);
     });
 
+    // توليد أزرار الألوان المتاحة
     const colorsContainer = document.getElementById('modalColorsContainer');
     colorsContainer.innerHTML = "";
     selectedColor = ""; 
@@ -745,6 +681,7 @@ function openProductModal(buttonElement) {
         colorsContainer.appendChild(btn);
     });
 
+    // توليد جدول المقاسات التفاعلي
     const headerRow = document.getElementById('sizeChartHeader');
     const chartBody = document.getElementById('sizeChartBody');
     selectedSize = ""; 
@@ -823,7 +760,6 @@ function updateCartUI() {
                         <button type="button" class="qty-btn-plus" data-index="${index}" style="padding: 2px 8px; cursor: pointer;">+</button>
                     </div>
                 </div>
-                <button type="button" class="remove-item-btn" data-index="${index}" style="background: none; border: none; color: #ff3333; cursor: pointer; font-size: 16px;"><i class="fas fa-trash"></i></button>
             </div>
         `;
     });
@@ -838,7 +774,6 @@ function bindCartEvents() {
             let idx = this.getAttribute('data-index');
             cart[idx].quantity += 1;
             updateCartUI();
-            if(checkoutModal.classList.contains('show')) updateCheckoutSummary();
         };
     });
 
@@ -848,16 +783,6 @@ function bindCartEvents() {
             cart[idx].quantity -= 1;
             if (cart[idx].quantity <= 0) cart.splice(idx, 1);
             updateCartUI();
-            if(checkoutModal.classList.contains('show')) updateCheckoutSummary();
-        };
-    });
-
-    document.querySelectorAll('.remove-item-btn').forEach(btn => {
-        btn.onclick = function() {
-            let idx = this.getAttribute('data-index');
-            cart.splice(idx, 1);
-            updateCartUI();
-            if(checkoutModal.classList.contains('show')) updateCheckoutSummary();
         };
     });
 }
@@ -895,7 +820,6 @@ if(checkoutForm) {
         const phone = document.getElementById('phone').value;
         const governorate = governorateSelect.value;
         const address = document.getElementById('address').value;
-        const paymentMethod = document.querySelector('input[name="payment"]:checked').value === 'cod' ? 'الدفع عند الاستلام (شحن مسبق)' : 'Vodafone Cash / InstaPay';
         
         const subtotal = summarySubtotal.textContent;
         const shipping = summaryShipping.textContent;
@@ -906,11 +830,8 @@ if(checkoutForm) {
         if(modalShippingCost) modalShippingCost.textContent = shipping; 
 
         let productsText = '';
-        const baseUrl = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
-        
         cart.forEach(item => {
-            const absoluteImgUrl = item.img.startsWith('http') ? item.img : `${baseUrl}/${item.img}`;
-            productsText += `• *${item.name}*\n  - اللون: ${item.color} | المقاس: ${item.size}\n  - الكمية: ${item.quantity} -> السعر: ${item.price * item.quantity} EGP\n  - رابط الصورة المحددة: ${absoluteImgUrl}\n\n`;
+            productsText += `• *${item.name}*\n  - اللون: ${item.color} | المقاس: ${item.size}\n  - الكمية: ${item.quantity}\n\n`;
         });
 
         const whatsappMessage = `🚨 *أوردر جديد من موقع LOCALS* 🚨\n\n` +
@@ -924,9 +845,7 @@ if(checkoutForm) {
                                 `- المجموع: ${subtotal} EGP\n` +
                                 `- الشحن (مطلوب تحويله أولاً): ${shipping} EGP\n` +
                                 `💰 *الإجمالي النهائي:* ${grandTotal} EGP\n\n` +
-                                `💳 *طريقة الدفع:* ${paymentMethod}\n` +
-                                `🚚 *مدة التوصيل المتوقعة:* خلال 3 أيام عمل من تاريخ التحويل.\n\n` +
-                                `⚠️ *حالة الشحن:* العميل أكد المتابعة لتحويل الشحن وجارٍ إرسال صورة الإيصال لتأكيد الأوردر نهائياً.`;
+                                `⚠️ يرجى إرسال صورة إيصال تحويل الشحن كاش لتأكيد الأوردر.`;
 
         const myWhatsAppNumber = "201061056741"; 
         const encodedMessage = encodeURIComponent(whatsappMessage);
@@ -945,20 +864,9 @@ if(checkoutForm) {
 if(goToWhatsAppBtn) {
     goToWhatsAppBtn.addEventListener('click', () => {
         if(finalWhatsappURL !== "") {
-            window.open(finalWhatsappURL, '_self');
+            window.open(finalWhatsappURL, '_blank');
         }
         closeAllUI();
-    });
-}
-
-const searchInput = document.getElementById('searchInput');
-if(searchInput) {
-    searchInput.addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase();
-        document.querySelectorAll('.products .card').forEach(card => {
-            const title = card.querySelector('h3').textContent.toLowerCase();
-            card.style.display = title.includes(term) ? 'flex' : 'none';
-        });
     });
 }
 </script>

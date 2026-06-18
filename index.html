@@ -4,9 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOCALS - Premium Streetwear</title>
-    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* التنسيقات العامة للموقع */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #fff;
+            color: #111;
+            overflow-x: hidden;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
         /* شريط الإعلانات العلوي */
         .announcement-bar {
             background-color: #111;
@@ -18,6 +34,192 @@
             letter-spacing: 1px;
             direction: rtl;
         }
+
+        /* الهيدر */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+        .nav-menu a {
+            margin: 0 15px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+        .nav-menu a:hover {
+            color: #666;
+        }
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .header-icons button {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            position: relative;
+        }
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: red;
+            color: #fff;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+        .menu-toggle {
+            display: none;
+        }
+
+        /* شريط البحث */
+        .search-bar {
+            display: none;
+            padding: 15px 5%;
+            background: #f5f5f5;
+            border-bottom: 1px solid #eee;
+            justify-content: center;
+            gap: 10px;
+        }
+        .search-bar.active {
+            display: flex;
+        }
+        .search-bar input {
+            width: 100%;
+            max-width: 500px;
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .search-bar button {
+            padding: 8px 15px;
+            background: #111;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: #f5f5f5;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .hero-content h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        .hero-content p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 25px;
+        }
+        .hero-btn {
+            background: #111;
+            color: #fff;
+            padding: 12px 30px;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .hero-btn:hover {
+            background: #333;
+        }
+
+        /* About Section */
+        .about {
+            padding: 60px 10%;
+            text-align: center;
+            background: #fff;
+        }
+        .about h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        .about p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* سيكشن المنتجات */
+        .section-title {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 22px;
+            letter-spacing: 2px;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 40px 5%;
+        }
+        .card {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .card h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .card .price {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .add-to-cart {
+            background: #111;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .add-to-cart:hover {
+            background: #333;
+        }
+
         /* سيكشن مميزات البراند */
         .features-section {
             display: flex;
@@ -51,7 +253,50 @@
             line-height: 1.4;
         }
 
-        /* تنسيقات نافذة تفاصيل المنتج (Product Modal) */
+        /* بنر الصيف */
+        .banner2 {
+            background: #111;
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            margin: 40px 0;
+        }
+        .banner2 h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        /* التواصل */
+        .contact {
+            padding: 60px 5%;
+            text-align: center;
+        }
+        .contact h2 { margin-bottom: 30px; }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .contact-item i {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* الفوتر */
+        footer {
+            background: #f5f5f5;
+            padding: 40px 5% 20px 5%;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+        .footer-bottom {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* نافذة تفاصيل المنتج (Product Modal) */
         .product-modal {
             display: none;
             position: fixed;
@@ -87,9 +332,11 @@
                 flex-direction: column;
                 padding: 20px;
             }
+            .menu-toggle { display: block; }
+            .nav-menu { display: none; }
         }
         
-        /* تنسيق معرض الصور داخل الـ Modal */
+        /* تنسيق معرض الصور */
         .modal-left {
             flex: 1;
             display: flex;
@@ -157,14 +404,12 @@
             font-size: 24px;
             margin: 0 0 10px 0;
             color: #111;
-            text-align: right; 
         }
         .modal-product-price {
             font-size: 20px;
             font-weight: bold;
             color: #111;
             margin-bottom: 15px;
-            text-align: right;
         }
         .modal-product-desc {
             font-size: 14px;
@@ -173,7 +418,6 @@
             margin-bottom: 20px;
         }
         
-        /* خيارات الألوان والمقاسات */
         .modal-option-title {
             font-size: 14px;
             font-weight: bold;
@@ -185,7 +429,6 @@
             gap: 10px;
             flex-wrap: wrap;
             margin-bottom: 15px;
-            direction: rtl;
         }
         .color-btn {
             padding: 8px 16px;
@@ -209,7 +452,6 @@
             margin: 10px 0 20px 0;
             font-size: 13px;
             text-align: center;
-            direction: rtl;
         }
         .size-chart-table th, .size-chart-table td {
             border: 1px solid #eee;
@@ -230,10 +472,6 @@
         .size-chart-table tr.selected td {
             border-color: #03a9f4;
         }
-        .size-radio-cell {
-            font-weight: bold;
-            color: #0288d1;
-        }
 
         .modal-add-btn {
             background: #111;
@@ -248,19 +486,149 @@
             margin-top: auto;
             transition: background 0.2s;
         }
-        .modal-add-btn:hover {
-            background: #333;
+        .modal-add-btn:hover { background: #333; }
+
+        /* سلة المشتريات الجانبية */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 380px;
+            height: 100%;
+            background: #fff;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 2500;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
         }
+        .cart-sidebar.show {
+            right: 0;
+        }
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        .close-cart {
+            font-size: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+        }
+        .cart-footer {
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .checkout-btn {
+            background: #111;
+            color: #fff;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+
+        /* نافذة الدفع (Checkout) */
+        .checkout-modal, .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .checkout-modal.show, .success-modal.show {
+            display: flex;
+        }
+        .checkout-content, .success-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .order-summary-box {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        .submit-order-btn {
+            background: #25d366;
+            color: #fff;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        /* خلفية التعتيم */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1500;
+        }
+        .overlay.show { display: block; }
     </style>
 </head>
 <body>
 
-<!-- ANNOUNCEMENT BAR -->
 <div class="announcement-bar">
     ⚡ شحن سريع خلال 3 أيام عمل فقط لجميع محافظات مصر!
 </div>
 
-<!-- HEADER -->
 <header>
     <div class="logo">LOCALS</div>
 
@@ -281,13 +649,11 @@
     </div>
 </header>
 
-<!-- SEARCH BAR -->
 <div class="search-bar">
     <input type="text" id="searchInput" placeholder="Search products...">
     <button><i class="fas fa-search"></i></button>
 </div>
 
-<!-- HERO -->
 <section class="hero" id="home">
     <div class="hero-content">
         <h1>Premium Streetwear</h1>
@@ -296,7 +662,6 @@
     </div>
 </section>
 
-<!-- ABOUT SECTION -->
 <section class="about" id="about">
     <div class="about-container">
         <h2>About LOCALS</h2>
@@ -304,14 +669,11 @@
     </div>
 </section>
 
-<!-- NEW ARRIVALS -->
 <section class="section-title" id="new-arrivals">
     <h2>NEW ARRIVALS</h2>
 </section>
 
-<!-- PRODUCTS SECTION -->
 <section class="products">
-    <!-- Product 1: Oversized STRIPED SHIRT -->
     <div class="card" data-id="1" data-name="Oversized STRIPED SHIRT" data-price="850" data-img="shirt blue.jpeg" data-images="shirt blue.jpeg,shirt pink.jpeg" data-colors="Baby Blue,Pink" data-desc="قميص أوفرسايز مخطط بقصة Boxy + 3D super baggy مريحة جداً وعصرية. يتميز بتطريز يدوي أحمر فريد على الجيب والظهر، بخامات قطنية ممتازة ومثالية للصيف." data-type="shirt">
         <img src="shirt blue.jpeg" alt="Oversized STRIPED SHIRT">
         <h3>Oversized STRIPED SHIRT</h3>
@@ -319,7 +681,6 @@
         <button class="add-to-cart" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
     </div>
 
-    <!-- Product 2: RINGER TEE -->
     <div class="card" data-id="2" data-name="RINGER TEE" data-price="700" data-img="RINGER TEE.jpeg" data-images="RINGER TEE.jpeg" data-colors="Red,Black,White" data-desc="تيشيرت رينجر كلاسيكي مميز بأطراف ملونة ملفتة، مصنوع من قطن ليكرا ناعم ومقاوم للانكماش. مثالي ليعطيك مظهر ريترو ستريت وير فريد." data-type="shirt">
         <img src="RINGER TEE.jpeg" alt="RINGER TEE">
         <h3>RINGER TEE</h3>
@@ -327,7 +688,6 @@
         <button class="add-to-cart" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
     </div>
 
-    <!-- Product 3: SUPER BAGGY JEANS -->
     <div class="card" data-id="3" data-name="SUPER BAGGY JEANS" data-price="850" data-img="jeans dirty.jpeg" data-images="jeans dirty.jpeg,jeans blue.jpeg,jeans black.jpeg" data-colors="Vintage Blue,Light Blue,Acid Black" data-desc="بنطلون جينز ألترا باجي واسع جداً ومريح (Ultra Superbaggyfit) مصنوع من جينز ثقيل عالي الجودة بتأثير غسيل مميز (Wash) يتحمل الاستخدام الشاق وثابت الصبغة." data-type="jeans">
         <img src="jeans dirty.jpeg" alt="SUPER BAGGY JEANS">
         <h3>SUPER BAGGY JEANS</h3>
@@ -335,7 +695,6 @@
         <button class="add-to-cart" onclick="openProductModal(this)">VIEW OPTIONS & SIZE CHART</button>
     </div>
 
-    <!-- Product 4: BAGGY SWEATPANTS -->
     <div class="card" data-id="4" data-name="BAGGY SWEATPANTS" data-price="800" data-img="BAGGY SWEATPANTS.jpeg" data-images="sweat pants black.jpeg,sweat pants grey.jpeg,sweat pants white.jpeg" data-colors="Black,Grey,White" data-desc="بنطلون سويت بانتس باجي مصنوع من قماش الميلتون الثقيل والمبطن بنعومة، مثالي ومريح جداً للبس اليومي السريع والمشاوير الطويلة والتمارين المفتوحة." data-type="shirt">
         <img src="BAGGY SWEATPANTS.jpeg" alt="BAGGY SWEATPANTS">
         <h3>BAGGY SWEATPANTS</h3>
@@ -344,7 +703,6 @@
     </div>
 </section>
 
-<!-- BRAND FEATURES SECTION -->
 <section class="features-section">
     <div class="feature-box">
         <i class="fas fa-shipping-fast"></i>
@@ -363,13 +721,11 @@
     </div>
 </section>
 
-<!-- SUMMER BANNER -->
 <section class="banner2">
     <h2>SUMMER COLLECTION 2026</h2>
     <p>Discover the latest pieces for the season.</p>
 </section>
 
-<!-- CONTACT SECTION -->
 <section class="contact" id="contact">
     <h2>Get In Touch</h2>
     <div class="contact-info">
@@ -383,7 +739,7 @@
             <h4>Email</h4>
             <p><a href="mailto:emadghazali@gmail.com">emadghazali@gmail.com</a></p>
         </div>
-        <div class="contact-item" style="cursor: pointer;" onclick="window.open('https://maps.google.com/?q=THE+MARKET+MALL,+5th+Settlement,+Cairo', '_blank')">
+        <div class="contact-item" style="cursor: pointer;" onclick="window.open('https://maps.google.com', '_blank')">
             <i class="fas fa-map-marker-alt"></i>
             <h4>Location</h4>
             <p>THE MARKET MALL, 5th Settlement</p>
@@ -391,7 +747,6 @@
     </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
     <div class="footer-content">
         <div class="footer-section">
@@ -407,10 +762,9 @@
     </div>
 </footer>
 
-<!-- PRODUCT DETAILED MODAL (اصلاح السيكشن ده بالكامل ليعمل تفاعلياً) -->
 <div class="product-modal" id="productModal">
     <div class="product-modal-content">
-        <button class="close-product-modal" id="closeProductModalBtn">&times;</button>
+        <button class="close-product-modal" id="closeProductModalBtn">×</button>
         
         <div class="modal-left">
             <div class="main-img-container">
@@ -440,7 +794,6 @@
     </div>
 </div>
 
-<!-- CART SIDEBAR -->
 <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-header">
         <h2>Your Cart</h2>
@@ -453,7 +806,6 @@
     </div>
 </div>
 
-<!-- CHECKOUT MODAL -->
 <div class="checkout-modal" id="checkoutModal">
     <div class="checkout-content">
         <button class="close-modal" id="closeCheckoutBtn">×</button>
@@ -507,7 +859,7 @@
             <div class="order-summary-box">
                 <p>Subtotal: <span><span id="summarySubtotal">0</span> EGP</span></p>
                 <p>Shipping: <span><span id="summaryShipping">0</span> EGP</span></p>
-                <hr>
+                <hr style="margin: 10px 0; border: none; border-top: 1px solid #ccc;">
                 <h3>Grand Total: <span><span id="summaryGrandTotal">0</span> EGP</span></h3>
             </div>
             <button type="submit" class="submit-order-btn">CONFIRM ORDER</button>
@@ -515,7 +867,6 @@
     </div>
 </div>
 
-<!-- SUCCESS MODAL -->
 <div class="success-modal" id="successModal">
     <div class="success-content" style="text-align: center;">
         <i class="fas fa-exclamation-circle" style="font-size: 50px; color: #ff9800; margin-bottom: 15px;"></i>
@@ -539,7 +890,6 @@
 
 <div class="overlay" id="uiOverlay"></div>
 
-<!-- JAVASCRIPT LOGIC (تم إصلاح تشغيل البوب أب والمعرض بالكامل) -->
 <script>
 let cart = []; 
 let currentSelectedProduct = null;
@@ -572,8 +922,6 @@ const cartTotalSpan = document.getElementById('cartTotal');
 
 const searchBtn = document.querySelector('.search-btn');
 const searchBar = document.querySelector('.search-bar');
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.nav-menu');
 
 const checkoutModal = document.getElementById('checkoutModal');
 const openCheckoutBtn = document.getElementById('openCheckoutBtn');
@@ -585,7 +933,6 @@ const summarySubtotal = document.getElementById('summarySubtotal');
 const summaryShipping = document.getElementById('summaryShipping');
 const summaryGrandTotal = document.getElementById('summaryGrandTotal');
 const successModal = document.getElementById('successModal');
-const orderIdText = document.getElementById('orderIdText');
 const modalShippingCost = document.getElementById('modalShippingCost');
 const goToWhatsAppBtn = document.getElementById('gotowhatsappbtn');
 
@@ -661,7 +1008,7 @@ function openProductModal(buttonElement) {
         thumbsContainer.appendChild(thumb);
     });
 
-    // توليد أزرار الألوان المتاحة
+    // توليد أزرار الألوان
     const colorsContainer = document.getElementById('modalColorsContainer');
     colorsContainer.innerHTML = "";
     selectedColor = ""; 
@@ -681,7 +1028,7 @@ function openProductModal(buttonElement) {
         colorsContainer.appendChild(btn);
     });
 
-    // توليد جدول المقاسات التفاعلي
+    // توليد جدول المقاسات
     const headerRow = document.getElementById('sizeChartHeader');
     const chartBody = document.getElementById('sizeChartBody');
     selectedSize = ""; 
@@ -693,7 +1040,7 @@ function openProductModal(buttonElement) {
     
     targetChart.forEach((row, idx) => {
         const tr = document.createElement('tr');
-        tr.innerHTML = `<td class="size-radio-cell">⬅️ [ ${row.size} ]</td><td>${row.weight}</td>`;
+        tr.innerHTML = `<td>⬅️ [ ${row.size} ]</td><td>${row.weight}</td>`;
         tr.onclick = function() {
             document.querySelectorAll('.size-chart-table tr').forEach(r => r.classList.remove('selected'));
             tr.classList.add('selected');
@@ -753,7 +1100,7 @@ function updateCartUI() {
                     <h4 style="margin: 0 0 5px 0; font-size: 14px; color: #000;">${item.name}</h4>
                     <p style="margin: 0 0 3px 0; font-size: 12px; color: #666;">Color: <strong>${item.color}</strong></p>
                     <p style="margin: 0 0 5px 0; font-size: 12px; color: #666;">Size: <strong>${item.size}</strong></p>
-                    <p style="margin: 0; font-size: 13px; font-weight: bold; color: #000;">${item.price} EGP</p>
+                    <p style="margin: 0; font-size: 13px; font-weight: bold; color: #000;">${item.price} EGP x ${item.quantity}</p>
                     <div class="cart-item-qty" style="margin-top: 5px; display: flex; align-items: center; gap: 8px;">
                         <button type="button" class="qty-btn-minus" data-index="${index}" style="padding: 2px 8px; cursor: pointer;">-</button>
                         <span style="color: #000;">${item.quantity}</span>
@@ -821,51 +1168,41 @@ if(checkoutForm) {
         const governorate = governorateSelect.value;
         const address = document.getElementById('address').value;
         
-        const subtotal = summarySubtotal.textContent;
-        const shipping = summaryShipping.textContent;
-        const grandTotal = summaryGrandTotal.textContent;
+        const selectedOption = governorateSelect.options[governorateSelect.selectedIndex];
+        let shippingCost = selectedOption ? selectedOption.dataset.shipping : "0";
+        let subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        let grandTotal = subtotal + parseInt(shippingCost);
 
-        const orderId = 'LOC-' + Math.floor(1000 + Math.random() * 9000);
-        if(orderIdText) orderIdText.textContent = orderId;
-        if(modalShippingCost) modalShippingCost.textContent = shipping; 
+        if(modalShippingCost) modalShippingCost.textContent = shippingCost;
 
-        let productsText = '';
-        cart.forEach(item => {
-            productsText += `• *${item.name}*\n  - اللون: ${item.color} | المقاس: ${item.size}\n  - الكمية: ${item.quantity}\n\n`;
+        // بناء رسالة الواتساب الاحترافية
+        let productsText = "";
+        cart.forEach((item, index) => {
+            productsText += `${index + 1}- ${item.name} (${item.color} / ${item.size}) x${item.quantity}\n`;
         });
 
-        const whatsappMessage = `🚨 *أوردر جديد من موقع LOCALS* 🚨\n\n` +
-                                `🆔 *رقم الأوردر:* ${orderId}\n` +
-                                `👤 *اسم العميل:* ${fullName}\n` +
-                                `📞 *رقم التليفون:* ${phone}\n` +
-                                `📍 *المحافظة:* ${governorate}\n` +
-                                `🏠 *العنوان بالتفصيل:* ${address}\n\n` +
-                                `📦 *المنتجات المطلوبة:*\n\n${productsText}` +
-                                `💵 *تفاصيل الحساب:*\n` +
-                                `- المجموع: ${subtotal} EGP\n` +
-                                `- الشحن (مطلوب تحويله أولاً): ${shipping} EGP\n` +
-                                `💰 *الإجمالي النهائي:* ${grandTotal} EGP\n\n` +
-                                `⚠️ يرجى إرسال صورة إيصال تحويل الشحن كاش لتأكيد الأوردر.`;
+        let message = `*طلب جديد من موقع LOCALS*\n\n`;
+        message += `👤 *الاسم:* ${fullName}\n`;
+        message += `📞 *الرقم:* ${phone}\n`;
+        message += `📍 *المحافظة:* ${governorate}\n`;
+        message += `🏠 *العنوان بالتفصيل:* ${address}\n\n`;
+        message += `👕 *المنتجات:*\n${productsText}\n`;
+        message += `💵 *الحساب الفرعي:* ${subtotal} EGP\n`;
+        message += `🚚 *شحن:* ${shippingCost} EGP\n`;
+        message += `💰 *الإجمالي النهائي:* ${grandTotal} EGP\n`;
 
-        const myWhatsAppNumber = "201061056741"; 
-        const encodedMessage = encodeURIComponent(whatsappMessage);
-        
-        finalWhatsappURL = `https://wa.me/${myWhatsAppNumber}?text=${encodedMessage}`;
+        finalWhatsappURL = `https://wa.me/201061056741?text=${encodeURIComponent(message)}`;
 
-        if(checkoutModal) checkoutModal.classList.remove('show');
-        if(successModal) successModal.classList.add('show');
-
-        cart = [];
-        updateCartUI();
-        checkoutForm.reset();
+        checkoutModal.classList.remove('show');
+        successModal.classList.add('show');
     });
 }
 
 if(goToWhatsAppBtn) {
     goToWhatsAppBtn.addEventListener('click', () => {
-        if(finalWhatsappURL !== "") {
-            window.open(finalWhatsappURL, '_blank');
-        }
+        window.open(finalWhatsappURL, '_blank');
+        cart = [];
+        updateCartUI();
         closeAllUI();
     });
 }

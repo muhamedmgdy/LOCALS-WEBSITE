@@ -103,7 +103,7 @@ header {
    ========================================================================== */
 .hero {
     height: 70vh;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1974') no-repeat center center/cover;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images/banner.png') no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;

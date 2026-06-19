@@ -108,36 +108,18 @@
             border-radius: 4px;
         }
 
-        /* Hero Section */
-        .hero {
+        /* Hero Banner التعديل الجديد */
+        .hero-banner-container {
+            width: 100%;
+            overflow: hidden;
+            display: block;
             background: #f5f5f5;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 20px;
         }
-        .hero-content h1 {
-            font-size: 42px;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-        }
-        .hero-content p {
-            font-size: 18px;
-            color: #555;
-            margin-bottom: 25px;
-        }
-        .hero-btn {
-            background: #111;
-            color: #fff;
-            padding: 12px 30px;
-            font-weight: bold;
-            border-radius: 4px;
-            transition: background 0.2s;
-        }
-        .hero-btn:hover {
-            background: #333;
+        .hero-banner-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
         }
 
         /* About Section */
@@ -706,13 +688,9 @@
     <input type="text" id="searchInput" placeholder="Search products...">
 </div>
 
-<section class="hero" id="home">
-    <div class="hero-content">
-        <h1>Premium Streetwear</h1>
-        <p>Built For Everyday Life</p>
-        <a href="#new-arrivals" class="hero-btn">SHOP NOW</a>
-    </div>
-</section>
+<div class="hero-banner-container" id="home">
+    <img src="banner.png" alt="LOCALS Premium Streetwear Banner">
+</div>
 
 <section class="about" id="about">
     <div class="about-container">
@@ -725,7 +703,6 @@
     <h2>NEW ARRIVALS</h2>
 </section>
 
-<!-- تم تعديل الأزرار والكروت هنا لتعمل تلقائياً مع الجافا سكريبت -->
 <section class="products" id="productsContainer">
     <div class="card" data-id="1" data-name="Oversized STRIPED SHIRT" data-price="850" data-img="shirt blue.jpeg" data-images="shirt blue.jpeg,shirt pink.jpeg" data-colors="Baby Blue,Pink" data-desc="قميص أوفرسايز مخطط بقصة Boxy + 3D super baggy مريحة جداً وعصرية. يتميز بتطريز يدوي أحمر فريد على الجيب والظهر، بخامات قطنية ممتازة ومثالية للصيف." data-type="shirt">
         <img src="shirt blue.jpeg" alt="Oversized STRIPED SHIRT">
@@ -815,7 +792,6 @@
     </div>
 </footer>
 
-<!-- نافذة تفاصيل المنتج -->
 <div class="product-modal" id="productModal">
     <div class="product-modal-content">
         <button class="close-product-modal" id="closeProductModalBtn">×</button>
@@ -851,7 +827,6 @@
     </div>
 </div>
 
-<!-- سلة المشتريات الجانبية -->
 <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-header">
         <h2>Your Cart</h2>
@@ -864,7 +839,6 @@
     </div>
 </div>
 
-<!-- شاشة الدفع -->
 <div class="checkout-modal" id="checkoutModal">
     <div class="checkout-content">
         <button class="close-modal" id="closeCheckoutBtn">×</button>
@@ -897,288 +871,3 @@
                     <option value="Suez" data-shipping="110">Suez (110 EGP)</option>
                     <option value="Kafr El Sheikh" data-shipping="110">Kafr El Sheikh (110 EGP)</option>
                     <option value="Fayoum" data-shipping="110">Fayoum (110 EGP)</option>
-                    <option value="Beni Suef" data-shipping="110">Beni Suef (110 EGP)</option>
-                    <option value="Minya" data-shipping="110">Minya (110 EGP)</option>
-                    <option value="Asyut" data-shipping="110">Asyut (110 EGP)</option>
-                    <option value="Sohag" data-shipping="110">Sohag (110 EGP)</option>
-                    <option value="Qena" data-shipping="110">Qena (110 EGP)</option>
-                    <option value="Luxor" data-shipping="110">Luxor (110 EGP)</option>
-                    <option value="Aswan" data-shipping="110">Aswan (110 EGP)</option>
-                    <option value="Red Sea" data-shipping="110">Red Sea (110 EGP)</option>
-                    <option value="New Valley" data-shipping="110">New Valley (110 EGP)</option>
-                    <option value="Matrouh" data-shipping="110">Matrouh (110 EGP)</option>
-                    <option value="North Sinai" data-shipping="110">North Sinai (110 EGP)</option>
-                    <option value="South Sinai" data-shipping="110">South Sinai (110 EGP)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>العنوان بالتفصيل *</label>
-                <input type="text" id="address" required placeholder="اسم الشارع، رقم العمارة، الشقة...">
-            </div>
-            <div class="order-summary-box" style="direction: ltr; text-align: left;">
-                <p>Subtotal: <span><span id="summarySubtotal">0</span> EGP</span></p>
-                <p>Shipping: <span><span id="summaryShipping">0</span> EGP</span></p>
-                <hr style="margin: 10px 0; border: none; border-top: 1px solid #ccc;">
-                <h3>Grand Total: <span><span id="summaryGrandTotal">0</span> EGP</span></h3>
-            </div>
-            <button type="submit" class="submit-order-btn">CONFIRM ORDER</button>
-        </form>
-    </div>
-</div>
-
-<!-- شاشة النجاح والتحويل -->
-<div class="success-modal" id="successModal">
-    <div class="success-content" style="text-align: center; direction: rtl;">
-        <button class="close-modal" id="closeSuccessBtn">×</button>
-        <i class="fas fa-exclamation-circle" style="font-size: 50px; color: #ff9800; margin-bottom: 15px;"></i>
-        <h2 style="font-size: 22px; margin-bottom: 15px; color: #111;">خطوة أخيرة لتأكيد طلبك!</h2>
-        <div style="background: #fff9e6; border: 1px solid #ffe0b2; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: right;">
-            <p style="color: #e65100; font-weight: bold; font-size: 15px; margin-bottom: 8px; line-height: 1.6;">
-                ⚠️ لضمان جدية الطلب، يرجى تحويل مصاريف الشحن أولاً لجدية الحجز.
-            </p>
-            <p style="font-size: 14px; color: #333; margin-bottom: 5px;">
-                • مصاريف شحن محافظتك: <span id="modalShippingCost" style="font-weight: bold; color: black;">0</span> EGP
-            </p>
-            <p style="font-size: 14px; color: #333; margin-bottom: 5px;">
-                • يرجى التحويل على حساب Instapay أو فودافون كاش على الرقم: <span style="font-weight: bold; color: #d32f2f; font-size: 16px;">01061056741</span>
-            </p>
-        </div>
-        <button class="submit-order-btn" style="background: #111;" id="finalOkBtn">موافق</button>
-    </div>
-</div>
-
-<div class="overlay" id="overlay"></div>
-
-<!-- ================= كود الـ JAVASCRIPT المصلح بالكامل ================= -->
-<script>
-    const sizeCharts = {
-        shirt: [
-            { size: 'M', weight: '50 - 65 KG' },
-            { size: 'L', weight: '65 - 80 KG' },
-            { size: 'XL', weight: '80 - 95 KG' },
-            { size: 'XXL', weight: '95 - 110 KG' }
-        ],
-        jeans: [
-            { size: '30', weight: '55 - 65 KG' },
-            { size: '32', weight: '65 - 75 KG' },
-            { size: '34', weight: '75 - 85 KG' },
-            { size: '36', weight: '85 - 100 KG' }
-        ]
-    };
-
-    let cart = [];
-    let currentSelectedProduct = null;
-    let selectedColor = null;
-    let selectedSize = null;
-
-    const productModal = document.getElementById('productModal');
-    const cartSidebar = document.getElementById('cartSidebar');
-    const checkoutModal = document.getElementById('checkoutModal');
-    const successModal = document.getElementById('successModal');
-    const searchBar = document.getElementById('searchBar');
-    const navMenu = document.getElementById('navMenu');
-    const overlay = document.getElementById('overlay');
-
-    if(document.getElementById('searchToggleBtn')) {
-        document.getElementById('searchToggleBtn').addEventListener('click', () => searchBar.classList.toggle('active'));
-    }
-    if(document.getElementById('menuToggleBtn')) {
-        document.getElementById('menuToggleBtn').addEventListener('click', () => navMenu.classList.toggle('mobile-show'));
-    }
-    
-    if(document.getElementById('cartToggleBtn')) document.getElementById('cartToggleBtn').addEventListener('click', openCart);
-    if(document.getElementById('closeCartBtn')) document.getElementById('closeCartBtn').addEventListener('click', closeCart);
-    
-    if(document.getElementById('closeProductModalBtn')) {
-        document.getElementById('closeProductModalBtn').addEventListener('click', () => { productModal.classList.remove('show'); overlay.classList.remove('show'); });
-    }
-    if(document.getElementById('closeCheckoutBtn')) document.getElementById('closeCheckoutBtn').addEventListener('click', () => checkoutModal.classList.remove('show'));
-    if(document.getElementById('closeSuccessBtn')) document.getElementById('closeSuccessBtn').addEventListener('click', () => successModal.classList.remove('show'));
-    if(document.getElementById('finalOkBtn')) document.getElementById('finalOkBtn').addEventListener('click', () => successModal.classList.remove('show'));
-
-    // التقاط الضغط على أي كارت منتج تلقائياً وبأمان
-    document.addEventListener('click', function(e) {
-        if(e.target && e.target.classList.contains('add-to-cart')) {
-            e.preventDefault();
-            const card = e.target.closest('.card');
-            if(card) {
-                setupAndOpenModal(card);
-            }
-        }
-    });
-
-    function setupAndOpenModal(card) {
-        currentSelectedProduct = {
-            id: card.getAttribute('data-id'),
-            name: card.getAttribute('data-name'),
-            price: parseInt(card.getAttribute('data-price')),
-            img: card.getAttribute('data-img'),
-            type: card.getAttribute('data-type') || 'shirt'
-        };
-
-        selectedColor = null;
-        selectedSize = null;
-
-        document.getElementById('modalProductTitle').innerText = currentSelectedProduct.name;
-        document.getElementById('modalProductPrice').innerText = currentSelectedProduct.price + " EGP";
-        document.getElementById('modalProductDesc').innerText = card.getAttribute('data-desc') || '';
-        document.getElementById('modalProductImg').src = currentSelectedProduct.img;
-
-        const imagesAttr = card.getAttribute('data-images') || currentSelectedProduct.img;
-        const imagesArray = imagesAttr.split(',');
-        const thumbContainer = document.getElementById('modalThumbnailsContainer');
-        thumbContainer.innerHTML = '';
-        
-        imagesArray.forEach((imgSrc, idx) => {
-            const img = document.createElement('img');
-            img.src = imgSrc.trim();
-            img.className = 'thumb-img' + (idx === 0 ? ' active' : '');
-            img.onclick = function() {
-                document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
-                img.classList.add('active');
-                document.getElementById('modalProductImg').src = img.src;
-            };
-            thumbContainer.appendChild(img);
-        });
-
-        const colorsAttr = card.getAttribute('data-colors') || "Standard";
-        const colorsArray = colorsAttr.split(',');
-        const colorsContainer = document.getElementById('modalColorsContainer');
-        colorsContainer.innerHTML = '';
-        
-        colorsArray.forEach(color => {
-            const btn = document.createElement('button');
-            btn.className = 'color-btn';
-            btn.type = 'button';
-            btn.innerText = color.trim();
-            btn.onclick = function() {
-                document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('selected'));
-                btn.classList.add('selected');
-                selectedColor = btn.innerText;
-            };
-            colorsContainer.appendChild(btn);
-        });
-
-        const pType = currentSelectedProduct.type;
-        const chartData = sizeCharts[pType] || sizeCharts['shirt'];
-        const sizeChartBody = document.getElementById('sizeChartBody');
-        sizeChartBody.innerHTML = '';
-        
-        chartData.forEach(item => {
-            const tr = document.createElement('tr');
-            tr.className = 'size-row';
-            tr.innerHTML = `<td>${item.size}</td><td>${item.weight}</td>`;
-            tr.onclick = function() {
-                document.querySelectorAll('.size-row').forEach(r => r.classList.remove('selected'));
-                tr.classList.add('selected');
-                selectedSize = item.size;
-            };
-            sizeChartBody.appendChild(tr);
-        });
-
-        productModal.classList.add('show');
-        if(overlay) overlay.classList.add('show');
-    }
-
-    if(document.getElementById('modalAddToCartBtn')) {
-        document.getElementById('modalAddToCartBtn').addEventListener('click', () => {
-            if (!selectedColor) { alert('من فضلك اختر اللون أولاً!'); return; }
-            if (!selectedSize) { alert('من فضلك حدد مقاسك من جدول المقاسات!'); return; }
-
-            const itemInCart = {
-                id: currentSelectedProduct.id,
-                name: currentSelectedProduct.name,
-                price: currentSelectedProduct.price,
-                img: currentSelectedProduct.img,
-                color: selectedColor,
-                size: selectedSize
-            };
-
-            cart.push(itemInCart);
-            updateCartUI();
-            productModal.classList.remove('show');
-            if(overlay) overlay.classList.remove('show');
-            openCart();
-        });
-    }
-
-    function openCart() { cartSidebar.classList.add('show'); }
-    function closeCart() { cartSidebar.classList.remove('show'); }
-
-    function updateCartUI() {
-        document.querySelectorAll('.cart-count').forEach(el => el.innerText = cart.length);
-        const container = document.getElementById('cartItemsContainer');
-        if(!container) return;
-        container.innerHTML = '';
-        
-        let subtotal = 0;
-        cart.forEach((item, index) => {
-            subtotal += item.price;
-            const itemEl = document.createElement('div');
-            itemEl.className = 'cart-item';
-            itemEl.innerHTML = `
-                <img src="${item.img}" alt="${item.name}">
-                <div class="cart-item-details">
-                    <h4>${item.name}</h4>
-                    <p>اللون: ${item.color} | المقاس: ${item.size}</p>
-                    <p style="font-weight:bold; margin-top:3px;">${item.price} EGP</p>
-                </div>
-                <button class="remove-item-btn" onclick="removeFromCart(${index})"><i class="fas fa-trash"></i></button>
-            `;
-            container.appendChild(itemEl);
-        });
-
-        document.getElementById('cartTotal').innerText = subtotal;
-    }
-
-    window.removeFromCart = function(index) {
-        cart.splice(index, 1);
-        updateCartUI();
-    };
-
-    if(document.getElementById('openCheckoutBtn')) {
-        document.getElementById('openCheckoutBtn').addEventListener('click', () => {
-            if (cart.length === 0) { alert('سلتك فارغة حالياً!'); return; }
-            closeCart();
-            
-            let subtotal = 0;
-            cart.forEach(item => subtotal += item.price);
-            document.getElementById('summarySubtotal').innerText = subtotal;
-            document.getElementById('summaryShipping').innerText = 0;
-            document.getElementById('summaryGrandTotal').innerText = subtotal;
-            document.getElementById('governorate').selectedIndex = 0;
-
-            checkoutModal.classList.add('show');
-        });
-    }
-
-    if(document.getElementById('governorate')) {
-        document.getElementById('governorate').addEventListener('change', function() {
-            const selectedOption = this.options[this.selectedIndex];
-            const shippingCost = parseInt(selectedOption.getAttribute('data-shipping')) || 0;
-            const subtotal = parseInt(document.getElementById('summarySubtotal').innerText);
-            
-            document.getElementById('summaryShipping').innerText = shippingCost;
-            document.getElementById('summaryGrandTotal').innerText = subtotal + shippingCost;
-        });
-    }
-
-    if(document.getElementById('checkoutForm')) {
-        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const shipping = document.getElementById('summaryShipping').innerText;
-            document.getElementById('modalShippingCost').innerText = shipping;
-            
-            checkoutModal.classList.remove('show');
-            successModal.classList.add('show');
-            
-            cart = [];
-            updateCartUI();
-            this.reset();
-        });
-    }
-</script>
-
-</body>
-</html>

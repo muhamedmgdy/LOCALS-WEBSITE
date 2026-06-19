@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+[9:26 PM, 6/19/2026] Muhamed Magdy: <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,808 +6,654 @@
     <title>LOCALS - Premium Streetwear</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ==========================================================================
-           1. RESET & GENERAL STYLES
-           ========================================================================== */
+        /* التنسيقات العامة للموقع */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
         body {
-            background-color: #ffffff;
-            color: #111111;
+            background-color: #fff;
+            color: #111;
             overflow-x: hidden;
         }
-
         a {
             text-decoration: none;
             color: inherit;
         }
 
-        /* Overlay (الخلفية المظلمة عند فتح السلة أو البوب أب) */
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1500;
-        }
-        .overlay.show {
-            display: block;
-        }
-
-        /* ==========================================================================
-           2. HEADER & NAVIGATION
-           ========================================================================== */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background: #ffffff;
-            border-bottom: 1px solid #eeeeee;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: 2px;
-        }
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-menu a {
-            margin: 0 20px;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-        }
-
-        .nav-menu a:hover {
-            color: #555555;
-        }
-
-        .header-icons {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .header-icons button {
-            background: none;
-            border: none;
-            font-size: 18px;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -10px;
-            background: #d32f2f;
-            color: #ffffff;
-            font-size: 11px;
-            padding: 2px 6px;
-            border-radius: 50%;
-            font-weight: bold;
-        }
-
-        /* ==========================================================================
-           3. HERO SECTION
-           ========================================================================== */
-        .hero {
-            height: 70vh;
-            background: linear-gradient(
-                rgba(0,0,0,0.3),
-                rgba(0,0,0,0.3)
-            ), url('banner.png') no-repeat center center/cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #ffffff;
-        }
-
-        .hero-content h1 {
-            font-size: 48px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        .hero-content p {
-            font-size: 18px;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-        }
-
-        .hero-btn {
-            background: #ffffff;
-            color: #111111;
-            padding: 15px 30px;
-            font-weight: bold;
-            border-radius: 4px;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-
-        .hero-btn:hover {
-            background: #111111;
-            color: #ffffff;
-        }
-
-        /* ==========================================================================
-           4. PRODUCTS GRID & CARDS
-           ========================================================================== */
-        .section-title {
-            text-align: center;
-            margin: 50px 0 30px 0;
-        }
-
-        .section-title h2 {
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: 2px;
-        }
-
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            padding: 0 5%;
-            margin-bottom: 50px;
-        }
-
-        .card {
-            background: #ffffff;
-            border-radius: 4px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            border: 1px solid #f0f0f0;
-        }
-
-        .card img {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-            background: #f5f5f5;
-            transition: transform 0.3s;
-        }
-
-        .card img:hover {
-            transform: scale(1.02);
-        }
-
-        .card h3 {
-            font-size: 15px;
-            font-weight: bold;
-            margin: 15px 0 5px 0;
-            letter-spacing: 0.5px;
-            padding: 0 10px;
-        }
-
-        .card .price {
-            font-size: 14px;
-            font-weight: 700;
-            color: #333333;
-            margin-bottom: 15px;
-        }
-
-        .view-chart-btn {
-            width: 100%;
-            background: #111111;
-            color: #ffffff;
-            border: none;
-            padding: 12px;
-            font-size: 12px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin-top: auto;
-        }
-
-        .view-chart-btn:hover {
-            background: #333333;
-        }
-
-        /* ==========================================================================
-           5. CART SIDEBAR & DYNAMIC ITEMS
-           ========================================================================== */
-        .cart-sidebar {
-            position: fixed;
-            top: 0;
-            right: -400px;
-            width: 400px;
-            height: 100%;
-            background: #ffffff;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            z-index: 1600;
-            display: flex;
-            flex-direction: column;
-            transition: right 0.3s ease;
-        }
-        .cart-sidebar.show {
-            right: 0;
-        }
-
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #eeeeee;
-        }
-
-        .cart-header h2 {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .close-cart {
-            background: none;
-            border: none;
-            font-size: 30px;
-            cursor: pointer;
-        }
-
-        .cart-items {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .cart-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #f5f5f5;
-        }
-
-        .cart-item img {
-            width: 70px;
-            height: 90px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-
-        .cart-item-details {
-            flex: 1;
-        }
-
-        .cart-item-details h4 {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .cart-item-details .price {
-            font-size: 13px;
-            color: #666666;
-        }
-
-        .remove-item-btn {
-            background: none;
-            border: none;
-            color: #d32f2f;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .cart-footer {
-            padding: 20px;
-            border-top: 1px solid #eeeeee;
-            background: #fafafa;
-        }
-
-        .cart-footer h3 {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-
-        .checkout-btn {
-            width: 100%;
-            background: #111111;
-            color: #ffffff;
-            padding: 14px;
-            border: none;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background 0.3s;
-        }
-
-        .checkout-btn:hover {
-            background: #333333;
-        }
-
-        /* ==========================================================================
-           6. CHECKOUT MODAL & FORMS
-           ========================================================================== */
-        .checkout-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .checkout-modal.show {
-            display: flex;
-        }
-
-        .checkout-content {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 8px;
-            width: 100%;
-            max-width: 500px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 28px;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-
-        .checkout-content h2 {
-            margin-bottom: 20px;
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .form-group label {
-            font-size: 13px;
-            font-weight: 600;
-            color: #333333;
-        }
-
-        .form-group input, .form-group select {
-            padding: 10px;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            border-color: #111111;
-        }
-
-        .order-summary-box {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 4px;
-            margin: 20px 0;
-            font-size: 14px;
-        }
-
-        .order-summary-box p {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-
-        .order-summary-box hr {
-            border: 0;
-            border-top: 1px solid #dddddd;
-            margin: 10px 0;
-        }
-
-        .order-summary-box h3 {
-            display: flex;
-            justify-content: space-between;
-            font-size: 16px;
-            color: #d32f2f;
-        }
-
-        .submit-order-btn {
-            width: 100%;
-            background: #d32f2f;
-            color: #ffffff;
-            border: none;
-            padding: 14px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background 0.3s;
-        }
-
-        .submit-order-btn:hover {
-            background: #b71c1c;
-        }
-
-        /* ==========================================================================
-           7. SUCCESS / CONFIRMATION MODAL
-           ========================================================================== */
-        .success-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 2500;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .success-modal.show {
-            display: flex;
-        }
-
-        .success-content {
-            background: #ffffff;
-            padding: 35px;
-            border-radius: 8px;
-            width: 100%;
-            max-width: 450px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            text-align: center;
-        }
-
-        .success-content i {
-            font-size: 50px;
-            color: #2e7d32;
-            margin-bottom: 15px;
-        }
-
-        /* ==========================================================================
-           8. BANNER, ABOUT & CONTACT FOOTER
-           ========================================================================== */
-        .banner2 {
-            background: #111111;
-            color: #ffffff;
-            text-align: center;
-            padding: 60px 20px;
-            margin-top: 30px;
-        }
-
-        .banner2 h2 {
-            font-size: 32px;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        .about {
-            padding: 60px 20px;
-            text-align: center;
-            background: #ffffff;
-        }
-
-        .about-container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about h2 {
-            font-size: 26px;
-            margin-bottom: 15px;
-        }
-
-        .about p {
-            font-size: 15px;
-            color: #555555;
-            line-height: 1.6;
-        }
-
-        .contact {
-            padding: 50px 5%;
-            background: #f5f5f5;
-            text-align: center;
-        }
-
-        .contact h2 {
-            margin-bottom: 30px;
-            font-size: 24px;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-
-        .contact-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .contact-item i {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #333333;
-            display: block;
-        }
-
-        footer {
-            background: #111111;
-            color: #ffffff;
-            padding: 40px 5% 20px 5%;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            border-bottom: 1px solid #333333;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
-            gap: 15px;
-        }
-
-        .social-links a {
-            font-size: 20px;
-            margin-left: 15px;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: #888888;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            font-size: 12px;
-            color: #777777;
-        }
-
-        /* ==========================================================================
-           9. RESPONSIVE MEDIA QUERIES
-           ========================================================================== */
-        @media (max-width: 768px) {
-            header {
-                padding: 15px 5%;
-            }
-            .nav-menu {
-                display: none;
-            }
-            .hero-content h1 {
-                font-size: 32px;
-            }
-            .hero-content p {
-                font-size: 15px;
-            }
-            .contact-info {
-                flex-direction: column;
-                gap: 20px;
-            }
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            .social-links a {
-                margin: 0 10px;
-            }
-        }
-
-        @media (max-width: 450px) {
-            .cart-sidebar {
-                width: 100%;
-                right: -100%;
-            }
-            .products {
-                grid-template-columns: 1fr;
-                padding: 0 20px;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Overlay (الخلفية المظلمة) -->
-    <div class="overlay" id="overlay"></div>
-
-    <!-- شريط الإعلانات العلوي أو الهيدر الأساسي -->
-    <header>
-        <div class="logo">LOCALS</div>
-        <nav class="nav-menu">
-            <a href="#">Home</a>
-            <a href="#">Shop</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </nav>
-        <div class="header-icons">
-            <button id="cart-btn">
-                <i class="fas fa-shopping-bag"></i>
-                <span class="cart-count">0</span>
-            </button>
-        </div>
-    </header>
-
-    <!-- قسم الهيرو الأساسي الذي تم ربط صورة banner.png به -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>PREMIUM STREETWEAR</h1>
-            <p>Discover the latest trends in local fashion</p>
-            <a href="#" class="hero-btn">SHOP NOW</a>
-        </div>
-    </section>
-
-    <!-- عنوان قسم المنتجات -->
-    <div class="section-title">
-        <h2>NEW ARRIVALS</h2>
-    </div>
-
-    <!-- شبكة المنتجات (Products) -->
-    <section class="products">
-        <div class="card">
-            <img src="https://via.placeholder.com/350x350" alt="Product">
-            <h3>Oversized Black Hoodie</h3>
-            <div class="price">500 EGP</div>
-            <button class="view-chart-btn">ADD TO CART</button>
-        </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/350x350" alt="Product">
-            <h3>Graphic White T-Shirt</h3>
-            <div class="price">350 EGP</div>
-            <button class="view-chart-btn">ADD TO CART</button>
-        </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/350x350" alt="Product">
-            <h3>Cargo Pants Grey</h3>
-            <div class="price">600 EGP</div>
-            <button class="view-chart-btn">ADD TO CART</button>
-        </div>
-    </section>
-
-    <!-- سلة المشتريات الجانبية -->
-    <div class="cart-sidebar" id="cart-sidebar">
-        <div class="cart-header">
-            <h2>Your Cart</h2>
-            <button class="close-cart" id="close-cart">&times;</button>
-        </div>
-        <div class="cart-items">
-            <!-- المنتجات الديناميكية تضاف هنا -->
-        </div>
-        <div class="cart-footer">
-            <h3>Total: <span>0 EGP</span></h3>
-            <button class="checkout-btn" id="open-checkout">PROCEED TO CHECKOUT</button>
-        </div>
-    </div>
-
-    <!-- نافذة إتمام الطلب (Checkout Modal) -->
-    <div class="checkout-modal" id="checkout-modal">
-        <div class="checkout-content">
-            <button class="close-modal" id="close-modal">&times;</button>
-            <h2>Checkout Details</h2>
-            <form id="checkout-form">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" required placeholder="Enter your full name">
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" required placeholder="Enter your phone number">
-                </div>
-                <div class="form-group">
-                    <label for="governorate">Governorate</label>
-                    <select id="governorate" required>
-                        <option value="">Select your governorate</option>
-                        <option value="cairo">Cairo</option>
-                        <option value="giza">Giza</option>
-                        <option value="alexandria">Alexandria</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="address">Detailed Address</label>
-                    <input type="text" id="address" required placeholder="Street, Building, Apartment">
-                </div>
-
-                <div class="order-summary-box">
-                    <p>Subtotal: <span id="summary-subtotal">0 EGP</span></p>
-                    <p>Shipping: <span id="summary-shipping">50 EGP</span></p>
-                    <hr>
-                    <h3>Total: <span id="summary-total">0 EGP</span></h3>
-                </div>
-
-                <button type="submit" class="submit-order-btn">CONFIRM ORDER</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- نافذة النجاح (Success Modal) -->
-    <div class="success-modal" id="success-modal">
-        <div class="success-content">
-            <i class="fas fa-check-circle"></i>
-            <h2>Order Placed Successfully!</h2>
-            <p>Thank you for shopping with LOCALS. We will contact you soon.</p>
-        </div>
-    </div>
-
-    <!-- البانر الثاني العريض (Banner 2) -->
-    <section class="banner2">
-        <h2>URBAN CULTURE & STREETWEAR</h2>
-        <p>Crafted locally, designed globally.</p>
-    </section>
-
-    <!-- قسم عن البراند (About Section) -->
-    <section class="about">
-        <div class="about-container">
-            <h2>About LOCALS</h2>
-            <p>We are a premium streetwear brand dedicated to bringing you high-quality, comfortable, and unique local designs. Our mission is to represent the authentic urban culture with modern updates.</p>
-        </div>
-    </section>
-
-    <!-- قسم الاتصال (Contact Section) -->
-    <section class="contact">
-        <h2>Contact Us</h2>
-        <div class="contact-info">
-            <div class="contact-item">
-                <i class="fas fa-phone"></i>
-                <span>+20 123 456 7890</span>
-            </div>
-            <div class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <span>support@locals.com</span>
-            </div>
-            <div class="contact-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Cairo, Egypt</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- الفوتر (Footer) -->
-    <footer>
-        <div class="footer-content">
-            <div class="logo">LOCALS</div>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 LOCALS. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-</body>
-</html>
+        /* شريط الإعلانات العلوي */
+ …
+[9:26 PM, 6/19/2026] Muhamed Magdy: full css كامل
+[9:26 PM, 6/19/2026] Muhamed Magdy: /* ==========================================================================
+   1. RESET & GENERAL STYLES
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* تم إصلاح الخطأ المطبعي هنا */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #111111;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Overlay (الخلفية المظلمة عند فتح السلة أو البوب أب) */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1500;
+}
+.overlay.show {
+    display: block;
+}
+
+/* ==========================================================================
+   2. HEADER & NAVIGATION
+   ========================================================================== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+}
+
+.nav-menu a {
+    margin: 0 20px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: #555555;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-icons button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: #d32f2f;
+    color: #ffffff;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   3. HERO SECTION
+   ========================================================================== */
+.hero {
+    height: 70vh;
+    background: linear-gradient(
+        rgba(0,0,0,0.3),
+        rgba(0,0,0,0.3)
+    ), url('banner.png') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+.hero-btn {
+    background: #ffffff;
+    color: #111111;
+    padding: 30px 30px;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.hero-btn:hover {
+    background: #111111;
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   4. PRODUCTS GRID & CARDS
+   ========================================================================== */
+.section-title {
+    text-align: center;
+    margin: 50px 0 30px 0;
+}
+
+.section-title h2 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 0 5%;
+    margin-bottom: 50px;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #f0f0f0;
+}
+
+.card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    background: #f5f5f5;
+    transition: transform 0.3s;
+}
+
+.card img:hover {
+    transform: scale(1.02);
+}
+
+.card h3 {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 15px 0 5px 0;
+    letter-spacing: 0.5px;
+    padding: 0 10px;
+}
+
+.card .price {
+    font-size: 14px;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+.view-chart-btn {
+    width: 100%;
+    background: #111111;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: auto; /* يضمن بقاء الزر بالأسفل دائماً */
+}
+
+.view-chart-btn:hover {
+    background: #333333;
+}
+
+/* ==========================================================================
+   5. CART SIDEBAR & DYNAMIC ITEMS
+   ========================================================================== */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100%;
+    background: #ffffff;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    z-index: 1600;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.3s ease;
+}
+.cart-sidebar.show {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.cart-header h2 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.close-cart {
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.cart-items {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* تنسيق ديناميكي للمنتجات المضافة داخل السلة */
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.cart-item img {
+    width: 70px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-details h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.cart-item-details .price {
+    font-size: 13px;
+    color: #666666;
+}
+
+.remove-item-btn {
+    background: none;
+    border: none;
+    color: #d32f2f;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cart-footer {
+    padding: 20px;
+    border-top: 1px solid #eeeeee;
+    background: #fafafa;
+}
+
+.cart-footer h3 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.checkout-btn {
+    width: 100%;
+    background: #111111;
+    color: #ffffff;
+    padding: 14px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.checkout-btn:hover {
+    background: #333333;
+}
+
+/* ==========================================================================
+   6. CHECKOUT MODAL & FORMS
+   ========================================================================== */
+.checkout-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.checkout-modal.show {
+    display: flex;
+}
+
+.checkout-content {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.checkout-content h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333333;
+}
+
+.form-group input, .form-group select {
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: #111111;
+}
+
+.order-summary-box {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.order-summary-box p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.order-summary-box hr {
+    border: 0;
+    border-top: 1px solid #dddddd;
+    margin: 10px 0;
+}
+
+.order-summary-box h3 {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #d32f2f;
+}
+
+.submit-order-btn {
+    width: 100%;
+    background: #d32f2f;
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.submit-order-btn:hover {
+    background: #b71c1c;
+}
+
+/* ==========================================================================
+   7. SUCCESS / CONFIRMATION MODAL
+   ========================================================================== */
+.success-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 2500;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.success-modal.show {
+    display: flex;
+}
+
+.success-content {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.success-content i {
+    font-size: 50px;
+    color: #2e7d32;
+    margin-bottom: 15px;
+}
+
+/* ==========================================================================
+   8. BANNER, ABOUT & CONTACT FOOTER
+   ========================================================================== */
+.banner2 {
+    background: #111111;
+    color: #ffffff;
+    text-align: center;
+    padding: 60px 20px;
+    margin-top: 30px;
+}
+
+.banner2 h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.about {
+    padding: 60px 20px;
+    text-align: center;
+    background: #ffffff;
+}
+
+.about-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.about h2 {
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.about p {
+    font-size: 15px;
+    color: #555555;
+    line-height: 1.6;
+}
+
+.contact {
+    padding: 50px 5%;
+    background: #f5f5f5;
+    text-align: center;
+}
+
+.contact h2 {
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-item i {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333333;
+}
+
+footer {
+    background: #111111;
+    color: #ffffff;
+    padding: 40px 5% 20px 5%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #333333;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.social-links a {
+    font-size: 20px;
+    margin-left: 15px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #888888;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 12px;
+    color: #777777;
+}
+
+/* ==========================================================================
+   9. RESPONSIVE MEDIA QUERIES (الموبايل والتابلت)
+   ========================================================================== */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 5%;
+    }
+    .nav-menu {
+        display: none; /* إخفاء القائمة العادية بالموبايل والاعتماد على السلة واللوجو */
+    }
+    .hero-content h1 {
+        font-size: 32px;
+    }
+    .hero-content p {
+        font-size: 15px;
+    }
+    .contact-info {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .social-links a {
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 450px) {
+    .cart-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+    .products {
+        grid-template-columns: 1fr; /* عرض منتج واحد في كل سطر للموبايلات الصغيرة جداً */
+        padding: 0 20px;
+    }
+}

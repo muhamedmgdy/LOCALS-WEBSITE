@@ -111,13 +111,14 @@
         /* البانر الرئيسي */
         .hero-banner-container {
             width: 100%;
+            max-height: 500px;
             overflow: hidden;
             display: block;
             background: #f5f5f5;
         }
         .hero-banner-container img {
             width: 100%;
-            height: auto;
+            height: 100%;
             display: block;
             object-fit: cover;
         }
@@ -229,7 +230,7 @@
         .feature-box p {
             font-size: 13px;
             color: #666;
-            line-line-height: 1.4;
+            line-height: 1.4;
         }
 
         /* بنر الصيف */
@@ -244,6 +245,10 @@
             font-size: 32px;
             margin-bottom: 10px;
         }
+        .banner2 p {
+            font-size: 16px;
+            color: #ccc;
+        }
 
         /* التواصل والفوتر */
         .contact {
@@ -257,9 +262,13 @@
             gap: 40px;
             flex-wrap: wrap;
         }
+        .contact-item {
+            text-align: center;
+        }
         .contact-item i {
             font-size: 24px;
             margin-bottom: 10px;
+            display: block;
         }
         footer {
             background: #f5f5f5;
@@ -465,7 +474,7 @@
 </div>
 
 <div class="hero-banner-container" id="home">
-    <img src="banner.png" alt="LOCALS Premium Streetwear Banner">
+    <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1600&q=80" alt="LOCALS Premium Streetwear Banner">
 </div>
 
 <section class="about" id="about">
@@ -473,12 +482,29 @@
     <p>LOCALS is a premium streetwear brand dedicated to delivering high-quality, comfortable, and stylish clothing.</p>
 </section>
 
+<section class="features-section">
+    <div class="feature-box">
+        <i class="fas fa-truck"></i>
+        <h4>شحن سريع</h4>
+        <p>توصيل لباب البيت خلال 3 أيام عمل بجميع محافظات مصر</p>
+    </div>
+    <div class="feature-box">
+        <i class="fas fa-shield-alt"></i>
+        <h4>جودة متميزة</h4>
+        <p>خامات قطنية مصرية 100% مقاومة للانكماش والوبر</p>
+    </div>
+    <div class="feature-box">
+        <i class="fas fa-undo"></i>
+        <h4>معاينة عند الاستلام</h4>
+        <p>تقدر تعاين المنتج وتتأكد من المقاس والجودة مع المندوب</p>
+    </div>
+</section>
+
 <section class="section-title" id="new-arrivals">
     <h2>NEW ARRIVALS</h2>
 </section>
 
 <section class="products">
-    <!-- المنتجات بأسماء الـ Classes الصحيحة للتفاعل المباشر -->
     <div class="card" data-id="1" data-name="Oversized STRIPED SHIRT" data-price="850" data-img="shirt blue.jpeg" data-images="shirt blue.jpeg,shirt pink.jpeg" data-colors="Baby Blue,Pink" data-desc="قميص أوفرسايز مخطط بقصة Boxy مريحة جداً وعصرية، بخامات قطنية ممتازة ومثالية للصيف." data-type="shirt">
         <img src="shirt blue.jpeg" alt="Oversized STRIPED SHIRT">
         <h3>Oversized STRIPED SHIRT</h3>
@@ -508,7 +534,30 @@
     </div>
 </section>
 
-<!-- نافذة عرض المنتج المنبثقة -->
+<section class="banner2">
+    <h2>SUMMER DROP 2026</h2>
+    <p>اكتشف تشكيلتنا الجديدة والمصممة خصيصاً لتناسب حرارة الصيف بلمسة الشارع العصرية</p>
+</section>
+
+<section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+        <div class="contact-item">
+            <i class="fab fa-instagram"></i>
+            <p>@locals.eg</p>
+        </div>
+        <div class="contact-item">
+            <i class="fab fa-whatsapp"></i>
+            <p>+20 106 105 6741</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 LOCALS Premium Streetwear. All rights reserved.</p>
+    <div class="footer-bottom">Made for the locals, by the locals.</div>
+</footer>
+
 <div class="product-modal" id="productModal">
     <div class="product-modal-content">
         <button class="close-product-modal" id="closeProductModalBtn">×</button>
@@ -538,7 +587,6 @@
     </div>
 </div>
 
-<!-- السلة الجانبية -->
 <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-header">
         <h2>Your Cart</h2>
@@ -551,7 +599,6 @@
     </div>
 </div>
 
-<!-- شاشة الدفع الشاملة للمحافظات -->
 <div class="checkout-modal" id="checkoutModal">
     <div class="checkout-content">
         <button class="close-modal" id="closeCheckoutBtn">×</button>
@@ -608,7 +655,6 @@
     </div>
 </div>
 
-<!-- نافذة انستا باي والتحويل الجدي للطلب -->
 <div class="success-modal" id="successModal">
     <div class="success-content" style="text-align: center; direction: rtl;">
         <button class="close-modal" id="closeSuccessBtn">×</button>

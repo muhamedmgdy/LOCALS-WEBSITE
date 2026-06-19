@@ -108,7 +108,7 @@
             border-radius: 4px;
         }
 
-        /* Hero Section المعدل لدعم banner.png */
+        /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('banner.png') no-repeat center center/cover;
             height: 70vh;
@@ -948,6 +948,7 @@
 <div class="overlay" id="overlay"></div>
 
 <script>
+    // جداول المقاسات بناءً على نوع المنتج
     const sizeCharts = {
         shirt: [
             { size: 'M', weight: '50 - 65 KG' },
@@ -963,119 +964,203 @@
         ]
     };
 
+    // مصفوفة لتخزين عناصر سلة المشتريات
     let cart = [];
     let currentProduct = null;
-    let selectedColor = null;
-    let selectedSize = null;
+    let selectedColor = '';
+    let selectedSize = '';
 
-    // عناصر واجهة المستخدم
-    const menuToggleBtn = document.getElementById('menuToggleBtn');
-    const navMenu = document.getElementById('navMenu');
+    // عناصر الواجهة الأساسية من الـ DOM
     const searchToggleBtn = document.getElementById('searchToggleBtn');
     const searchBar = document.getElementById('searchBar');
+    const menuToggleBtn = document.getElementById('menuToggleBtn');
+    const navMenu = document.getElementById('navMenu');
     const cartToggleBtn = document.getElementById('cartToggleBtn');
     const cartSidebar = document.getElementById('cartSidebar');
     const closeCartBtn = document.getElementById('closeCartBtn');
     const overlay = document.getElementById('overlay');
-    const productsContainer = document.getElementById('productsContainer');
-    
     const productModal = document.getElementById('productModal');
     const closeProductModalBtn = document.getElementById('closeProductModalBtn');
-    const modalProductImg = document.getElementById('modalProductImg');
-    const modalThumbnailsContainer = document.getElementById('modalThumbnailsContainer');
-    const modalProductTitle = document.getElementById('modalProductTitle');
-    const modalProductPrice = document.getElementById('modalProductPrice');
-    const modalProductDesc = document.getElementById('modalProductDesc');
-    const modalColorsContainer = document.getElementById('modalColorsContainer');
-    const sizeChartBody = document.getElementById('sizeChartBody');
-    const modalAddToCartBtn = document.getElementById('modalAddToCartBtn');
-    
-    const cartItemsContainer = document.getElementById('cartItemsContainer');
-    const cartTotal = document.getElementById('cartTotal');
-    const openCheckoutBtn = document.getElementById('openCheckoutBtn');
-    
     const checkoutModal = document.getElementById('checkoutModal');
+    const openCheckoutBtn = document.getElementById('openCheckoutBtn');
     const closeCheckoutBtn = document.getElementById('closeCheckoutBtn');
-    const checkoutForm = document.getElementById('checkoutForm');
-    const governorateSelect = document.getElementById('governorate');
-    const summarySubtotal = document.getElementById('summarySubtotal');
-    const summaryShipping = document.getElementById('summaryShipping');
-    const summaryGrandTotal = document.getElementById('summaryGrandTotal');
-    
     const successModal = document.getElementById('successModal');
     const closeSuccessBtn = document.getElementById('closeSuccessBtn');
-    const modalShippingCost = document.getElementById('modalShippingCost');
     const finalOkBtn = document.getElementById('finalOkBtn');
 
-    // إغلاق وفتح القائمة العلوية على الموبايل
-    menuToggleBtn.addEventListener('click', () => navMenu.classList.toggle('mobile-show'));
-    
-    // فتح وإغلاق شريط البحث
+    // 1. تشغيل شريط البحث وقائمة الموبايل المتنقلة
     searchToggleBtn.addEventListener('click', () => searchBar.classList.toggle('active'));
+    menuToggleBtn.addEventListener('click', () => navMenu.classList.toggle('mobile-show'));
 
-    // فتح وإغلاق السلة الجانبية
-    cartToggleBtn.addEventListener('click', openCart);
-    closeCartBtn.addEventListener('click', closeCart);
+    // 2. فتح وإغلاق سلة المشتريات الجانبية
+    const toggleCart = () => {
+        cartSidebar.classList.toggle('show');
+        overlay.classList.toggle('show');
+    };
+    cartToggleBtn.addEventListener('click', toggleCart);
+    closeCartBtn.addEventListener('click', toggleCart);
     overlay.addEventListener('click', () => {
-        closeCart();
-        closeProductModal();
-        closeCheckout();
-    });
-
-    function openCart() {
-        cartSidebar.classList.add('show');
-        overlay.classList.add('show');
-    }
-    function closeCart() {
         cartSidebar.classList.remove('show');
-        if(!productModal.classList.contains('show') && !checkoutModal.classList.contains('show')) {
-            overlay.classList.remove('show');
-        }
-    }
-
-    // فتح الـ Modal الخاص بالمنتج وتعبئة بياناته ديناميكياً
-    productsContainer.addEventListener('click', (e) => {
-        if(e.target.classList.contains('add-to-cart') || e.target.closest('.card')) {
-            const card = e.target.closest('.card');
-            if(!card) return;
-            
-            currentProduct = {
-                id: card.dataset.id,
-                name: card.dataset.name,
-                price: parseInt(card.dataset.price),
-                img: card.dataset.img,
-                images: card.dataset.images.split(','),
-                colors: card.dataset.colors.split(','),
-                desc: card.dataset.desc,
-                type: card.dataset.type
-            };
-            
-            openProductModal(currentProduct);
-        }
+        productModal.classList.remove('show');
+        checkoutModal.classList.remove('show');
+        successModal.classList.remove('show');
+        overlay.classList.remove('show');
     });
 
-    closeProductModalBtn.addEventListener('click', closeProductModal);
+    // 3. قراءة بيانات المنتج عند الضغط على الكارت وفتح النافذة (Modal)
+    document.querySelectorAll('.card').forEach(card => {
+        const btn = card.querySelector('.add-to-cart');
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            // جلب البيانات من الـ Data Attributes المكتوبة في الـ HTML
+            currentProduct = {
+                id: card.getAttribute('data-id'),
+                name: card.getAttribute('data-name'),
+                price: parseInt(card.getAttribute('data-price')),
+                img: card.getAttribute('data-img'),
+                images: card.getAttribute('data-images').split(','),
+                colors: card.getAttribute('data-colors').split(','),
+                desc: card.getAttribute('data-desc'),
+                type: card.getAttribute('data-type')
+            };
 
-    function openProductModal(product) {
-        modalProductTitle.textContent = product.name;
-        modalProductPrice.textContent = `${product.price} EGP`;
-        modalProductDesc.textContent = product.desc;
-        modalProductImg.src = product.img;
-        
-        // تجهيز الصور المصغرة (Thumbnails)
-        modalThumbnailsContainer.innerHTML = '';
-        product.images.forEach((imgSrc, index) => {
-            const img = document.createElement('img');
-            img.src = imgSrc;
-            img.className = `thumb-img ${index === 0 ? 'active' : ''}`;
-            img.addEventListener('click', () => {
-                document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
-                img.classList.add('active');
-                modalProductImg.src = imgSrc;
+            // تفريغ الاختيارات السابقة
+            selectedColor = '';
+            selectedSize = '';
+
+            // ملء بيانات الـ Modal بالمنتج المختار
+            document.getElementById('modalProductTitle').innerText = currentProduct.name;
+            document.getElementById('modalProductPrice').innerText = currentProduct.price + " EGP";
+            document.getElementById('modalProductDesc').innerText = currentProduct.desc;
+            document.getElementById('modalProductImg').src = currentProduct.img;
+
+            // بناء صور المعرض المصغرة (Thumbnails)
+            const thumbContainer = document.getElementById('modalThumbnailsContainer');
+            thumbContainer.innerHTML = '';
+            currentProduct.images.forEach((imgSrc, idx) => {
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.classList.add('thumb-img');
+                if(idx === 0) img.classList.add('active');
+                
+                img.addEventListener('click', () => {
+                    document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
+                    img.classList.add('active');
+                    document.getElementById('modalProductImg').src = imgSrc;
+                });
+                thumbContainer.appendChild(img);
             });
-            modalThumbnailsContainer.appendChild(img);
+
+            // بناء أزرار الألوان المتاحة
+            const colorContainer = document.getElementById('modalColorsContainer');
+            colorContainer.innerHTML = '';
+            currentProduct.colors.forEach(color => {
+                const btn = document.createElement('button');
+                btn.classList.add('color-btn');
+                btn.innerText = color;
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    selectedColor = color;
+                });
+                colorContainer.appendChild(btn);
+            });
+
+            // بناء جدول المقاسات التفاعلي
+            const chartBody = document.getElementById('sizeChartBody');
+            chartBody.innerHTML = '';
+            const rows = sizeCharts[currentProduct.type] || sizeCharts['shirt'];
+            rows.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.classList.add('size-row');
+                tr.innerHTML = `<td>${item.size}</td><td>${item.weight}</td>`;
+                tr.addEventListener('click', () => {
+                    document.querySelectorAll('.size-row').forEach(r => r.classList.remove('selected'));
+                    tr.classList.add('selected');
+                    selectedSize = item.size;
+                });
+                chartBody.appendChild(tr);
+            });
+
+            // إظهار الـ Modal والخلفية
+            productModal.classList.add('show');
+            overlay.classList.add('show');
+        });
+    });
+
+    // إغلاق الـ Product Modal
+    closeProductModalBtn.addEventListener('click', () => {
+        productModal.classList.remove('show');
+        overlay.classList.remove('show');
+    });
+
+    // 4. زر إضافة المنتج إلى السلة بعد التأكد من اختيار المقاس واللون
+    document.getElementById('modalAddToCartBtn').addEventListener('click', () => {
+        if (!selectedColor) {
+            alert('برجاء اختيار اللون المفضل أولاً!');
+            return;
+        }
+        if (!selectedSize) {
+            alert('برجاء اختيار مقاسك من جدول المقاسات المتاح!');
+            return;
+        }
+
+        // إضافة المنتج كعنصر فريد في السلة
+        const cartItem = {
+            ...currentProduct,
+            color: selectedColor,
+            size: selectedSize,
+            cartId: currentProduct.id + '-' + selectedColor + '-' + selectedSize
+        };
+
+        cart.push(cartItem);
+        updateCartUI();
+
+        // إغلاق المودال وفتح السلة الجانبية تلقائياً لتأكيد الإضافة
+        productModal.classList.remove('show');
+        cartSidebar.classList.add('show');
+    });
+
+    // 5. تحديث واجهة سلة المشتريات وحساب الإجمالي وحذف العناصر
+    function updateCartUI() {
+        // تحديث عداد السلة في الهيدر
+        document.querySelector('.cart-count').innerText = cart.length;
+
+        const container = document.getElementById('cartItemsContainer');
+        container.innerHTML = '';
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            total += item.price;
+            const itemEl = document.createElement('div');
+            itemEl.classList.add('cart-item');
+            itemEl.innerHTML = `
+                <img src="${item.img}" alt="${item.name}">
+                <div class="cart-item-details">
+                    <h4>${item.name}</h4>
+                    <p>اللون: ${item.color} | المقاس: ${item.size}</p>
+                    <p style="font-weight:bold; margin-top:3px;">${item.price} EGP</p>
+                </div>
+                <button class="remove-item-btn" onclick="removeFromCart(${index})"><i class="fas fa-trash-alt"></i></button>
+            `;
+            container.appendChild(itemEl);
         });
 
-        // تجهيز أزرار الألوان
-        modalColorsContainer.innerHTML = '';
-        selectedColor = product.colors[0]; // التحديد الافتراضي لأ
+        document.getElementById('cartTotal').innerText = total;
+        document.getElementById('summarySubtotal').innerText = total;
+        updateCheckoutTotals();
+    }
+
+    // دالة حذف عنصر من السلة
+    window.removeFromCart = function(index) {
+        cart.splice(index, 1);
+        updateCartUI();
+    };
+
+    // 6. تشغيل وحساب شاشة الدفع والـ Checkout والجراند توتال مع الشحن
+    const govSelect = document.getElementById('governorate');
+    govSelect.addEventListener('change', updateCheckoutTotals);
+
+    function updateCheckoutTotals() {
+        const subtotal = parseInt(document.getElementById('summarySubtotal').innerText) || 0;

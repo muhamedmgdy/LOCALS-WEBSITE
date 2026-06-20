@@ -1231,7 +1231,7 @@
             });
         }
 
-        // تأكيد الطلب النهائي وإرساله للواتساب
+        // تأكيد الطلب النهائي وإرساله للواتساب بالتنسيق الجديد الاحترافي
         if(finalOkBtn) {
             finalOkBtn.addEventListener('click', () => {
                 const name = document.getElementById('fullName').value;
@@ -1242,35 +1242,39 @@
                 let subtotal = 0;
                 let productDetailsText = '';
                 
-                cart.forEach((item, idx) => {
+                cart.forEach((item) => {
                     subtotal += item.price * item.quantity;
-                    productDetailsText += `${idx + 1}- ${item.name}\n   المقاس: ${item.size} | اللون: ${item.color} | الكمية: ${item.quantity}\n`;
+                    productDetailsText += `• *${item.name}*\n  - اللون: ${item.color} | المقاس: ${item.size}\n  - الكمية: ${item.quantity}\n\n`;
                 });
                 
                 const shipping = parseInt(document.getElementById('modalShippingCost').innerText);
                 const grandTotal = subtotal + shipping;
 
-                const whatsappMessage = encodeURIComponent(
-                    `طلب جديد من موقع LOCALS ⚡\n\n` +
-                    `👤 بيانات العميل:\n` +
-                    `- الاسم: ${name}\n` +
-                    `- الهاتف: ${phone}\n` +
-                    `- المحافظة: ${gov}\n` +
-                    `- العنوان: ${address}\n\n` +
-                    `📦 المنتجات المطلوبة:\n` +
-                    `${productDetailsText}\n` +
-                    `💰 تفاصيل الحساب:\n` +
-                    `- الحساب الفرعي: ${subtotal} EGP\n` +
-                    `- مصاريف الشحن: ${shipping} EGP\n` +
-                    `- الإجمالي الكلي: ${grandTotal} EGP\n\n` +
-                    `⚠️ جاري تحويل مصاريف الشحن (${shipping} EGP) لتأكيد الحجز وتجهيز الشحن فوراً.`
-                );
+                // توليد رقم أوردر عشوائي فريد لكل عميل تلقائياً بين 1000 و 9999
+                const orderNumber = "LOC-" + Math.floor(1000 + Math.random() * 9000);
 
+                // بناء الرسالة بالتنسيق المطلوب حرفياً مع قفزات السطور الصحيحة
+                const textMessage = 
+                    `🚨 *أوردر جديد من موقع LOCALS* 🚨\n\n` +
+                    `🆔 *رقم الأوردر:* ${orderNumber}\n` +
+                    `👤 *اسم العميل:* ${name}\n` +
+                    `📞 *رقم التليفون:* ${phone}\n` +
+                    `📍 *المحافظة:* ${gov}\n` +
+                    `🏠 *العنوان بالتفصيل:* ${address}\n\n` +
+                    `📦 *المنتجات المطلوبة*:\n\n${productDetailsText}` +
+                    `💵 *تفاصيل الحساب*:\n` +
+                    `- المجموع: ${subtotal} EGP\n` +
+                    `- الشحن (مطلوب تحويله أولاً): ${shipping} EGP\n` +
+                    `💰 *الإجمالي النهائي:* ${grandTotal} EGP\n\n` +
+                    `⚠️ يرجى إرسال صورة إيصال تحويل الشحن كاش لتأكيد الأوردر.`;
+
+                const whatsappMessage = encodeURIComponent(textMessage);
                 const whatsappNumber = "201061056741"; 
                 const whatsappURL = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${whatsappMessage}`;
                 
                 window.open(whatsappURL, '_blank');
                 
+                // إعادة تهيئة السلة بعد نجاح إرسال الطلب
                 cart = [];
                 updateCartUI();
                 successModal.classList.remove('show');
@@ -1280,6 +1284,3 @@
         }
     });
 </script>
-
-</body>
-</html>

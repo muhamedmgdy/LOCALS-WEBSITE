@@ -203,18 +203,25 @@
             color: #333;
             margin-bottom: 20px;
         }
-        .product-color-swatches {
+      .product-color-swatches {
             display: flex;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
             margin-bottom: 12px;
         }
         .swatch {
-            width: 14px;
-            height: 14px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             border: 1px solid #ccc;
             display: inline-block;
+            cursor: pointer; /* عشان الماوس يتحول لشكل إيد */
+            transition: transform 0.2s ease; /* بيخلي تكبير الدائرة ناعم ومريح للعين */
+        }
+
+        /* ده السطر الجديد المسئول عن حركة الماوس */
+        .swatch:hover {
+            transform: scale(1.35); /* يكبر الدائرة 35% لما تقف عليها بالماوس */
         }
         
         .add-to-cart {
@@ -746,19 +753,24 @@
         <h3>Oversized STRIPED SHIRT</h3>
         <p class="price">850 EGP</p>
         <div class="product-color-swatches">
-            <span class="swatch" style="background-color: #a0c4ff;" title="Baby Blue"></span>
-            <span class="swatch" style="background-color: #ffc6ff;" title="Pink"></span>
-        </div>
+<div class="product-color-swatches">
+    <span class="swatch" style="background-color: #a0c4ff;" data-image="shirt-blue.jpg" title="Baby Blue"></span>
+    <span class="swatch" style="background-color: #ffc6ff;" data-image="shirt-pink.jpg" title="Pink"></span>
+    <span class="swatch" style="background-color: #ffffff;" data-image="shirt-white.jpg" title="White"></span>
+</div>
         <button class="add-to-cart">VIEW OPTIONS & SIZE CHART</button>
     </div>
+    
 
     <div class="card" data-id="2" data-name="RINGER TEE" data-price="700" data-img="RINGER TEE.jpeg" data-images="RINGER TEE.jpeg" data-colors="Red,Black,White" data-desc="تيشيرت رينجر كلاسيكي مميز بأطراف ملونة ملفتة، مصنوع من قطن ليكرا ناعم ومقاوم للانكماش. أوبشن رائع ليعطيك مظهر ريترو ستريت وير فريد." data-type="shirt">
         <img src="RINGER TEE.jpeg" alt="RINGER TEE">
         <h3>RINGER TEE</h3>
         <p class="price">700 EGP</p>
         <div class="product-color-swatches">
-            <span class="swatch" style="background-color: #a0c4ff;" title="Baby Blue"></span>
-            <span class="swatch" style="background-color: #ffc6ff;" title="Pink"></span>
+<div class="product-color-swatches">
+    <span class="swatch" style="background-color: #a0c4ff;" data-image="shirt-blue.jpg" title="Baby Blue"></span>
+    <span class="swatch" style="background-color: #ffc6ff;" data-image="shirt-pink.jpg" title="Pink"></span>
+    <span class="swatch" style="background-color: #ffffff;" data-image="shirt-white.jpg" title="White"></span>
         </div>
         <button class="add-to-cart">VIEW OPTIONS & SIZE CHART</button>
     </div>
@@ -768,8 +780,10 @@
         <h3>SUPER BAGGY JEANS</h3>
         <p class="price">950 EGP</p>
         <div class="product-color-swatches">
-            <span class="swatch" style="background-color: #a0c4ff;" title="Baby Blue"></span>
-            <span class="swatch" style="background-color: #ffc6ff;" title="Pink"></span>
+<div class="product-color-swatches">
+    <span class="swatch" style="background-color: #a0c4ff;" data-image="shirt-blue.jpg" title="Baby Blue"></span>
+    <span class="swatch" style="background-color: #ffc6ff;" data-image="shirt-pink.jpg" title="Pink"></span>
+    <span class="swatch" style="background-color: #ffffff;" data-image="shirt-white.jpg" title="White"></span>
         </div>
         <button class="add-to-cart">VIEW OPTIONS & SIZE CHART</button>
     </div>
@@ -779,9 +793,11 @@
         <h3>BAGGY SWEATPANTS</h3>
         <p class="price">900 EGP</p>
         <div class="product-color-swatches">
-            <span class="swatch" style="background-color: #a0c4ff;" title="Baby Blue"></span>
-            <span class="swatch" style="background-color: #ffc6ff;" title="Pink"></span>
-        </div>
+<div class="product-color-swatches">
+    <span class="swatch" style="background-color: #a0c4ff;" data-image="shirt-blue.jpg" title="Baby Blue"></span>
+    <span class="swatch" style="background-color: #ffc6ff;" data-image="shirt-pink.jpg" title="Pink"></span>
+    <span class="swatch" style="background-color: #ffffff;" data-image="shirt-white.jpg" title="White"></span>
+</div>
         <button class="add-to-cart">VIEW OPTIONS & SIZE CHART</button>
     </div>
 </section>
